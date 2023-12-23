@@ -50,7 +50,7 @@ function Signup() {
                         </div>
                         {/* Sign-up Button */}
                         <button
-                            className="block w-full mt-4 bg-blue-600 py-3 px-4 rounded-xl hover:bg-blue-700 font-medium text-lg focus:outline-none bg-gradient-to-r from-[#501794] to-[#3E70A1]"
+                            className="block w-full mt-4 bg-blue-600 py-3 px-4 rounded-xl font-medium text-lg focus:outline-none bg-gradient-to-r from-[#501794] to-[#3E70A1]"
                             type="submit"
                         >
                             Sign up
