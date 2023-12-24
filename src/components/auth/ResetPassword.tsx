@@ -1,35 +1,30 @@
 import PasswordIcon from "../../assets/Password.svg";
+import AuthTxtField from "../shared/AuthTxtField";
+import AuthBtn from "../shared/AuthBtn";
+
 const RestPassword = () => {
   return (
-    <div className="w-screen h-screen relative bg-[#16042F]">
-      <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[550px] h-[400px] bg-[#260F46] rounded-[10px]">
-        <h1 className="text-white font-bold text-4xl text-[30px] w-[300px] h-[60px] left-[50px] top-[70px] absolute">
+    <div className="parent-container flex items-center justify-center w-screen h-screen bg-[#16042F]">
+      <div className="child-element flex items-start flex-col w-[80%] sm:w-[60%] lg:w-[36%] h-[55%] bg-[#260F46] rounded-[10px] px-12 py-8 justify-center">
+        <h1 className="text-white font-bold text-3xl sm:text-4xl selft-start mb-4">
           Reset Password
         </h1>
 
-        <form className="mt-6 left-[50px] top-[130px] w-[450px] absolute">
+        <form className="mt-6 w-full flex gap-3 flex-col self-start px-1">
           {/* New Password Input */}
-          <div className="text-white text-[15px] w-[190px] h-[25px] font-bold left-[7px]  absolute">
+          <div className="text-white text-[15px] font-bold px-2">
             Enter your new password
           </div>
-          <div className="top-[35px] w-full py absolute">
-            <input
-              type="password"
-              className="pl-14 pr-4 py-3 rounded-lg w-full text-white bg-[#3B2063] "
-              placeholder="password"
-            />
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <img src={PasswordIcon} alt="Email Icon" />
-            </div>
-          </div>
+          <AuthTxtField
+            type="password"
+            placeholder="password"
+            icon={PasswordIcon}
+          />
+
           {/* Reset Button */}
-          <button
-            className="py-3 px-4 rounded-xl  font-medium text-lg text-white
-             bg-gradient-to-r from-[#501794] to-[#3E70A1]  hover:bg-[#16042F] top-[115px] w-full py absolute"
-            type="submit"
-          >
-            Reset
-          </button>
+          <div className="mt-6">
+            <AuthBtn text="Reset"></AuthBtn>
+          </div>
         </form>
       </div>
     </div>
