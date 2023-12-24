@@ -4,9 +4,9 @@ import { twJoin } from 'tailwind-merge';
 
 import DashboardSliderImg from './DashboardSliderImg';
 
-import DashboardEnterRoomImg from '../../../assets/dashboard-enter-room.png';
-import DashboardBuildRoomImg from '../../../assets/dashboard-build-room.png';
-import DashboardViewRoomImg from '../../../assets/dashboard-view-room.png';
+import DashboardEnterRoomImg from '../../../assets/images/dashboard-enter-room.png';
+import DashboardBuildRoomImg from '../../../assets/images/dashboard-build-room.png';
+import DashboardViewRoomImg from '../../../assets/images/dashboard-view-room.png';
 
 import classes from './DashboardSlider.module.css';
 
