@@ -1,10 +1,9 @@
-/* Stylings to be done */
 
 .dashboard-text-container {
     position: relative;
-    top: -40px;
+    top: -100px;
     left: 50%;
-    width: 20%;
+    width: 22%;
     height: max-content;
     align-self: center;
     translate: -50% 0;
@@ -13,13 +12,13 @@
 }
 
 .dashboard-text-container[data-rotation='0'] {
-    transform: rotate(105deg);
+    transform: rotate(-40deg);
 }
 
 .dashboard-text-container[data-rotation='1'] {
-    transform: rotate(0deg);
+    transform: rotate(-150deg);
 }
 
 .dashboard-text-container[data-rotation='2'] {
-    transform: rotate(-105deg);
+    transform: rotate(-265deg);
 }

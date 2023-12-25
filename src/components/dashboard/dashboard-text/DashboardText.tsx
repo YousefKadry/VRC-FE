@@ -1,41 +1,35 @@
-import React from "react";
 
-import classes from "./DashboardText.module.css"
+import React from "react";
+import classes from "./DashboardText.module.css";
 
 const DashBoardText: React.FC<{ activeSlider: number }> = ({ activeSlider }) => {
-  const handleJoinRoomClick = () => {
-    console.log("Join a room clicked");
-  };
+  const radius = 180;
 
-  const handleCreateRoomClick = () => {
-    console.log("Create a room clicked");
-  };
+  const centerX = 276;
+  const centerY = 276;
 
-  const handleViewRoomClick = () => {
-    console.log("View a room clicked");
-  };
+  const circlePath = `
+    M ${centerX},${centerY - radius}
+    a ${radius},${radius} 0 0,1 0,${2 * radius}
+    a ${radius},${radius} 0 0,1 0,-${2 * radius}
+  `;
 
   return (
-<div className={classes["dashboard-text-container"]} data-rotation={activeSlider}>
-    <svg  viewBox="0 0 400 400">
-      <path id="curve" fill="transparent" d="
-        M 200,300
-        a 100,100 0 0,1 0,-200
-        a 100,100 0 0,1 0,200
-      "/>
-
-      <text fill="white" fontSize="24px"> 
-        <textPath xlinkHref="#curve" startOffset="10%" onClick={handleJoinRoomClick} style={{ cursor: 'pointer' }}>
-          Enter A Room
-        </textPath>
-        <textPath xlinkHref="#curve" startOffset="39%" onClick={handleCreateRoomClick} style={{ cursor: 'pointer' }}>
-          Build A Room
-        </textPath>
-        <textPath xlinkHref="#curve" startOffset="68%" onClick={handleViewRoomClick} style={{ cursor: 'pointer' }}>
-          View Rooms
-        </textPath>
-      </text>
-    </svg>
+    <div className={classes["dashboard-text-container"]} data-rotation={activeSlider}>
+      <svg viewBox="0 0 552 552">
+        <path id="curve" fill="transparent" d={circlePath}  />
+        <text fill="white" fontSize="32px" fontFamily="Kavoon, sans-serif" letterSpacing={"3px"}>
+          <textPath xlinkHref="#curve" startOffset="0" role="button" onClick={() => console.log("Join a room clicked")} style={{ cursor: 'pointer' }}>
+            Enter A Room
+          </textPath>
+          <textPath xlinkHref="#curve" startOffset="31%" role="button" onClick={() => console.log("Create a room clicked")} style={{ cursor: 'pointer' }}>
+            Build A Room
+          </textPath>
+          <textPath xlinkHref="#curve" startOffset="61%" role="button" onClick={() => console.log("View a room clicked")} style={{ cursor: 'pointer' }}>
+            View My Rooms
+          </textPath>
+        </text>
+      </svg>
     </div>
   );
 };
