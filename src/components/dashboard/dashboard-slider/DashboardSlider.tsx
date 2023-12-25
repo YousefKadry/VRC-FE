@@ -25,8 +25,8 @@ const DashboardSlider: React.FC<{ activeSliderHandler: (activeSlider: number) =>
         >
             <Swiper
                 modules={[Navigation]}
-                spaceBetween={220}
-                slidesPerView={2.2}
+                spaceBetween={65}
+                slidesPerView={2.45}
                 centeredSlides={true}
                 navigation={true}
                 onSlideChange={(swiper) => activeSliderHandler(swiper.activeIndex)}
