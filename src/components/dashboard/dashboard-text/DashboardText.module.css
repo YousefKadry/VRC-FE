@@ -1,6 +1,25 @@
 /* Stylings to be done */
 
-
-.dashboard-text-container{
+.dashboard-text-container {
+    position: relative;
+    top: -40px;
+    left: 50%;
     width: 20%;
+    height: max-content;
+    align-self: center;
+    translate: -50% 0;
+    transition: transform 0.2s linear;
+    z-index: 3;
+}
+
+.dashboard-text-container[data-rotation='0'] {
+    transform: rotate(105deg);
+}
+
+.dashboard-text-container[data-rotation='1'] {
+    transform: rotate(0deg);
+}
+
+.dashboard-text-container[data-rotation='2'] {
+    transform: rotate(-105deg);
 }

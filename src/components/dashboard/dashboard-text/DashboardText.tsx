@@ -1,6 +1,8 @@
+import React from "react";
+
 import classes from "./DashboardText.module.css"
 
-const DashBoardText = () => {
+const DashBoardText: React.FC<{ activeSlider: number }> = ({ activeSlider }) => {
   const handleJoinRoomClick = () => {
     console.log("Join a room clicked");
   };
@@ -14,7 +16,7 @@ const DashBoardText = () => {
   };
 
   return (
-<div className={classes["dashboard-text-container"]}>
+<div className={classes["dashboard-text-container"]} data-rotation={activeSlider}>
     <svg  viewBox="0 0 400 400">
       <path id="curve" fill="transparent" d="
         M 200,300
@@ -22,7 +24,7 @@ const DashBoardText = () => {
         a 100,100 0 0,1 0,200
       "/>
 
-      <text fill="white" fontSize="3vh"> 
+      <text fill="white" fontSize="24px"> 
         <textPath xlinkHref="#curve" startOffset="10%" onClick={handleJoinRoomClick} style={{ cursor: 'pointer' }}>
           Enter A Room
         </textPath>

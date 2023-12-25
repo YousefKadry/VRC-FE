@@ -1,3 +1,4 @@
+import React from 'react';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { twJoin } from 'tailwind-merge';
@@ -12,7 +13,9 @@ import LeftArrowIcon from '../../../assets/icons/left-arrow.svg';
 
 import classes from './DashboardSlider.module.css';
 
-const DashboardSlider = () => {
+const DashboardSlider: React.FC<{ activeSliderHandler: (activeSlider: number) => void }> = (props) => {
+    const { activeSliderHandler } = props;
+
     return (
         <div
             className={twJoin(
@@ -26,8 +29,7 @@ const DashboardSlider = () => {
                 slidesPerView={2.45}
                 centeredSlides={true}
                 navigation={true}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
+                onSlideChange={(swiper) => activeSliderHandler(swiper.activeIndex)}
                 style={
                     {
                         maxHeight: '80vh',
