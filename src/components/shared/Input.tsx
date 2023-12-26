@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent } from "react";
 
 interface CustomInputProps {
   placeholder: string;
@@ -6,8 +6,12 @@ interface CustomInputProps {
   className?: string;
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({ placeholder, onInputChange, className }) => {
-  const [inputValue, setInputValue] = useState<string>('');
+const CustomInput: React.FC<CustomInputProps> = ({
+  placeholder,
+  onInputChange,
+  className,
+}) => {
+  const [inputValue, setInputValue] = useState<string>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -19,7 +23,9 @@ const CustomInput: React.FC<CustomInputProps> = ({ placeholder, onInputChange, c
   return (
     <input
       type="text"
-      className={`pl-14 pr-4 py-3 rounded-lg w-full bg-[#261046] ${className || ''}`}
+      className={`pl-14 pr-4 py-3 rounded-lg w-full bg-secondary ${
+        className || ""
+      }`}
       placeholder={placeholder}
       value={inputValue}
       onChange={handleChange}
