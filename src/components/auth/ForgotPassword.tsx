@@ -1,8 +1,16 @@
 import EmailIcon from "../../assets/Email.svg";
 import CustomInput from "../shared/Input";
 import CustomButton from "../shared/Button";
+import handelEmailInput from "./hooks/handleEmailInput";
+import handelButtonClick from "./hooks/handelButtonClick";
+import { ChangeEvent } from "react";
 
 const ForgotPassword = () => {
+  const { email, emailError, handleEmailChange } = handelEmailInput();
+
+  const handleClick = handelButtonClick({ email: emailError }, () => {
+    console.log("clicked");
+  });
   return (
     <>
       <title>Forgot Password</title>
@@ -23,12 +31,19 @@ const ForgotPassword = () => {
                 placeholder="yourname@gmail.com"
                 IconSrc={EmailIcon}
                 IconAlt="Email Icon"
-                className="bg-[#3B2063]"
+                className="bg-[#3B2063] text-white "
+                value={email}
+                handleChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  handleEmailChange(e.target.value)
+                }
               />
             </div>
+            {emailError && (
+              <p className="text-red-500 -mb-4 -mt-2 ml-2">{emailError}</p>
+            )}
             {/* Reset Password button */}
             <div className="mt-2">
-              <CustomButton>
+              <CustomButton onClick={handleClick}>
                 <span className="text-white">Reset Password</span>
               </CustomButton>
             </div>

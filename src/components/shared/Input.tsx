@@ -3,7 +3,8 @@ import React, { useState, ChangeEvent } from "react";
 interface CustomInputProps {
   type: "text" | "password";
   placeholder: string;
-  onInputChange?: (value: string) => void;
+  handleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
   className?: string;
   IconSrc?: string;
   IconAlt?: string;
@@ -11,28 +12,22 @@ interface CustomInputProps {
 
 const CustomInput: React.FC<CustomInputProps> = ({
   placeholder,
-  onInputChange,
+  handleChange,
+  value,
   className,
   IconSrc,
   IconAlt,
   type,
 }) => {
-  const [inputValue, setInputValue] = useState<string>("");
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    if (onInputChange) {
-      onInputChange(e.target.value);
-    }
-  };
-
   return (
     <>
       <input
         type={type}
-        className={`pl-14 pr-4 py-3 rounded-lg w-full ${className || ""}`}
+        className={`pl-14 pr-4 py-3 rounded-lg w-full text-white ${
+          className || ""
+        }`}
         placeholder={placeholder}
-        value={inputValue}
+        value={value}
         onChange={handleChange}
       />
       {IconSrc && (

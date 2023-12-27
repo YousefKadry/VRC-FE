@@ -1,8 +1,13 @@
+import { ChangeEvent } from "react";
 import PasswordIcon from "../../assets/Password.svg";
 import CustomButton from "../shared/Button";
 import CustomInput from "../shared/Input";
+import handlePasswordInput from "./hooks/handelPasswordInput";
 
 const RestPassword = () => {
+  const { password, passwordError, handlePasswordChange } =
+    handlePasswordInput();
+
   return (
     <>
       <title>Reset Password</title>
@@ -19,13 +24,20 @@ const RestPassword = () => {
             </div>
             <div className="relative my-2 -mt-1">
               <CustomInput
-                type="text"
+                type="password"
                 placeholder="Password"
                 IconSrc={PasswordIcon}
                 IconAlt="Password Icon"
                 className="bg-[#3B2063]"
+                value={password}
+                handleChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  handlePasswordChange(e.target.value)
+                }
               />
             </div>
+            {passwordError && (
+              <p className="text-red-500 -mb-4 -mt-5 ml-2">{passwordError}</p>
+            )}
 
             {/* Reset Button */}
             <div className="-mt-1">
