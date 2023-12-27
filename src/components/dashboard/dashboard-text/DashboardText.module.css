@@ -1,13 +1,14 @@
-
 .dashboard-text-container {
     position: relative;
-    top: -100px;
+    top: 0;
     left: 50%;
     width: 22%;
     height: max-content;
-    align-self: center;
-    translate: -50% 0;
+    translate: -50% -20%;
     transition: transform 0.2s linear;
+    border-radius: 50%;
+    box-shadow: 0 0 2.5rem 0 #53426b, 0 0 4rem -1rem #53426b inset;
+    background: radial-gradient(ellipse at center, #53426b, #53426ba7, #53426b4b, transparent);
     z-index: 3;
 }
 
