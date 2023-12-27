@@ -3,8 +3,19 @@ import EmailIcon from "../../assets/Email.svg";
 import PasswordIcon from "../../assets/Password.svg";
 import CustomInput from "../shared/Input";
 import CustomButton from "../shared/Button";
+import handleRequriedInput from "./hooks/handelRequiredInput";
+import handelButtonClick from "./hooks/handelButtonClick";
+import { ChangeEvent } from "react";
 
 function Login() {
+  const emailHandeler = handleRequriedInput("Email");
+  const passwordHandeler = handleRequriedInput("Password");
+  const handleButtonClick = handelButtonClick(
+    [emailHandeler, passwordHandeler],
+    () => {
+      console.log("clicked");
+    }
+  );
   return (
     <>
       <title>Login</title>
@@ -25,8 +36,15 @@ function Login() {
                   IconSrc={EmailIcon}
                   IconAlt="Email Icon"
                   className=" bg-secondary"
+                  value={emailHandeler.value}
+                  handleChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    emailHandeler.handlevalueChange(e.target.value)
+                  }
                 />
               </div>
+              {emailHandeler.error && (
+                <p className="text-red-500 -mb-4 ml-2">{emailHandeler.error}</p>
+              )}
               {/* Password Input */}
               <div className="relative my-5">
                 <CustomInput
@@ -35,10 +53,19 @@ function Login() {
                   IconSrc={PasswordIcon}
                   IconAlt="Password Icon"
                   className=" bg-secondary"
+                  value={passwordHandeler.value}
+                  handleChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    passwordHandeler.handlevalueChange(e.target.value)
+                  }
                 />
               </div>
+              {passwordHandeler.error && (
+                <p className="text-red-500 -mt-5 ml-2">
+                  {passwordHandeler.error}
+                </p>
+              )}
               {/* Sign-in Button */}
-              <CustomButton>Sign in</CustomButton>
+              <CustomButton onClick={handleButtonClick}>Sign in</CustomButton>
             </form>
             {/* Recovery */}
             <div className="flex my-4 items-center justify-between">

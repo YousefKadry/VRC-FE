@@ -6,9 +6,9 @@ import handelButtonClick from "./hooks/handelButtonClick";
 import { ChangeEvent } from "react";
 
 const ForgotPassword = () => {
-  const { email, emailError, handleEmailChange } = handelEmailInput();
+  const emailHandeler = handelEmailInput();
 
-  const handleClick = handelButtonClick({ email: emailError }, () => {
+  const handleButtonClick = handelButtonClick([emailHandeler], () => {
     console.log("clicked");
   });
   return (
@@ -32,18 +32,20 @@ const ForgotPassword = () => {
                 IconSrc={EmailIcon}
                 IconAlt="Email Icon"
                 className="bg-[#3B2063] text-white "
-                value={email}
+                value={emailHandeler.email}
                 handleChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  handleEmailChange(e.target.value)
+                  emailHandeler.handleEmailChange(e.target.value)
                 }
               />
             </div>
-            {emailError && (
-              <p className="text-red-500 -mb-4 -mt-2 ml-2">{emailError}</p>
+            {emailHandeler.emailError && (
+              <p className="text-red-500 -mb-4 -mt-2 ml-2">
+                {emailHandeler.emailError}
+              </p>
             )}
             {/* Reset Password button */}
             <div className="mt-2">
-              <CustomButton onClick={handleClick}>
+              <CustomButton onClick={handleButtonClick}>
                 <span className="text-white">Reset Password</span>
               </CustomButton>
             </div>

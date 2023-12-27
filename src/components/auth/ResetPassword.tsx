@@ -3,10 +3,13 @@ import PasswordIcon from "../../assets/Password.svg";
 import CustomButton from "../shared/Button";
 import CustomInput from "../shared/Input";
 import handlePasswordInput from "./hooks/handelPasswordInput";
+import handelButtonClick from "./hooks/handelButtonClick";
 
 const RestPassword = () => {
-  const { password, passwordError, handlePasswordChange } =
-    handlePasswordInput();
+  const passwordHandeler = handlePasswordInput();
+  const handleButtonClick = handelButtonClick([passwordHandeler], () => {
+    console.log("clicked");
+  });
 
   return (
     <>
@@ -29,19 +32,21 @@ const RestPassword = () => {
                 IconSrc={PasswordIcon}
                 IconAlt="Password Icon"
                 className="bg-[#3B2063]"
-                value={password}
+                value={passwordHandeler.password}
                 handleChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  handlePasswordChange(e.target.value)
+                  passwordHandeler.handlePasswordChange(e.target.value)
                 }
               />
             </div>
-            {passwordError && (
-              <p className="text-red-500 -mb-4 -mt-5 ml-2">{passwordError}</p>
+            {passwordHandeler.passwordError && (
+              <p className="text-red-500 -mb-4 -mt-5 ml-2">
+                {passwordHandeler.passwordError}
+              </p>
             )}
 
             {/* Reset Button */}
             <div className="-mt-1">
-              <CustomButton>
+              <CustomButton onClick={handleButtonClick}>
                 <span className="text-white">Reset</span>
               </CustomButton>
             </div>

@@ -3,8 +3,24 @@ import EmailIcon from "../../assets/Email.svg";
 import PasswordIcon from "../../assets/Password.svg";
 import CustomInput from "../shared/Input";
 import CustomButton from "../shared/Button";
+import handelEmailInput from "./hooks/handleEmailInput";
+import handlePasswordInput from "./hooks/handelPasswordInput";
+import handelButtonClick from "./hooks/handelButtonClick";
+import handleRequriedInput from "./hooks/handelRequiredInput";
+import { ChangeEvent } from "react";
 
 function Signup() {
+  const firstNameHandeler = handleRequriedInput("First name");
+  const secondNameHandeler = handleRequriedInput("Second name");
+  const emailHandeler = handelEmailInput();
+  const passwordHundeler = handlePasswordInput();
+  const handleButtonClick = handelButtonClick(
+    [firstNameHandeler, secondNameHandeler, emailHandeler, passwordHundeler],
+    () => {
+      console.log("clicked");
+    }
+  );
+
   return (
     <>
       <title>Sign Up</title>
@@ -19,13 +35,26 @@ function Signup() {
                   type="text"
                   className="pl-8 w-full sm:w-1/2 sm:mr-2 mb-6 sm:mb-0  bg-secondary"
                   placeholder="First Name"
+                  value={firstNameHandeler.value}
+                  handleChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    firstNameHandeler.handlevalueChange(e.target.value)
+                  }
                 />
                 <CustomInput
                   type="text"
                   className="pl-8 w-full sm:w-1/2 sm:ml-2  bg-secondary"
                   placeholder="Last Name"
+                  value={secondNameHandeler.value}
+                  handleChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    secondNameHandeler.handlevalueChange(e.target.value)
+                  }
                 />
               </div>
+              {(firstNameHandeler.error || secondNameHandeler.error) && (
+                <p className="text-red-500 -mt-6 ml-2 mb-1">
+                  {firstNameHandeler.error || secondNameHandeler.error}
+                </p>
+              )}
               {/* Email Input */}
               <div className="relative w-full py">
                 <CustomInput
@@ -34,8 +63,17 @@ function Signup() {
                   IconSrc={EmailIcon}
                   IconAlt="Email Icon"
                   className=" bg-secondary"
+                  value={emailHandeler.email}
+                  handleChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    emailHandeler.handleEmailChange(e.target.value)
+                  }
                 />
               </div>
+              {emailHandeler.emailError && (
+                <p className="text-red-500 -mb-5 ml-2">
+                  {emailHandeler.emailError}
+                </p>
+              )}
               {/* Password Input */}
               <div className="relative my-6  bg-secondary">
                 <CustomInput
@@ -44,10 +82,19 @@ function Signup() {
                   IconSrc={PasswordIcon}
                   IconAlt="Password Icon"
                   className=" bg-secondary"
+                  value={passwordHundeler.password}
+                  handleChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    passwordHundeler.handlePasswordChange(e.target.value)
+                  }
                 />
               </div>
+              {passwordHundeler.passwordError && (
+                <p className="text-red-500 -mt-6 -mb-3 ml-2">
+                  {passwordHundeler.passwordError}
+                </p>
+              )}
               {/* Sign-up Button */}
-              <CustomButton>Sign Up</CustomButton>
+              <CustomButton onClick={handleButtonClick}>Sign Up</CustomButton>
             </form>
             {/* SignIn */}
             <div className="flex my-4 items-center justify-between">

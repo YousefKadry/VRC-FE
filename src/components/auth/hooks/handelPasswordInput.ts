@@ -10,9 +10,13 @@ const handlePasswordInput = () => {
   };
 
   const validatePassword = (inputPassword:string) => {
-    if (inputPassword.length < 8) {
+    if (inputPassword ==='') {
+      setPasswordError('Password is required');
+    }
+    else if (inputPassword.length < 8) {
       setPasswordError('Password must be at least 8 characters long');
-    } else {
+    }
+    else {
       setPasswordError('');
     }
   };
