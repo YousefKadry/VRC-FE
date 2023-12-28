@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 /* background */
+:root {
+    --main-bg: #160430;
+}
 
 body {
-  color: white;
-  background-color: #160430;
+    height: 100vh;
+    background-color: var(--main-bg);
+    color: white;
 }
