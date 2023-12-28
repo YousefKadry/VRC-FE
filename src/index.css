@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* background */
 :root {
     --main-bg: #160430;
 }
@@ -9,4 +10,5 @@
 body {
     height: 100vh;
     background-color: var(--main-bg);
+    color: white;
 }
