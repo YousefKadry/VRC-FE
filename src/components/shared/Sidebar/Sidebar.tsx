@@ -49,8 +49,8 @@ const Sidebar = () => {
     };
 
     return (
-        <div className={`flex h-screen transition-all duration-150 p-0 ${isCollapsed ? 'w-[8rem]' : 'w-1/2'}`}>
-            <div className="sidebar_left  bg-[#311B52] align-middle justify-center place-content-center">
+        <div className={`flex h-screen overflow-hidden transition-all duration-200 p-0 ${isCollapsed ? 'w-[8rem]' : 'w-1/2'}`}>
+            <div className="sidebar_left bg-[#311B52] flex flex-col">
                 <ul className=" flex flex-col">
                     <button
                         onClick={() => handleFocus('button1')}
@@ -86,16 +86,13 @@ const Sidebar = () => {
                     </button>
 
                     <button onClick={toggleSidebar} className="p-[2.25rem] w-full">
-                    <FontAwesomeIcon className="text-white text-4xl" icon={isCollapsed ? faArrowRight : faArrowLeft} />
+                        <FontAwesomeIcon className="text-white text-4xl" icon={isCollapsed ? faArrowRight : faArrowLeft} />
                     </button>
                 </ul>
-
             </div>
-            <div className={`sidebar_right flex flex-col px-5 py-10 items-center transition-all duration-150 bg-[#4f2a86] ${isCollapsed ? 'hidden' : 'w-3/4'}`}>
-
-                {renderFocus()}
+            <div className={`sidebar_right flex flex-col px-5 py-10 items-center transition-all duration-200 bg-[#4f2a86] ${isCollapsed ? 'w-0 opacity-0' : 'w-3/4 opacity-100'}`}>
+                {isCollapsed ? null : renderFocus()}
             </div>
-
         </div>
     )
 }
