@@ -16,7 +16,7 @@
     #or
    yarn dev
 
-# Technologies 🛠️
+## Technologies 🛠️
 
 | Technologies                                                                                                      | Description                                                                                        |
 | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
@@ -25,7 +25,7 @@
 | [React Router](https://reactrouter.com/en/main)                                                            | Declarative routing for React.js applications.                                                 |
 | [React Lazy Loading](https://react.dev/reference/react/lazy)                  | A technique to load components only when needed, improving performance.
 
-# Routes 🌐
+## Routes 🌐
 
 - **/login**: Displays the login page for users to log in.
 
