@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react';
+import { twMerge } from 'tailwind-merge';
 
-interface CustomButtonProps {
-  onClick?: () => void;
-  children: React.ReactNode;
-}
+const CustomButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = (props) => {
+    const { className, children, ...restProps } = props;
 
-const CustomButton: React.FC<CustomButtonProps> = ({ onClick, children }) => {
-  return (
-    <button
-      className="block w-full mt-4 bg-blue-600 py-3 px-4 rounded-xl hover:bg-blue-700 font-medium text-lg focus:outline-none bg-gradient-to-r from-gradient1 to-gradient2"
-      type="button" // Change to "submit" if this is intended for form submission
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
+    return (
+        <button
+            className={twMerge(
+                'block w-full mt-4 bg-blue-600 py-3 px-4 rounded-xl hover:bg-blue-700 font-medium text-lg focus:outline-none bg-gradient-to-r from-gradient1 to-gradient2',
+                className
+            )}
+            {...restProps}
+        >
+            {children}
+        </button>
+    );
 };
 
 export default CustomButton;
