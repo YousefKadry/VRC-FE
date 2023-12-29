@@ -3,39 +3,47 @@ import { faImage, faDownload, faShareFromSquare, faFont, faCircleNodes, faArrowR
 import { useState } from "react";
 const Sidebar = () => {
 
-    const [focused, setFoucsed] = useState("");
+    const [focused, setFocused] = useState("");
     const [isCollapsed, setIsCollapsed] = useState(true);
 
-    const handleFocus = (id: string) => {
-        setFoucsed(id);
-
-    }
+    const handleFocus = (id:string) => {
+        if (id === focused && !isCollapsed) {
+            setIsCollapsed(true);
+        } else {
+            setFocused(id);
+            setIsCollapsed(false);
+        }
+    };
 
     // render components here and use <> </> in your component to have my stylings
     const renderFocus = () => {
-        if (!focused) return;
+        if (!focused) return null;
 
         switch (focused) {
             case 'button1':
-                return <p>button1</p>
+                return <p>button1</p>;
             case 'button2':
-                return <>
-                    <p >button 2</p>
-                    <button
-                        onClick={() => handleFocus('button1')}
-                        className={`p-[2.25rem] w-full  }`}>
-                        <FontAwesomeIcon className="text-white text-4xl" icon={faImage} />
-                    </button>                    </>
+                return (
+                    <>
+                        <p>button 2</p>
+                        <button
+                            onClick={() => handleFocus('button1')}
+                            className="p-[2.25rem] w-full">
+                            <FontAwesomeIcon className="text-white text-4xl" icon={faImage} />
+                        </button>
+                    </>
+                );
             case 'button3':
-                return <p>button3</p>
+                return <p>button3</p>;
             case 'button4':
-                return <p>button4</p>
+                return <p>button4</p>;
             case 'button5':
-                return <p>button5</p>
+                return <p>button5</p>;
             default:
-                return
+                return null;
         }
-    }
+    };
+
     const toggleSidebar = () => {
         setIsCollapsed(!isCollapsed);
     };
