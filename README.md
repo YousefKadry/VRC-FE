@@ -1,30 +1,42 @@
-# React + TypeScript + Vite
+# VRC
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Installation 🚀
 
-Currently, two official plugins are available:
+1. **Clone the Repository:**
+   ```bash
+   git clone https://https://github.com/YousefKadry/VRC-FE
+2. **Install Dependencies:**
+   ```bash
+   npm install
+    #or
+   yarn install
+3. **Run Development Server:**
+   ```bash
+   npm run dev
+    #or
+   yarn dev
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Technologies 🛠️
 
-## Expanding the ESLint configuration
+| Technologies                                                                                                      | Description                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [React.js](https://reactjs.org/)                                                                                  | Javascript Library for building user interfaces                                                    |
+| [React Hooks](https://reactjs.org/docs/hooks-intro.html)                                                          | Functions that let you use state and lifecycle features in functional components. |
+| [React Router](https://reactrouter.com/en/main)                                                            | Declarative routing for React.js applications.                                                 |
+| [React Lazy Loading](https://react.dev/reference/react/lazy)                  | A technique to load components only when needed, improving performance.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Routes 🌐
 
-- Configure the top-level `parserOptions` property like this:
+- **/login**: Displays the login page for users to log in.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **/sign-up**: Presents the sign-up page for users to create a new account.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **/dashboard**: Navigate to the user dashboard, showcasing personalized information.
+
+- **/forgot-password**: Allows users to reset their password by providing necessary information.
+
+- **/reset-password**: Functionality: Provides a form for users to set a new password after a password reset.
+
+- **/**: Serves as the main layout for the application.
+  - *Nested Routes:*
+    - **/rooms**: Displays information and features related to the user's rooms.
