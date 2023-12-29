@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage, faDownload, faShareFromSquare, faBars, faFont, faCircleNodes } from "@fortawesome/free-solid-svg-icons";
+import { faImage, faDownload, faShareFromSquare, faFont, faCircleNodes, faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 const Sidebar = () => {
 
@@ -77,8 +77,8 @@ const Sidebar = () => {
                         <FontAwesomeIcon className="text-white text-4xl" icon={faShareFromSquare} />
                     </button>
 
-                    <button onClick={toggleSidebar} className="p-[2.25rem] w-1/3">
-                        <FontAwesomeIcon className="text-white text-4xl" icon={faBars} />
+                    <button onClick={toggleSidebar} className="p-[2.25rem] w-full">
+                    <FontAwesomeIcon className="text-white text-4xl" icon={isCollapsed ? faArrowRight : faArrowLeft} />
                     </button>
                 </ul>
 
