@@ -1,6 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faDownload, faShareFromSquare, faFont, faCircleNodes, faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+
+import BackgroundManager from "../../simulation-room/bg-management/BackgroundManager";
+
 const Sidebar = () => {
 
     const [focused, setFocused] = useState("");
@@ -21,7 +24,7 @@ const Sidebar = () => {
 
         switch (focused) {
             case 'button1':
-                return <p>button1</p>;
+                return <BackgroundManager />;
             case 'button2':
                 return (
                     <>
