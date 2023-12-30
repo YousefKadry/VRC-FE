@@ -12,3 +12,22 @@ body {
     background-color: var(--main-bg);
     color: white;
 }
+
+/* Hide scrollbar for Firefox */
+* {
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+    display: none; /* WebKit */
+}
+
+/* This will hide the scrollbar but still allow scrolling */
+/* This is a common technique used to hide the scrollbar without disabling scrolling */
+/* However, it will not work for browsers that do not support WebKit's display: none on scrollbar */
+/* So, it might not completely hide the scrollbar in all browsers */
+/* Use it cautiously */
+.overflow-y-auto::-webkit-scrollbar {
+    display: none; /* WebKit */
+}

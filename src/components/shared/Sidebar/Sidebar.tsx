@@ -3,6 +3,7 @@ import { faImage, faDownload, faShareFromSquare, faFont, faCircleNodes, faArrowR
 import { useState } from "react";
 
 import BackgroundManager from "../../simulation-room/bg-management/BackgroundManager";
+import PolyItems from "../../simulation-room/poly-items/PolyItems.tsx";
 
 const Sidebar = () => {
 
@@ -37,7 +38,7 @@ const Sidebar = () => {
                     </>
                 );
             case 'button3':
-                return <p>button3</p>;
+                return <PolyItems/>;
             case 'button4':
                 return <p>button4</p>;
             case 'button5':
