@@ -14,6 +14,7 @@ import CustomButton from "../Button";
 
 import BackgroundManager from "../../simulation-room/bg-management/BackgroundManager";
 import AddMesh from "../../simulation-room/object-editor/AddMesh";
+import PolyItems from "../../simulation-room/poly-items/PolyItems.tsx";
 
 const Sidebar = () => {
   const [focused, setFocused] = useState("");
@@ -31,7 +32,7 @@ const Sidebar = () => {
   // render components here and use <> </> in your component to have my stylings
   const renderFocus = () => {
     if (!focused) return null;
-
+    
     switch (focused) {
       case "button1":
         return <BackgroundManager />;
@@ -53,7 +54,7 @@ const Sidebar = () => {
           </>
         );
       case "button3":
-        return <p>button3</p>;
+        return <PolyItems/>;
       case "button4":
         return <AddMesh />;
       case "button5":
