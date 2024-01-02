@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import bg from "../../assets/BgSignup.png";
 import EmailIcon from "../../assets/Email.svg";
 import PasswordIcon from "../../assets/Password.svg";
@@ -7,19 +9,49 @@ import handelEmailInput from "./hooks/handleEmailInput";
 import handlePasswordInput from "./hooks/handelPasswordInput";
 import handelButtonClick from "./hooks/handelButtonClick";
 import handleRequriedInput from "./hooks/handelRequiredInput";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
+
+import useHttp from "../../hooks/http-hook";
+
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 function Signup() {
   const firstNameHandeler = handleRequriedInput("First name");
   const secondNameHandeler = handleRequriedInput("Second name");
   const emailHandeler = handelEmailInput();
   const passwordHundeler = handlePasswordInput();
-  const handleButtonClick = handelButtonClick(
+  
+  const navigate = useNavigate();
+  const { request, response } = useHttp();
+
+  useEffect(() => {
+    if(!response) {
+      return;
+    }
+
+    navigate('/login', { replace: true });
+  }, [response])
+  
+  const handleSignUp = handelButtonClick(
     [firstNameHandeler, secondNameHandeler, emailHandeler, passwordHundeler],
     () => {
-      console.log("clicked");
+        request({
+            url: `${SERVER_URL}/api/sign-up`,
+            method: 'POST',
+            data: {
+              firstName: firstNameHandeler.value,
+              lastName: secondNameHandeler.value,
+              email: emailHandeler.email,
+              password: passwordHundeler.password,
+            },
+        });
     }
   );
+
+  const handleFormSubmitting = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      handleSignUp();
+  };
 
   return (
     <>
@@ -28,7 +60,7 @@ function Signup() {
         <div className="flex-1 basis-1/3 h-screen bg-primary text-[#FFF] p-6 flex items-center">
           <div className="w-full px-5">
             <h1 className="font-bold text-6xl text-center my-10">SIGN UP</h1>
-            <form className="mt-6 w-full">
+            <form className="mt-6 w-full" onSubmit={handleFormSubmitting}>
               {/* Name Input */}
               <div className="flex flex-col sm:flex-row justify-between my-6">
                 <CustomInput
@@ -94,7 +126,7 @@ function Signup() {
                 </p>
               )}
               {/* Sign-up Button */}
-              <CustomButton onClick={handleButtonClick}>Sign Up</CustomButton>
+              <CustomButton type="submit">Sign Up</CustomButton>
             </form>
             {/* SignIn */}
             <div className="flex my-4 items-center justify-between">
