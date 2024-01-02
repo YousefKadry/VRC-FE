@@ -13,6 +13,7 @@ import CustomInput from "../Input";
 import CustomButton from "../Button";
 
 import BackgroundManager from "../../simulation-room/bg-management/BackgroundManager";
+import AddMesh from "../../simulation-room/object-editor/AddMesh";
 
 const Sidebar = () => {
   const [focused, setFocused] = useState("");
@@ -54,7 +55,7 @@ const Sidebar = () => {
       case "button3":
         return <p>button3</p>;
       case "button4":
-        return <p>button4</p>;
+        return <AddMesh />;
       case "button5":
         return <p>button5</p>;
       default:
