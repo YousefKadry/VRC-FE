@@ -13,6 +13,7 @@ import CustomInput from "../Input";
 import CustomButton from "../Button";
 
 import BackgroundManager from "../../simulation-room/bg-management/BackgroundManager";
+import AddMesh from "../../simulation-room/object-editor/AddMesh";
 import PolyItems from "../../simulation-room/poly-items/PolyItems.tsx";
 
 const Sidebar = () => {
@@ -55,7 +56,7 @@ const Sidebar = () => {
       case "button3":
         return <PolyItems/>;
       case "button4":
-        return <p>button4</p>;
+        return <AddMesh />;
       case "button5":
         return <p>button5</p>;
       default:
