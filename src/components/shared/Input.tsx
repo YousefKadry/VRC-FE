@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface CustomInputProps {
   type: "text" | "password";
@@ -23,9 +24,9 @@ const CustomInput: React.FC<CustomInputProps> = ({
     <>
       <input
         type={type}
-        className={`pl-14 pr-4 py-3 rounded-lg w-full text-white ${
-          className || ""
-        }`}
+        className={`${
+          IconSrc && "pl-14"
+        } pr-4 py-3 rounded-lg w-full text-white ${className || ""}`}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
