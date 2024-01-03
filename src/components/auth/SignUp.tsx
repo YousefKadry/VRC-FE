@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import { ChangeEvent } from "react";
+import { useDispatch } from "react-redux";
 
 import bg from "../../assets/BgSignup.png";
 import EmailIcon from "../../assets/Email.svg";
@@ -9,11 +10,9 @@ import handelEmailInput from "./hooks/handleEmailInput";
 import handlePasswordInput from "./hooks/handelPasswordInput";
 import handelButtonClick from "./hooks/handelButtonClick";
 import handleRequriedInput from "./hooks/handelRequiredInput";
-import { ChangeEvent, useEffect } from "react";
 
-import useHttp from "../../hooks/http-hook";
-
-const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+import { signUpThunk } from "../../store/slices/auth/auth-actions";
+import { TAppDispatch } from "../../store/app-store";
 
 function Signup() {
   const firstNameHandeler = handleRequriedInput("First name");
@@ -21,30 +20,17 @@ function Signup() {
   const emailHandeler = handelEmailInput();
   const passwordHundeler = handlePasswordInput();
   
-  const navigate = useNavigate();
-  const { request, response } = useHttp();
+  const dispatch = useDispatch<TAppDispatch>();
 
-  useEffect(() => {
-    if(!response) {
-      return;
-    }
-
-    navigate('/login', { replace: true });
-  }, [response])
-  
   const handleSignUp = handelButtonClick(
     [firstNameHandeler, secondNameHandeler, emailHandeler, passwordHundeler],
     () => {
-        request({
-            url: `${SERVER_URL}/api/sign-up`,
-            method: 'POST',
-            data: {
-              firstName: firstNameHandeler.value,
-              lastName: secondNameHandeler.value,
-              email: emailHandeler.email,
-              password: passwordHundeler.password,
-            },
-        });
+        dispatch(signUpThunk({
+          firstName: firstNameHandeler.value,
+          lastName: secondNameHandeler.value,
+          email: emailHandeler.email,
+          password: passwordHundeler.password,
+        }))
     }
   );
 

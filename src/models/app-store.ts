@@ -1,3 +1,5 @@
+import { PersistPartial } from 'redux-persist/lib/persistReducer';
+
 import { IUserInfo } from './auth';
 
 export interface IStoreUISlice {
@@ -6,11 +8,11 @@ export interface IStoreUISlice {
 }
 
 export interface IStoreAuthSlice {
-    userInfo: IUserInfo;
-    token: string;
+    userInfo: IUserInfo | null;
+    token: string | null;
 }
 
 export interface IAppStore {
     ui: IStoreUISlice;
-    auth: IStoreAuthSlice;
+    auth: IStoreAuthSlice & PersistPartial;
 }

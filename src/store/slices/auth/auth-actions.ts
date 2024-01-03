@@ -1,19 +1,81 @@
 import { Dispatch } from '@reduxjs/toolkit';
+
+import AxiosUtil from '../../../utilities/axios';
+import { ILogin, ISignUp } from '../../../models/auth';
 import { storeAuthSliceActions } from './auth-slice';
+import appStore from '../../app-store';
 
-const LOCAL_STORAGE_TOKEN_VARIABLE_NAME = import.meta.env.VITE_LOCAL_STORAGE_TOKEN_VARIABLE_NAME;
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
-export const loginThunk = (loginResponse: any): any => {
-    return (dispatch: Dispatch) => {
-        localStorage.setItem(LOCAL_STORAGE_TOKEN_VARIABLE_NAME, loginResponse.token);
+export const loginThunk = (arg: ILogin) => {
+    return async (dispatch: Dispatch) => {
+        const data = await AxiosUtil.sendRequest({
+            url: `${SERVER_URL}/api/login`,
+            method: 'POST',
+            data: { ...arg },
+        });
+
+        if (!data) {
+            return;
+        }
 
         dispatch(
             storeAuthSliceActions.setAuthInfo({
                 userInfo: {
-                    ...loginResponse,
+                    ...data,
                     token: undefined,
                 },
-                token: loginResponse.token,
+                token: data.token,
+            })
+        );
+    };
+};
+
+export const signUpThunk = (arg: ISignUp) => {
+    return async (dispatch: Dispatch) => {
+        const data = await AxiosUtil.sendRequest({
+            url: `${SERVER_URL}/api/sign-up`,
+            method: 'POST',
+            data: { ...arg },
+        });
+
+        if (!data) {
+            return;
+        }
+
+        dispatch(
+            storeAuthSliceActions.setAuthInfo({
+                userInfo: {
+                    ...data,
+                    token: undefined,
+                },
+                token: data.token,
+            })
+        );
+    };
+};
+
+export const autoLoginThunk = () => {
+    return async (dispatch: Dispatch) => {
+        const data = await AxiosUtil.sendRequest(
+            {
+                url: `${SERVER_URL}/api/auto-login`,
+                method: 'GET',
+            },
+            { showError: false }
+        );
+
+        if (!data) {
+            return;
+        }
+
+        dispatch(
+            storeAuthSliceActions.setAuthInfo({
+                userInfo: {
+                    ...data,
+                    token: undefined,
+                },
+                token: appStore.getState().auth.token,
             })
         );
     };

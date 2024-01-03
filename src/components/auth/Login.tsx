@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import bg from "../../assets/BackgroundImage.png";
 import EmailIcon from "../../assets/Email.svg";
@@ -8,40 +7,22 @@ import CustomInput from "../shared/Input";
 import CustomButton from "../shared/Button";
 import handleRequriedInput from "./hooks/handelRequiredInput";
 import handelButtonClick from "./hooks/handelButtonClick";
-import { ChangeEvent, useEffect } from "react";
+import { ChangeEvent } from "react";
 
-import useHttp from "../../hooks/http-hook";
 import { loginThunk } from "../../store/slices/auth/auth-actions";
-
-const SERVER_URL = import.meta.env.VITE_SERVER_URL;
-
+import { TAppDispatch } from "../../store/app-store";
 
 function Login() {
   const emailHandeler = handleRequriedInput("Email");
   const passwordHandeler = handleRequriedInput("Password");
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { request, response } = useHttp();
-
-  useEffect(() => {
-    if(!response) {
-      return;
-    }
-
-    dispatch(loginThunk(response));
-    navigate('/dashboard', { replace: true });
-  }, [response])
+  const dispatch = useDispatch<TAppDispatch>();
   
   const handleLogin = handelButtonClick([emailHandeler, passwordHandeler], () => {
-      request({
-          url: `${SERVER_URL}/api/login`,
-          method: 'POST',
-          data: {
-            email: emailHandeler.value,
-            password: passwordHandeler.value
-          },
-      });
+      dispatch(loginThunk({ 
+          email: emailHandeler.value,
+          password: passwordHandeler.value
+      }));
   });
 
   const handleFormSubmitting = (e: React.FormEvent<HTMLFormElement>) => {
