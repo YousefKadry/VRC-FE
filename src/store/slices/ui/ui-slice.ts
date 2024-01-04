@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { IStoreUISlice } from '../../../models/app-store';
+import { INotification } from '../../../models/notification';
 
 const initialState: IStoreUISlice = {
-    error: '',
+    notification: null,
     isLoading: false,
 };
 
@@ -10,8 +11,11 @@ const uiSlice = createSlice({
     name: 'ui',
     initialState,
     reducers: {
-        setError: (storeUiSlice, action: PayloadAction<string>) => {
-            storeUiSlice.error = action.payload;
+        setNotification(storeUiSlice, actions: PayloadAction<Omit<INotification, 'id'> | null>) {
+            storeUiSlice.notification = actions.payload && {
+                ...actions.payload,
+                id: Date.now().toString(),
+            };
         },
         setIsLoading: (storeUiSlice, action: PayloadAction<boolean>) => {
             storeUiSlice.isLoading = action.payload;

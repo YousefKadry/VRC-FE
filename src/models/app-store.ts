@@ -1,9 +1,10 @@
 import { PersistPartial } from 'redux-persist/lib/persistReducer';
 
 import { IUserInfo } from './auth';
+import { INotification } from './notification';
 
 export interface IStoreUISlice {
-    error: string;
+    notification: INotification | null;
     isLoading: boolean;
 }
 

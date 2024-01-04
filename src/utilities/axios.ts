@@ -8,7 +8,7 @@ class AxiosUtil {
     public static async sendRequest(axiosConfig: AxiosRequestConfig, options: { showError?: boolean } = {}) {
         const { showError } = options;
 
-        appStore.dispatch(storeUISliceActions.setError(''));
+        appStore.dispatch(storeUISliceActions.setNotification(null));
         appStore.dispatch(storeUISliceActions.setIsLoading(true));
 
         let responseData;
@@ -24,7 +24,12 @@ class AxiosUtil {
                     errResponse.message ||
                     'something wrong has been occurred, try again!';
 
-                appStore.dispatch(storeUISliceActions.setError(errorMsg));
+                appStore.dispatch(
+                    storeUISliceActions.setNotification({
+                        type: 'error',
+                        content: errorMsg,
+                    })
+                );
             }
         }
 

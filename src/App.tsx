@@ -8,10 +8,10 @@ import MainLayout from './layouts/MainLayout.tsx';
 import Rooms from './components/rooms/Rooms.tsx';
 import ForgotPassword from './components/auth/ForgotPassword';
 import RestPassword from './components/auth/ResetPassword';
+import Notification from './components/ui/notification/Notification.tsx';
 
 import { IAppStore } from './models/app-store.ts';
 import { TAppDispatch } from './store/app-store.ts';
-import { storeUISliceActions } from './store/slices/ui/ui-slice.ts';
 import { autoLoginThunk } from './store/slices/auth/auth-actions.ts';
 
 const Dashboard = React.lazy(() => import('./components/dashboard/Dashboard'));
@@ -19,7 +19,7 @@ const SimulationRoom = React.lazy(() => import('./components/simulation-room/Sim
 
 //todo add React.Suspense
 function App() {
-    const error = useSelector((store: IAppStore) => store.ui.error);
+    const notification = useSelector((store: IAppStore) => store.ui.notification);
     const isLoading = useSelector((store: IAppStore) => store.ui.isLoading);
     const token = useSelector((store: IAppStore) => store.auth.token);
     const dispatch = useDispatch<TAppDispatch>();
@@ -39,17 +39,6 @@ function App() {
     }, []);
 
     //! temp
-    //todo: implement error notification
-    useEffect(() => {
-        if (!error) {
-            return;
-        }
-
-        alert(error);
-        dispatch(storeUISliceActions.setError(''));
-    }, [error]);
-
-    //! temp
     // todo: implement spinner
     useEffect(() => {
         if (!isLoading) {
@@ -62,19 +51,23 @@ function App() {
 
     //todo: implement routes protection
     return (
-        <React.Suspense fallback={<h1>Loading...</h1>}>
-            <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/sign-up" element={<SignUp />} />
-                <Route path="/forgot-password" element={<ForgotPassword />} />
-                <Route path="/reset-password" element={<RestPassword />} />
-                <Route path={'/'} element={<MainLayout />}>
-                    <Route path="dashboard" element={<Dashboard />} />
-                    <Route path={'rooms'} element={<Rooms />} />
-                </Route>
-                <Route path="/simulation-room" element={<SimulationRoom />} />
-            </Routes>
-        </React.Suspense>
+        <>
+            <Notification notification={notification} />
+
+            <React.Suspense fallback={<h1>Loading...</h1>}>
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/sign-up" element={<SignUp />} />
+                    <Route path="/forgot-password" element={<ForgotPassword />} />
+                    <Route path="/reset-password" element={<RestPassword />} />
+                    <Route path={'/'} element={<MainLayout />}>
+                        <Route path="dashboard" element={<Dashboard />} />
+                        <Route path={'rooms'} element={<Rooms />} />
+                    </Route>
+                    <Route path="/simulation-room" element={<SimulationRoom />} />
+                </Routes>
+            </React.Suspense>
+        </>
     );
 }
 
