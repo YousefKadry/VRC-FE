@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+
 import bg from "../../assets/BackgroundImage.png";
 import EmailIcon from "../../assets/Email.svg";
 import PasswordIcon from "../../assets/Password.svg";
@@ -7,15 +9,27 @@ import handleRequriedInput from "./hooks/handelRequiredInput";
 import handelButtonClick from "./hooks/handelButtonClick";
 import { ChangeEvent } from "react";
 
+import { loginThunk } from "../../store/slices/auth/auth-actions";
+import { TAppDispatch } from "../../store/app-store";
+
 function Login() {
   const emailHandeler = handleRequriedInput("Email");
   const passwordHandeler = handleRequriedInput("Password");
-  const handleButtonClick = handelButtonClick(
-    [emailHandeler, passwordHandeler],
-    () => {
-      console.log("clicked");
-    }
-  );
+
+  const dispatch = useDispatch<TAppDispatch>();
+  
+  const handleLogin = handelButtonClick([emailHandeler, passwordHandeler], () => {
+      dispatch(loginThunk({ 
+          email: emailHandeler.value,
+          password: passwordHandeler.value
+      }));
+  });
+
+  const handleFormSubmitting = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      handleLogin();
+  };
+
   return (
     <>
       <title>Login</title>
@@ -27,7 +41,7 @@ function Login() {
         <div className="flex-1 basis-1/3 h-screen bg-primary text-[#FFF] p-6 flex items-center">
           <div className="w-full px-5">
             <h1 className="font-bold text-6xl text-center my-10">SIGN IN</h1>
-            <form className="mt-6 w-full">
+            <form onSubmit={handleFormSubmitting} className="mt-6 w-full">
               {/* Email Input */}
               <div className="relative w-full py">
                 <CustomInput
@@ -65,7 +79,7 @@ function Login() {
                 </p>
               )}
               {/* Sign-in Button */}
-              <CustomButton onClick={handleButtonClick}>Sign in</CustomButton>
+              <CustomButton type="submit">Sign in</CustomButton>
             </form>
             {/* Recovery */}
             <div className="flex my-4 items-center justify-between">
