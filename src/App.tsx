@@ -13,6 +13,7 @@ import Notification from './components/ui/notification/Notification.tsx';
 import { IAppStore } from './models/app-store.ts';
 import { TAppDispatch } from './store/app-store.ts';
 import { autoLoginThunk } from './store/slices/auth/auth-actions.ts';
+import { storeUISliceActions } from './store/slices/ui/ui-slice.ts';
 
 const Dashboard = React.lazy(() => import('./components/dashboard/Dashboard'));
 const SimulationRoom = React.lazy(() => import('./components/simulation-room/SimulationRoom.tsx'));
@@ -49,10 +50,17 @@ function App() {
         console.log('loading...');
     }, [isLoading]);
 
+    const handleNotificationDisappearing = () => {
+        dispatch(storeUISliceActions.setNotification(null));
+    };
+
     //todo: implement routes protection
     return (
         <>
-            <Notification notification={notification} />
+            <Notification
+                notification={notification}
+                notificationDisappearingHandler={handleNotificationDisappearing}
+            />
 
             <React.Suspense fallback={<h1>Loading...</h1>}>
                 <Routes>

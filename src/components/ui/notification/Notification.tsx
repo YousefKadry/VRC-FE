@@ -5,10 +5,14 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 import { INotification } from '../../../models/notification';
 
-const Notification: React.FC<{ notification: INotification | null }> = (props) => {
+const Notification: React.FC<{
+    notification: INotification | null;
+    notificationDisappearingHandler?: () => void;
+}> = (props) => {
     const toastContainerId = useId();
     const lastNotificationId = useRef<Id>();
-    const { notification } = props;
+
+    const { notification, notificationDisappearingHandler } = props;
     const { content, type, id } = notification || {};
 
     useEffect(() => {
@@ -30,11 +34,17 @@ const Notification: React.FC<{ notification: INotification | null }> = (props) =
         });
     }, [content, type, id, lastNotificationId, toastContainerId]);
 
-    toast.onChange((toastItem) => {
-        if (toastItem.status === 'removed') {
-            toast.clearWaitingQueue({ containerId: toastContainerId });
-        }
-    });
+    useEffect(() => {
+        toast.onChange((toastItem) => {
+            if (toastItem.status === 'removed') {
+                toast.clearWaitingQueue({ containerId: toastContainerId });
+
+                if (lastNotificationId.current === toastItem.id && notificationDisappearingHandler) {
+                    notificationDisappearingHandler();
+                }
+            }
+        });
+    }, []);
 
     return ReactDOM.createPortal(
         <ToastContainer
@@ -47,4 +57,4 @@ const Notification: React.FC<{ notification: INotification | null }> = (props) =
     );
 };
 
-export default Notification;
+export default React.memo(Notification);
