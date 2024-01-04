@@ -9,6 +9,7 @@ import Rooms from './components/rooms/Rooms.tsx';
 import ForgotPassword from './components/auth/ForgotPassword';
 import RestPassword from './components/auth/ResetPassword';
 import Notification from './components/ui/notification/Notification.tsx';
+import Spinner from './components/ui/spinner/Spinner.tsx';
 
 import { IAppStore } from './models/app-store.ts';
 import { TAppDispatch } from './store/app-store.ts';
@@ -18,7 +19,6 @@ import { storeUISliceActions } from './store/slices/ui/ui-slice.ts';
 const Dashboard = React.lazy(() => import('./components/dashboard/Dashboard'));
 const SimulationRoom = React.lazy(() => import('./components/simulation-room/SimulationRoom.tsx'));
 
-//todo add React.Suspense
 function App() {
     const notification = useSelector((store: IAppStore) => store.ui.notification);
     const isLoading = useSelector((store: IAppStore) => store.ui.isLoading);
@@ -39,17 +39,6 @@ function App() {
         dispatch(autoLoginThunk());
     }, []);
 
-    //! temp
-    // todo: implement spinner
-    useEffect(() => {
-        if (!isLoading) {
-            console.log('==========');
-            return;
-        }
-
-        console.log('loading...');
-    }, [isLoading]);
-
     const handleNotificationDisappearing = () => {
         dispatch(storeUISliceActions.setNotification(null));
     };
@@ -62,7 +51,9 @@ function App() {
                 notificationDisappearingHandler={handleNotificationDisappearing}
             />
 
-            <React.Suspense fallback={<h1>Loading...</h1>}>
+            <Spinner loading={isLoading} />
+
+            <React.Suspense fallback={<Spinner loading={isLoading} />}>
                 <Routes>
                     <Route path="/login" element={<Login />} />
                     <Route path="/sign-up" element={<SignUp />} />
