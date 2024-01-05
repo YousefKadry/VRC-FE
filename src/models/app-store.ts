@@ -9,6 +9,7 @@ export interface IStoreUISlice {
 }
 
 export interface IStoreAuthSlice {
+    hasAutoLoginFinished?: boolean;
     userInfo: IUserInfo | null;
     token: string | null;
 }

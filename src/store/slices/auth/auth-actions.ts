@@ -66,6 +66,7 @@ export const autoLoginThunk = () => {
         );
 
         if (!data) {
+            dispatch(storeAuthSliceActions.setAutoLoginFinished());
             return;
         }
 
@@ -78,5 +79,7 @@ export const autoLoginThunk = () => {
                 token: appStore.getState().auth.token,
             })
         );
+
+        dispatch(storeAuthSliceActions.setAutoLoginFinished());
     };
 };
