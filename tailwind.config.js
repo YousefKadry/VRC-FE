@@ -11,6 +11,13 @@ export default {
                 quaternary: '#e2cdff',
                 gradient1: '#501793',
                 gradient2: '#3e6ea1',
+                gradientSimulationBox1: 'rgba(143, 104, 206, 0.40)',
+                gradientSimulationBox2: 'rgba(125, 101, 160, 0.40)',
+                gradientSimulationBox1alt: 'rgba(143, 104, 206, 0.2)',
+                gradientSimulationBox2alt: 'rgba(143, 104, 206, 0.2)',
+                RoomButtonGradient1:'#501794',
+                RoomButtonGradient2:'#7E5DAF'
+                
             },
         },
     },
