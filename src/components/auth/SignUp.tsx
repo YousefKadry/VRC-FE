@@ -1,3 +1,6 @@
+import { ChangeEvent } from "react";
+import { useDispatch } from "react-redux";
+
 import bg from "../../assets/BgSignup.png";
 import EmailIcon from "../../assets/Email.svg";
 import PasswordIcon from "../../assets/Password.svg";
@@ -7,19 +10,34 @@ import handelEmailInput from "./hooks/handleEmailInput";
 import handlePasswordInput from "./hooks/handelPasswordInput";
 import handelButtonClick from "./hooks/handelButtonClick";
 import handleRequriedInput from "./hooks/handelRequiredInput";
-import { ChangeEvent } from "react";
+
+import { signUpThunk } from "../../store/slices/auth/auth-actions";
+import { TAppDispatch } from "../../store/app-store";
 
 function Signup() {
   const firstNameHandeler = handleRequriedInput("First name");
   const secondNameHandeler = handleRequriedInput("Second name");
   const emailHandeler = handelEmailInput();
   const passwordHundeler = handlePasswordInput();
-  const handleButtonClick = handelButtonClick(
+  
+  const dispatch = useDispatch<TAppDispatch>();
+
+  const handleSignUp = handelButtonClick(
     [firstNameHandeler, secondNameHandeler, emailHandeler, passwordHundeler],
     () => {
-      console.log("clicked");
+        dispatch(signUpThunk({
+          firstName: firstNameHandeler.value,
+          lastName: secondNameHandeler.value,
+          email: emailHandeler.email,
+          password: passwordHundeler.password,
+        }))
     }
   );
+
+  const handleFormSubmitting = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      handleSignUp();
+  };
 
   return (
     <>
@@ -28,7 +46,7 @@ function Signup() {
         <div className="flex-1 basis-1/3 h-screen bg-primary text-[#FFF] p-6 flex items-center">
           <div className="w-full px-5">
             <h1 className="font-bold text-6xl text-center my-10">SIGN UP</h1>
-            <form className="mt-6 w-full">
+            <form className="mt-6 w-full" onSubmit={handleFormSubmitting}>
               {/* Name Input */}
               <div className="flex flex-col sm:flex-row justify-between my-6">
                 <CustomInput
@@ -94,7 +112,7 @@ function Signup() {
                 </p>
               )}
               {/* Sign-up Button */}
-              <CustomButton onClick={handleButtonClick}>Sign Up</CustomButton>
+              <CustomButton type="submit">Sign Up</CustomButton>
             </form>
             {/* SignIn */}
             <div className="flex my-4 items-center justify-between">
