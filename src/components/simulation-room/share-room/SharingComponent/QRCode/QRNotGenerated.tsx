@@ -3,9 +3,9 @@ const QRNotGenerated = () =>
     return (
         <>
                 <h2 className="font-bold text-6xl text-center my-10">
-                    No QR Code
+                    Generating
                     <br/>
-                    Generated Yet
+                    QR Code
                 </h2>
         </>
     )

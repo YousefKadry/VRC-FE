@@ -26,7 +26,7 @@ function App() {
     const dispatch = useDispatch<TAppDispatch>();
 
     const navigate = useNavigate();
-
+    /*
     useEffect(() => {
         if (isLoading) {
             return;
@@ -34,6 +34,7 @@ function App() {
 
         navigate(token ? '/dashboard' : '/login', { replace: true });
     }, [token, isLoading]);
+    */
 
     useEffect(() => {
         dispatch(autoLoginThunk());
