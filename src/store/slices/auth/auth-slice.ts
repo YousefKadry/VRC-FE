@@ -8,19 +8,26 @@ import { IStoreAuthSlice } from '../../../models/app-store';
 const initialState: IStoreAuthSlice = {
     userInfo: null,
     token: null,
+    hasAutoLoginFinished: false,
 };
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setAuthInfo: (storeAuthSlice, action: PayloadAction<IStoreAuthSlice>) => {
+        setAuthInfo: (
+            storeAuthSlice,
+            action: PayloadAction<{ userInfo: IStoreAuthSlice['userInfo']; token: IStoreAuthSlice['token'] }>
+        ) => {
             storeAuthSlice.userInfo = action.payload.userInfo;
             storeAuthSlice.token = action.payload.token;
         },
         resetAuthInfo: (storeAuthSlice) => {
             storeAuthSlice.userInfo = null;
             storeAuthSlice.token = null;
+        },
+        setAutoLoginFinished: (storeAuthSlice) => {
+            storeAuthSlice.hasAutoLoginFinished = true;
         },
     },
 });
