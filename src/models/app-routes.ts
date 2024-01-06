@@ -1,11 +1,4 @@
-export interface IRoutes {
-    [key: string]: {
-        Element?: any;
-        redirectTo?: {
-            to: string;
-            when: 'AUTH' | 'NOT_AUTH';
-        };
-        index?: boolean;
-        children?: IRoutes;
-    };
+export interface IProtectedRoutes {
+    redirectWhen: 'AUTH' | 'NOT_AUTH';
+    redirectTo: string;
 }
