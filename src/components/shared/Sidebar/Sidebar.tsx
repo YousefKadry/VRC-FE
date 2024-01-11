@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faImage,
+  faCamera,
   faDownload,
   faShareFromSquare,
   faFont,
@@ -13,7 +13,7 @@ import { useState } from "react";
 import CustomInput from "../Input";
 import CustomButton from "../Button";
 import ShareRoom from "../../simulation-room/share-room/Share-Room.tsx";
-import BackgroundManager from "../../simulation-room/bg-management/BackgroundManager";
+import CameraManager from "../../simulation-room/camera-management/CameraManager.tsx";
 import AddMesh from "../../simulation-room/object-editor/AddMesh";
 import PolyItems from "../../simulation-room/poly-items/PolyItems.tsx";
 import SpecialEffects from "../../simulation-room/special-effects/SpecialEffects.tsx";
@@ -37,7 +37,7 @@ const Sidebar = () => {
     
     switch (focused) {
       case "button1":
-        return <BackgroundManager />;
+        return <CameraManager />;
       case "button2":
         return (
           <>
@@ -88,7 +88,7 @@ const Sidebar = () => {
                 : ""
             }`}
           >
-            <FontAwesomeIcon className="text-white text-4xl" icon={faImage} />
+            <FontAwesomeIcon className="text-white text-4xl" icon={faCamera} />
           </button>
           <button
             onClick={() => handleFocus("button2")}
