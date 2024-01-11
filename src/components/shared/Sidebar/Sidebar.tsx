@@ -7,6 +7,7 @@ import {
   faCircleNodes,
   faArrowRight,
   faArrowLeft,
+  faStarHalfStroke
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import CustomInput from "../Input";
@@ -15,6 +16,7 @@ import ShareRoom from "../../simulation-room/share-room/Share-Room.tsx";
 import BackgroundManager from "../../simulation-room/bg-management/BackgroundManager";
 import AddMesh from "../../simulation-room/object-editor/AddMesh";
 import PolyItems from "../../simulation-room/poly-items/PolyItems.tsx";
+import SpecialEffects from "../../simulation-room/special-effects/SpecialEffects.tsx";
 
 const Sidebar = () => {
   const [focused, setFocused] = useState("");
@@ -59,6 +61,8 @@ const Sidebar = () => {
         return <AddMesh />;
       case "button5":
         return <ShareRoom/>
+      case "special-effect":
+          return <SpecialEffects />
       default:
         return null;
     }
@@ -108,6 +112,21 @@ const Sidebar = () => {
             <FontAwesomeIcon
               className="text-white text-4xl"
               icon={faDownload}
+            />
+          </button>
+
+          <button
+            onClick={() => handleFocus("special-effect")}
+            title="Special Effects"
+            className={`p-[2.25rem] w-full ${
+              focused === "special-effect" && isCollapsed === false
+                ? "bg-[#311B52]"
+                : ""
+            }`}
+          >
+            <FontAwesomeIcon
+              className="text-white text-4xl"
+              icon={faStarHalfStroke}
             />
           </button>
 
