@@ -31,3 +31,7 @@ body {
 .overflow-y-auto::-webkit-scrollbar {
     display: none; /* WebKit */
 }
+
+#root {
+    height: 100%;
+}
