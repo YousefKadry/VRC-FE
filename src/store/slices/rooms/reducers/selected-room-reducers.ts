@@ -4,6 +4,7 @@ import { IStoreRoomsSlice } from '../../../../models/app-store';
 import { TUpdatableRoomInfo, TUpdatableRoomStateInfo } from '../../../../models/room';
 
 const selectedRoomReducers = {
+    
     updateSelectedRoom(storeRoomsSlice: IStoreRoomsSlice, action: PayloadAction<TUpdatableRoomInfo>) {
         if (!storeRoomsSlice.selectedRoom) {
             return;
@@ -27,6 +28,7 @@ const selectedRoomReducers = {
             ...action.payload,
         };
     },
+    
 };
 
 export default selectedRoomReducers;
