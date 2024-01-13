@@ -6,7 +6,7 @@ const CameraPositionController = () => {
     };
 
     return (
-        <div className="mt-10">
+        <div>
             <h2 className="text-xl font-bold my-4">Position</h2>
 
             <div className="flex flex-col gap-4">

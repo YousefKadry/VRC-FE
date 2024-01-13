@@ -1,9 +1,9 @@
-import {Outlet} from "react-router-dom";
-import Navbar from "../components/shared/Navbar.tsx";
+import { Outlet } from 'react-router-dom';
+import Navbar from '../components/shared/Navbar.tsx';
 
 const MainLayout = () => {
     return (
-        <div>
+        <div className="h-full flex flex-col">
             <Navbar />
             <Outlet />
         </div>
