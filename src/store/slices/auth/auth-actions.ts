@@ -67,6 +67,7 @@ export const autoLoginThunk = () => {
 
         if (!data) {
             dispatch(storeAuthSliceActions.setAutoLoginFinished());
+            dispatch(storeAuthSliceActions.resetAuthInfo());
             return;
         }
 
