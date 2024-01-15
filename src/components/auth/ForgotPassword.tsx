@@ -13,15 +13,19 @@ const ForgotPassword = () => {
   const dispatch = useDispatch<TAppDispatch>();
 
 
-  const handleButtonClick = handelButtonClick([emailHandeler], () => {
+  const handleForgetPassword = handelButtonClick([emailHandeler], () => {
     
       dispatch(ForgetPasswordThunk({
           email: emailHandeler.email
       }))
+      
 
   });
 
-
+  const handleFormSubmitting = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleForgetPassword();
+};
   
   return (
     <>
@@ -32,7 +36,7 @@ const ForgotPassword = () => {
             Forgot Password?
           </h1>
 
-          <form className="mt-6 w-full flex flex-col self-start px-1">
+          <form className="mt-6 w-full flex flex-col self-start px-1" onSubmit={handleFormSubmitting}>
             {/* Email Input */}
             <div className="text-white text-[15px] font-bold px-2 mt-3">
               Enter your email address
@@ -57,7 +61,7 @@ const ForgotPassword = () => {
             )}
             {/* Reset Password button */}
             <div className="mt-2">
-              <CustomButton onClick={handleButtonClick}>
+              <CustomButton type="submit">
                 <span className="text-white">Reset Password</span>
               </CustomButton>
             </div>

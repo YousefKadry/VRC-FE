@@ -18,7 +18,7 @@ const RestPassword = () => {
 
   const {token} = useParams<{token:string}>();
 
-  const handleButtonClick = () => {
+  const handleResetPassword = () => {
     if (passwordHandler.password !== repeatPasswordHandler.password) {
       alert("Passwords do not match!"); 
       return;
@@ -31,6 +31,11 @@ const RestPassword = () => {
     }));
   };
 
+  const handleFormSubmitting = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleResetPassword();
+};
+
   return (
     <>
       <title>Reset Password</title>
@@ -40,7 +45,7 @@ const RestPassword = () => {
             Reset Password
           </h1>
 
-          <form className="mt-6 w-full flex gap-3 flex-col self-start px-1">
+          <form className="mt-6 w-full flex gap-3 flex-col self-start px-1" onSubmit={handleFormSubmitting}>
             {/* New Password Input */}
             <div className="text-white text-[15px] font-bold px-2 mt-3">
               Enter your new password
@@ -88,7 +93,7 @@ const RestPassword = () => {
 
             {/* Reset Button */}
             <div className="-mt-1">
-              <CustomButton onClick={handleButtonClick}>
+              <CustomButton>
                 <span className="text-white">Reset</span>
               </CustomButton>
             </div>

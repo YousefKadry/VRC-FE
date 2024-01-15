@@ -4,6 +4,7 @@ import AxiosUtil from '../../../utilities/axios';
 import { IForgotPassword, ILogin, IResetPassword, ISignUp } from '../../../models/auth';
 import { storeAuthSliceActions } from './auth-slice';
 import appStore from '../../app-store';
+import { storeUISliceActions } from '../ui/ui-slice';
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
@@ -94,12 +95,13 @@ export const ForgetPasswordThunk = (arg: IForgotPassword) =>{
                 method: 'GET',
                 params: { ...arg },
             },
-            { showError: false }
+            // { showError: false }
         );
 
         if (!data) {
             return;
         }
+        dispatch(storeUISliceActions.setNotification({type:'success',content:data}) );        
 
        
     };
@@ -114,12 +116,15 @@ export const ResetPasswordThunk = (arg:IResetPassword) => {
                 method: 'POST',
                 data: {...arg},
             },
-            { showError: false }
+            // { showError: false }
         );
 
         if (!data) {
             return;
         }
+
+        dispatch(storeUISliceActions.setNotification({type:'success',content:data}) );        
+
 
 
     };
