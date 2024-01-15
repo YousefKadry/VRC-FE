@@ -14,9 +14,11 @@ const ForgotPassword = () => {
 
 
   const handleButtonClick = handelButtonClick([emailHandeler], () => {
+    
       dispatch(ForgetPasswordThunk({
           email: emailHandeler.email
       }))
+
   });
 
 
