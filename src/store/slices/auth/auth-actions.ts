@@ -95,7 +95,6 @@ export const ForgetPasswordThunk = (arg: IForgotPassword) =>{
                 method: 'GET',
                 params: { ...arg },
             },
-            // { showError: false }
         );
 
         if (!data) {
@@ -116,7 +115,6 @@ export const ResetPasswordThunk = (arg:IResetPassword) => {
                 method: 'POST',
                 data: {...arg},
             },
-            // { showError: false }
         );
 
         if (!data) {
