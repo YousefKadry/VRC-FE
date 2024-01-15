@@ -3,14 +3,24 @@ import CustomInput from "../shared/Input";
 import CustomButton from "../shared/Button";
 import handelEmailInput from "./hooks/handleEmailInput";
 import handelButtonClick from "./hooks/handelButtonClick";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { TAppDispatch } from "../../store/app-store";
+import { ForgetPasswordThunk } from "../../store/slices/auth/auth-actions";
 
 const ForgotPassword = () => {
   const emailHandeler = handelEmailInput();
+  const dispatch = useDispatch<TAppDispatch>();
+
 
   const handleButtonClick = handelButtonClick([emailHandeler], () => {
-    console.log("clicked");
+      dispatch(ForgetPasswordThunk({
+          email: emailHandeler.email
+      }))
   });
+
+
+  
   return (
     <>
       <title>Forgot Password</title>
@@ -57,3 +67,5 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
+
+
