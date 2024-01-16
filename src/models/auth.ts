@@ -16,3 +16,17 @@ export interface IUserInfo {
     lastName: string;
     email: string;
 }
+
+
+
+export interface IForgotPassword {
+    email: string;
+}
+
+export interface IResetPassword {
+    token: string;
+    password: string;
+    repeatedPassword: string;
+}
+
+

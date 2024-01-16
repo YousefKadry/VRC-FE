@@ -29,7 +29,7 @@ const AppRoutes = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
-                <Route path="/reset-password" element={<RestPassword />} />
+                <Route path="/reset-password/:token" element={<RestPassword />} />
             </Route>
 
             <Route element={<ProtectedRoutes redirectWhen="NOT_AUTH" redirectTo="/login" />}>
