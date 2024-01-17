@@ -1,8 +1,12 @@
+import {Link} from "react-router-dom";
+
 const RoomCard = ({room}: { room: any }) => {
+
+    const roomUrl = `/rooms/${room.id}`
 
     const onShareButtonClick = (e: any) => {
         // copy the room link to the clipboard
-        navigator.clipboard.writeText(room.url).then(() => {
+        navigator.clipboard.writeText(roomUrl).then(() => {
 
             // display copied to the user
             e.target.disabled = true
@@ -22,12 +26,12 @@ const RoomCard = ({room}: { room: any }) => {
             <div className="flex-col space-y-4 text-white mb-3">
 
                 <div className={"h-36 overflow-hidden"}>
-                    <img src={room.imageUrl} alt={"room image"}/>
+                    <img src={`https://random.imagecdn.app/700/70${Math.floor(Math.random() * 10)}`} alt={"room image"}/>
                 </div>
 
                 <div className={"h-2/3 px-7 space-y-1 "}>
                     <div>
-                        <h5 className="font-bold text-2xl">{room.name}</h5>
+                        <h5 className="font-bold text-2xl">{room.title}</h5>
                     </div>
 
                     <div>
@@ -37,9 +41,9 @@ const RoomCard = ({room}: { room: any }) => {
 
                 <div className={"px-4 space-x-2 mb-2"}>
                     <button className={"px-3 py-1 hover:bg-[#180a2d] rounded font-medium text-sm"}>
-                        <a href={room.url} target={"_blank"}>
+                        <Link to={roomUrl} target={"_blank"}>
                             OPEN
-                        </a>
+                        </Link>
                     </button>
                     <button
                         className={"px-3 py-1 hover:bg-[#180a2d] rounded font-medium text-sm transition duration-500 ease-in-out disabled:bg-[#180a2d] disabled:text-gray-500"}

@@ -1,4 +1,8 @@
 import RoomCard from "./RoomCard.tsx";
+import {useDispatch, useSelector} from "react-redux";
+import { fetchRoomsThunk } from "../../store/slices/rooms/rooms-actions.ts";
+import {useEffect, useState} from "react";
+import {TAppDispatch} from "../../store/app-store.ts";
 
 const ROOMS = [
     {
@@ -23,6 +27,22 @@ const ROOMS = [
 ];
 
 const Rooms = () => {
+
+    const dispatch = useDispatch <TAppDispatch> ();
+
+    useEffect(() => {
+        dispatch(fetchRoomsThunk());
+    }, []);
+
+    const {
+        rooms
+    } = useSelector((state: any) => state.rooms);
+
+    // get key of rooms object
+    const roomKeys : string [] = Object.keys(rooms);
+    const roomValues : any[] = Object.values(rooms);
+
+
     return (
         <div className={"py-10 px-20 space-y-10"}>
             <div>
@@ -32,8 +52,8 @@ const Rooms = () => {
 
             <div>
                 <div className={"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4    gap-10"}>
-                    {ROOMS.map((room, index) => (
-                        <RoomCard key={index} room={room} />
+                    {roomKeys.map((_ , index) => (
+                        <RoomCard key={roomValues[index].id} room={roomValues[index]} />
                     ))}
                 </div>
             </div>
