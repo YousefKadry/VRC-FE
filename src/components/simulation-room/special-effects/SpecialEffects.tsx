@@ -9,7 +9,7 @@ const SpecialEffects: React.FC = () => {
     const dispatch = useDispatch();
     const starsVisibility=useSelector((state: IStoreRoomsSlice) => state.selectedRoom?.state.stars || false);
     const cloudsVisibility=useSelector((state: IStoreRoomsSlice) => state.selectedRoom?.state.clouds || false);
-    const handleEffectsChanging = (checked: boolean, id: string) => {
+    const handleEffectsChanging = (checked: boolean, id: 'stars' | 'clouds') => {
         dispatch(storeRoomsSliceActions.updateSelectedRoomState({ [id]: checked }));
     };
 
