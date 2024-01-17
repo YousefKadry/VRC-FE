@@ -3,8 +3,7 @@ import CustomButton from "../../../../shared/Button"
 import { twJoin } from "tailwind-merge"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faShare} from "@fortawesome/free-solid-svg-icons"
-import { useDispatch } from "react-redux"
-import { storeUISliceActions } from "../../../../../store/slices/ui/ui-slice"
+import { HandleShareClick } from "../Hooks/SnackBarStatusDispatcher"
 
 interface SharingButtonProps {
     SharingURL?:string
@@ -13,46 +12,11 @@ interface SharingButtonProps {
 const SharingButton: React.FC <SharingButtonProps> = (
 {
     SharingURL,
-    
 }) => {
-    const dispatch = useDispatch()
-
-    function HandleShareClick()
-    {
-        async function CopyToClipboard(SharingURL:string)
-        {
-            try {
-                await navigator.clipboard.writeText(SharingURL)
-                dispatch(storeUISliceActions.setNotification({
-                    type:'success',
-                    content: "Link Copied to Clipboard"
-                }))
-            }
-            catch (error) {
-                console.error('Unable to copy URL to clipboard:', error);
-                dispatch(storeUISliceActions.setNotification({
-                    type:'error',
-                    content: "Error copying link to clipboard"
-                }))
-            }
-        }
-
-        function NoLinkGenerated()
-        {
-            dispatch(storeUISliceActions.setNotification({
-                type:'error',
-                content: "No link generated yet"
-            }))
-        }
-
-        SharingURL && SharingURL!=""?
-        CopyToClipboard(SharingURL):
-        NoLinkGenerated();
-    }
-
+    
     return (
         <CustomButton 
-        onClick={HandleShareClick} 
+        onClick={()=>HandleShareClick(SharingURL)} 
         className={twJoin(
             "from-RoomButtonGradient1 to-RoomButtonGradient2",
             "w-fit p-[1rem] m-0"

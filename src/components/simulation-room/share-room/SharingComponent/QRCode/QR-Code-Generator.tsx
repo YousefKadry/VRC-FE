@@ -1,9 +1,8 @@
 import React, { useEffect } from "react"
 import { QRCodeSVG } from "qrcode.react"
 import QRNotGenerated from "./QRNotGenerated"
+import { HandleQRCodeGenerator } from "../Hooks/SnackBarStatusDispatcher"
 import { twJoin } from "tailwind-merge"
-import { useDispatch } from "react-redux"
-import { storeUISliceActions } from "../../../../../store/slices/ui/ui-slice"
 
 
 interface QRCodeGenProps {
@@ -15,23 +14,10 @@ const QRCodeGen: React.FC <QRCodeGenProps> = ({
 }) =>
 
 {
-    const dispatch = useDispatch();
     useEffect(()=>
     {
-        if (SharingURL && SharingURL!=="")
-        {
-            dispatch(storeUISliceActions.setNotification({
-                type:'success',
-                content: "QR Code Generated"
-            }))
-        }
-        else
-        {
-            dispatch(storeUISliceActions.setNotification({
-                type:'info',
-                content: "No QR Code Generated yet"
-            }))
-        }
+
+        HandleQRCodeGenerator(SharingURL);
 
     }, [SharingURL])
 
