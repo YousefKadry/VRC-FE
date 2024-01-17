@@ -1,22 +1,23 @@
-import { useDispatch } from "react-redux";
 import { storeUISliceActions } from "../../../../../store/slices/ui/ui-slice";
+import { Dispatch } from "@reduxjs/toolkit";
 
-const dispatch = useDispatch();
-
-export async function CopyToClipboard(SharingURL:string)
+async function CopyToClipboard(SharingURL:string, dispatch?:Dispatch)
 {
     try {
         await navigator.clipboard.writeText(SharingURL)
-        dispatch(storeUISliceActions.setNotification({
+        dispatch ? dispatch(storeUISliceActions.setNotification({
             type:'success',
             content: "Link Copied to Clipboard"
-        }))
+        })) : ""
     }
+
     catch (error) {
         console.error('Unable to copy URL to clipboard:', error);
-        dispatch(storeUISliceActions.setNotification({
+        dispatch? dispatch(storeUISliceActions.setNotification({
             type:'error',
             content: "Error copying link to clipboard"
-        }))
+        })): ""
     }
 }
+
+export default CopyToClipboard;

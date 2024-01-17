@@ -1,8 +1,9 @@
 import React, { useEffect } from "react"
 import { QRCodeSVG } from "qrcode.react"
 import QRNotGenerated from "./QRNotGenerated"
-import { HandleQRCodeGenerator } from "../Hooks/SnackBarStatusDispatcher"
+import HandleQRCodeGenerator from "../Hooks/HandleQRCodeGen"
 import { twJoin } from "tailwind-merge"
+import { useDispatch } from "react-redux"
 
 
 interface QRCodeGenProps {
@@ -14,10 +15,11 @@ const QRCodeGen: React.FC <QRCodeGenProps> = ({
 }) =>
 
 {
+    const dispatch = useDispatch()
+
     useEffect(()=>
     {
-
-        HandleQRCodeGenerator(SharingURL);
+        HandleQRCodeGenerator(SharingURL, dispatch);
 
     }, [SharingURL])
 

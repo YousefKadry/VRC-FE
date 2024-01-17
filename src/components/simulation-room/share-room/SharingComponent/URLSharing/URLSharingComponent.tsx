@@ -10,7 +10,7 @@ interface URLSharingComponentProps {
 const URLSharingComponent: React.FC <URLSharingComponentProps> = ({
     SharingURL,
 }) => {
-
+    
     return (
         <div className="flex items-center justify-between">
             <URLDisplay SharingURL={SharingURL}/>

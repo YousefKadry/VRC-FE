@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import QRCodeGen from "./QRCode/QR-Code-Generator"
 import URLSharingComponent from "./URLSharing/URLSharingComponent";
 
