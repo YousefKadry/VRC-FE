@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 
 import { storeAuthSliceActions } from "../../store/slices/auth/auth-slice";
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
     const dispatch = useDispatch();
@@ -12,7 +13,9 @@ const Navbar = () => {
     return(
         <div className={"flex justify-between items-center bg-secondary py-4 px-10 md:px-20"}>
             <div className={"py-2"}>
-                <h1 className={"text-lg md:text-xl font-bold"}>SIEMENS Virtual Room Creator</h1>
+                <Link to={"/"}>
+                    <h1 className={"text-lg md:text-xl font-bold"}>SIEMENS Virtual Room Creator</h1>
+                </Link>
             </div>
 
             <div className={"flex-col"}>
