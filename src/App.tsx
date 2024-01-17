@@ -38,16 +38,22 @@ function App() {
             rotation: [0, 0, 0],
             scale: [1, 1, 1],
         }))
+        dispatch(storeRoomsSliceActions.addMesh({
+            geometryType: 'box',
+            position: [5, 0, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+        }))
         // dispatch(saveSelectedRoomThunk())
     }, [rooms]);
 
-    useEffect(() => {
-        if(!meshes || Object.keys(meshes).length === 0){
-            return;
-        }
+    // useEffect(() => {
+    //     if(!meshes || Object.keys(meshes).length === 0){
+    //         return;
+    //     }
         
-        dispatch(storeRoomsSliceActions.setSelectedMeshId(Object.keys(meshes)[0]))
-    }, [meshes]);
+    //     dispatch(storeRoomsSliceActions.setSelectedMeshId(Object.keys(meshes)[0]))
+    // }, [meshes]);
     const handleNotificationDisappearing = () => {
         dispatch(storeUISliceActions.setNotification(null));
     };
