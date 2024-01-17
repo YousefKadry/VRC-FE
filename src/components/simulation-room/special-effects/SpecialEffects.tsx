@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { IStoreRoomsSlice } from '../../../models/app-store';
+import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice';
 import Switch from '../../ui/switch/Switch';
 
-const SpecialEffects = () => {
-    //todo: replace state with redux
-    const [effects, setEffects] = useState({ stars: false, clouds: false });
+const SpecialEffects: React.FC = () => {
 
-    const handleEffectsChanging = (checked: boolean, _: any, id: string) => {
-        setEffects((currEffects) => ({ ...currEffects, [id]: checked }));
+    const dispatch = useDispatch();
+    const starsVisibility=useSelector((state: IStoreRoomsSlice) => state.selectedRoom?.state.stars || false);
+    const cloudsVisibility=useSelector((state: IStoreRoomsSlice) => state.selectedRoom?.state.clouds || false);
+    const handleEffectsChanging = (checked: boolean, id: 'stars' | 'clouds') => {
+        dispatch(storeRoomsSliceActions.updateSelectedRoomState({ [id]: checked }));
     };
 
     return (
@@ -14,16 +18,16 @@ const SpecialEffects = () => {
             <div className="flex gap-x-12 gap-y-4 flex-wrap">
                 <Switch
                     id="stars"
-                    checked={effects.stars}
+                    checked={starsVisibility}
                     title="Stars"
-                    toggleHandler={handleEffectsChanging}
+                    toggleHandler={(checked) => handleEffectsChanging(checked, 'stars')}
                 />
 
                 <Switch
                     id="clouds"
-                    checked={effects.clouds}
+                    checked={cloudsVisibility}
                     title="Clouds"
-                    toggleHandler={handleEffectsChanging}
+                    toggleHandler={(checked) => handleEffectsChanging(checked, 'clouds')}
                 />
             </div>
         </div>
@@ -31,3 +35,4 @@ const SpecialEffects = () => {
 };
 
 export default SpecialEffects;
+
