@@ -1,9 +1,10 @@
 import { Dispatch } from '@reduxjs/toolkit';
 
 import AxiosUtil from '../../../utilities/axios';
-import { ILogin, ISignUp } from '../../../models/auth';
+import { IForgotPassword, ILogin, IResetPassword, ISignUp } from '../../../models/auth';
 import { storeAuthSliceActions } from './auth-slice';
 import appStore from '../../app-store';
+import { storeUISliceActions } from '../ui/ui-slice';
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
@@ -67,6 +68,7 @@ export const autoLoginThunk = () => {
 
         if (!data) {
             dispatch(storeAuthSliceActions.setAutoLoginFinished());
+            dispatch(storeAuthSliceActions.resetAuthInfo());
             return;
         }
 
@@ -81,5 +83,47 @@ export const autoLoginThunk = () => {
         );
 
         dispatch(storeAuthSliceActions.setAutoLoginFinished());
+    };
+};
+
+
+export const ForgetPasswordThunk = (arg: IForgotPassword) =>{
+    return async (dispatch: Dispatch) => {
+        const data = await AxiosUtil.sendRequest(
+            {
+                url: `${SERVER_URL}/api/forgot-password`,
+                method: 'GET',
+                params: { ...arg },
+            },
+        );
+
+        if (!data) {
+            return;
+        }
+        dispatch(storeUISliceActions.setNotification({type:'success',content:data}) );        
+
+       
+    };
+    
+}
+
+export const ResetPasswordThunk = (arg:IResetPassword) => {
+    return async (dispatch: Dispatch) => {
+        const data = await AxiosUtil.sendRequest(
+            {
+                url: `${SERVER_URL}/api/set-password/${arg.token}`,
+                method: 'POST',
+                data: {...arg},
+            },
+        );
+
+        if (!data) {
+            return;
+        }
+
+        dispatch(storeUISliceActions.setNotification({type:'success',content:data}) );        
+
+
+
     };
 };

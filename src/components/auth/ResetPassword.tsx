@@ -1,15 +1,40 @@
-import { ChangeEvent } from "react";
+import React, { ChangeEvent, useState } from 'react';
 import PasswordIcon from "../../assets/Password.svg";
 import CustomButton from "../shared/Button";
 import CustomInput from "../shared/Input";
+import { useDispatch } from "react-redux";
+import { useParams } from 'react-router-dom';
+import { TAppDispatch } from "../../store/app-store";
+import { ResetPasswordThunk } from "../../store/slices/auth/auth-actions";
+
+
 import handlePasswordInput from "./hooks/handelPasswordInput";
-import handelButtonClick from "./hooks/handelButtonClick";
 
 const RestPassword = () => {
-  const passwordHandeler = handlePasswordInput();
-  const handleButtonClick = handelButtonClick([passwordHandeler], () => {
-    console.log("clicked");
-  });
+  const dispatch = useDispatch<TAppDispatch>();
+
+  const passwordHandler = handlePasswordInput();
+  const repeatPasswordHandler = handlePasswordInput(); 
+
+  const {token} = useParams<{token:string}>();
+
+  const handleResetPassword = () => {
+    if (passwordHandler.password !== repeatPasswordHandler.password) {
+      alert("Passwords do not match!"); 
+      return;
+    }
+
+    dispatch(ResetPasswordThunk({
+      password: passwordHandler.password,
+      token: token!,
+      repeatedPassword:repeatPasswordHandler.password
+    }));
+  };
+
+  const handleFormSubmitting = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleResetPassword();
+};
 
   return (
     <>
@@ -20,7 +45,7 @@ const RestPassword = () => {
             Reset Password
           </h1>
 
-          <form className="mt-6 w-full flex gap-3 flex-col self-start px-1">
+          <form className="mt-6 w-full flex gap-3 flex-col self-start px-1" onSubmit={handleFormSubmitting}>
             {/* New Password Input */}
             <div className="text-white text-[15px] font-bold px-2 mt-3">
               Enter your new password
@@ -32,21 +57,43 @@ const RestPassword = () => {
                 IconSrc={PasswordIcon}
                 IconAlt="Password Icon"
                 className="bg-[#3B2063]"
-                value={passwordHandeler.password}
+                value={passwordHandler.password}
                 handleChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  passwordHandeler.handlePasswordChange(e.target.value)
+                  passwordHandler.handlePasswordChange(e.target.value)
                 }
               />
             </div>
-            {passwordHandeler.passwordError && (
+            {passwordHandler.passwordError && (
               <p className="text-red-500 -mb-4 -mt-5 ml-2">
-                {passwordHandeler.passwordError}
+                {passwordHandler.passwordError}
+              </p>
+            )}
+            {/* Repeat Password Input */}
+            <div className="text-white text-[15px] font-bold px-2 mt-3">
+              Repeat your new password
+            </div>
+            <div className="relative my-2 -mt-1">
+              <CustomInput
+                type="password"
+                placeholder="Repeat Password"
+                IconSrc={PasswordIcon}
+                IconAlt="Repeat Password Icon"
+                className="bg-[#3B2063]"
+                value={repeatPasswordHandler.password}
+                handleChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  repeatPasswordHandler.handlePasswordChange(e.target.value)
+                }
+              />
+            </div>
+            {repeatPasswordHandler.passwordError && (
+              <p className="text-red-500 -mb-4 -mt-5 ml-2">
+                {repeatPasswordHandler.passwordError}
               </p>
             )}
 
             {/* Reset Button */}
             <div className="-mt-1">
-              <CustomButton onClick={handleButtonClick}>
+              <CustomButton>
                 <span className="text-white">Reset</span>
               </CustomButton>
             </div>
@@ -54,7 +101,6 @@ const RestPassword = () => {
         </div>
       </div>
     </>
-  );
-};
-
+  )
+}
 export default RestPassword;

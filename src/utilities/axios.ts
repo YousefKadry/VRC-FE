@@ -59,7 +59,7 @@ class AxiosUtil {
                 return response;
             },
             (error: AxiosError<any, any>) => {
-                if (error.response?.status === 401 || error.response?.status === 403) {
+                if (error.response?.status === 401) {
                     appStore.dispatch(storeAuthSliceActions.resetAuthInfo());
                 }
 
