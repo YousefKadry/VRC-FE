@@ -3,20 +3,20 @@ import { Dispatch } from "@reduxjs/toolkit"
 
 const HandleQRCodeGenerator=(SharingURL?:string, dispatch?:Dispatch)=>
 {
-    if (SharingURL && SharingURL!=="" && dispatch)
+    if (SharingURL && SharingURL!=="")
     {
-        dispatch(storeUISliceActions.setNotification({
+        dispatch? dispatch(storeUISliceActions.setNotification({
             type:'success',
             content: "QR Code Generated"
-        }))
+        })): ""
     }
     
-    else if (dispatch)
+    else
     {
-        dispatch(storeUISliceActions.setNotification({
+        dispatch? dispatch(storeUISliceActions.setNotification({
             type:'info',
             content: "No QR Code Generated yet"
-        }))
+        })): ""
     }
 }
 
