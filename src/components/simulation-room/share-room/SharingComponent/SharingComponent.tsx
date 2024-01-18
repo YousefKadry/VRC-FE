@@ -1,27 +1,47 @@
 import React from "react";
-import QRCodeGen from "./QRCode/QR-Code-Generator"
 import URLSharingComponent from "./URLSharing/URLSharingComponent";
+import { QRCodeSVG } from "qrcode.react";
+import { twJoin } from "tailwind-merge";
 
 interface SharingComponentProps
 {
-    SharingURL?:string
+    sharingURL:string
     RenderQR?:boolean
 }
 
 const SharingComponent: React.FC<SharingComponentProps> = ({
-  SharingURL,
+  sharingURL,
   RenderQR,
 })=> {
 
   return (
-     <div className="flex-col w-full max-w-[460px] p-8 space-y-10">
 
-        {RenderQR===true? 
-        <QRCodeGen SharingURL={SharingURL}/>: ""}
+    <div className="flex-col w-full max-w-[460px] p-8 space-y-10">
 
-        <URLSharingComponent 
-        SharingURL={SharingURL}/>
-      </div>
+      {RenderQR ? 
+        <div className={twJoin(
+          "flex justify-center items-center w-90 aspect-[1/0.80] rounded-xl ",
+          "bg-gradient-to-tr from-gradientSimulationBox1 to-gradientSimulationBox2 bg-opacity-40 "
+        )}
+        >
+
+        <QRCodeSVG 
+        value={sharingURL}
+        fgColor= "#FFFFFF"
+        bgColor= "transparent"
+        width="100%"
+        height="75%"
+        />
+        </div>
+
+        : null   
+
+      }
+
+      <URLSharingComponent 
+      sharingURL={sharingURL}/>
+
+    </div>
   );
 }
 

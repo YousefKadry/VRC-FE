@@ -3,18 +3,18 @@ import SharingButton from "./SharingButton"
 import URLDisplay from "./URLDisplay"
 
 interface URLSharingComponentProps {
-    SharingURL?:string
+    sharingURL:string
 }
 
 
 const URLSharingComponent: React.FC <URLSharingComponentProps> = ({
-    SharingURL,
+    sharingURL,
 }) => {
     
     return (
         <div className="flex items-center justify-between">
-            <URLDisplay SharingURL={SharingURL}/>
-            <SharingButton SharingURL={SharingURL}/>
+            <URLDisplay sharingURL={sharingURL}/>
+            <SharingButton sharingURL={sharingURL}/>
         </div>
     )
 }

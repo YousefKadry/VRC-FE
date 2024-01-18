@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 import CustomInput from "../Input";
 import CustomButton from "../Button";
-import ShareRoom from "../../simulation-room/share-room/Share-Room.tsx";
+import ShareRoom from "../../simulation-room/share-room/shareRoom.tsx";
 import BackgroundManager from "../../simulation-room/bg-management/BackgroundManager";
 import AddMesh from "../../simulation-room/object-editor/AddMesh";
 import PolyItems from "../../simulation-room/poly-items/PolyItems.tsx";
