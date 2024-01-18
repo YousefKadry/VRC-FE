@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Navigation } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
+import SwiperClass from 'swiper';
 import { twJoin } from 'tailwind-merge';
 
 import DashboardSliderImg from './DashboardSliderImg';
@@ -16,6 +17,18 @@ import classes from './DashboardSlider.module.css';
 const DashboardSlider: React.FC<{ activeSliderHandler: (activeSlider: number) => void }> = (props) => {
     const { activeSliderHandler } = props;
 
+    const swiperRef = useRef<SwiperRef>(null);
+
+    const handleSwiperItemsClicking = (swiper: SwiperClass) => {
+        const activeIndex = swiper.activeIndex;
+        const clickedIndex = swiper.clickedIndex;
+
+        if (activeIndex !== clickedIndex) {
+            swiperRef.current?.swiper.slideTo(clickedIndex);
+            return;
+        }
+    };
+
     return (
         <div
             className={twJoin(
@@ -24,12 +37,14 @@ const DashboardSlider: React.FC<{ activeSliderHandler: (activeSlider: number) =>
             )}
         >
             <Swiper
+                ref={swiperRef}
                 modules={[Navigation]}
                 spaceBetween={40}
                 slidesPerView={2.45}
                 centeredSlides={true}
                 navigation={true}
                 onSlideChange={(swiper) => activeSliderHandler(swiper.activeIndex)}
+                onClick={handleSwiperItemsClicking}
                 style={
                     {
                         maxHeight: '80vh',

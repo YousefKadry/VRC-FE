@@ -16,18 +16,18 @@ function Login() {
   const emailHandeler = handleRequriedInput("Email");
   const passwordHandeler = handleRequriedInput("Password");
 
-  const dispatch = useDispatch<TAppDispatch>();
-  
+  const dispatch = useDispatch < TAppDispatch > ();
+
   const handleLogin = handelButtonClick([emailHandeler, passwordHandeler], () => {
-      dispatch(loginThunk({ 
-          email: emailHandeler.value,
-          password: passwordHandeler.value
-      }));
+    dispatch(loginThunk({
+      email: emailHandeler.value,
+      password: passwordHandeler.value
+    }));
   });
 
   const handleFormSubmitting = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      handleLogin();
+    e.preventDefault();
+    handleLogin();
   };
 
   return (

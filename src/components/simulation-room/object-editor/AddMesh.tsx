@@ -31,12 +31,12 @@ const AddMesh = () => {
 
   return (
     <div
-      className={`w-full max-w-[440px] overflow-auto ${classes["scrollbar-hide"]}`}
+      className={`w-full max-w-[400px] overflow-auto ${classes["scrollbar-hide"]}`}
     >
-      <div className="mb-7 rounded-lg w-[440px] h-[41px] flex items-center justify-center bg-gradient-to-r from-[#9167C2] to-[#533b78]">
+      <div className="mb-7 rounded-lg w-[440px] sm:w-full h-[41px] flex items-center justify-center bg-gradient-to-r from-[#9167C2] to-[#533b78]">
         <h3 className="font-bold"> Add Mesh </h3>
       </div>
-      <div className="">
+      <div className="flex flex-col">
         {objects.map((object, index) => (
           <ObjectController
             key={index}
@@ -51,5 +51,4 @@ const AddMesh = () => {
     </div>
   );
 };
-
 export default AddMesh;
