@@ -73,7 +73,7 @@ export const saveSelectedRoomThunk = () => {
 
         const stateAsJSON = {
             ...selectedRoom.state,
-            selectedMeshId: undefined,
+            selectedObjectInfo: undefined,
         };
 
         const data = await AxiosUtil.sendRequest({

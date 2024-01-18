@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
 import { IStoreRoomsSlice } from '../../../models/app-store';
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice';
 import Switch from '../../ui/switch/Switch';
@@ -26,12 +27,12 @@ const SpecialEffects: React.FC = () => {
                     toggleHandler={(checked) => handleEffectsChanging(checked, 'stars')}
                 />
 
-                <Switch
+                {/* <Switch
                     id="clouds"
                     checked={cloudsVisibility}
                     title="Clouds"
                     toggleHandler={(checked) => handleEffectsChanging(checked, 'clouds')}
-                />
+                /> */}
             </div>
         </div>
     );

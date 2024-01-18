@@ -4,10 +4,11 @@ import { IStoreRoomsSlice } from '../../../../models/app-store';
 import { IRoom, IRoomState } from '../../../../models/room';
 
 const initialRoomState: IRoomState = {
-    clouds: false,
-    stars: false,
     meshes: {},
-    selectedMeshId: null,
+    clouds: {},
+    models: {},
+    stars: false,
+    selectedObjectInfo: null,
 };
 
 const roomsReducers = {

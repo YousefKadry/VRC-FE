@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { IStoreRoomsSlice } from '../../../models/app-store';
 import roomsReducers from './reducers/rooms-reducers';
 import selectedRoomReducers from './reducers/selected-room-reducers';
-import roomMeshesReducers from './reducers/room-meshes-reducers';
+import roomObjectsReducers from './reducers/room-objects-reducers';
 
 const initialState: IStoreRoomsSlice = {
     rooms: {},
@@ -16,7 +16,7 @@ const roomsSlice = createSlice({
     reducers: {
         ...roomsReducers,
         ...selectedRoomReducers,
-        ...roomMeshesReducers,
+        ...roomObjectsReducers,
     },
 });
 
