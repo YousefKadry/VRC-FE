@@ -4,10 +4,11 @@ import { IStoreRoomsSlice } from '../../../../models/app-store';
 import { IRoom, IRoomState } from '../../../../models/room';
 
 const initialRoomState: IRoomState = {
-    clouds: false,
-    stars: false,
     meshes: {},
-    selectedMeshId: null,
+    clouds: {},
+    models: {},
+    stars: false,
+    selectedObjectInfo: null,
 };
 
 const roomsReducers = {
@@ -22,18 +23,11 @@ const roomsReducers = {
     clearRooms(storeRoomsSlice: IStoreRoomsSlice) {
         storeRoomsSlice.rooms = {};
     },
-    /**
-     * @param payload the id of the target room or **null** to unset it.
-     */
-    setSelectedRoom(storeRoomsSlice: IStoreRoomsSlice, action: PayloadAction<IRoom<string>['id'] | null>) {
-        if (action.payload === null) {
+    selectedRoom(storeRoomsSlice: IStoreRoomsSlice, action: PayloadAction<IRoom<string> | null>) {
+        const room = action.payload;
+
+        if (room === null) {
             storeRoomsSlice.selectedRoom = null;
-            return;
-        }
-
-        const room = storeRoomsSlice.rooms[action.payload];
-
-        if (!room) {
             return;
         }
 

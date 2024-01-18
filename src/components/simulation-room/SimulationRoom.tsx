@@ -1,28 +1,47 @@
-import Sidebar from "../shared/Sidebar/Sidebar";
-import { Leva } from "leva";
-import { useSelector } from "react-redux";
-import { IAppStore } from "../../models/app-store";
-import Space from "./space/space";
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Leva } from 'leva';
 
-const SimulationRoom = () => {
-    const selectedMesheID = useSelector((store: IAppStore) => store.rooms.selectedRoom?.state.selectedMeshId);
+import Sidebar from '../shared/Sidebar/Sidebar';
+import Space from './space/Space';
+
+import { fetchRoomByIdThunk } from '../../store/slices/rooms/rooms-actions';
+import { TAppDispatch } from '../../store/app-store';
+import { IAppStore } from '../../models/app-store';
+
+const SimulationRoom: React.FC<{ editable: boolean }> = ({ editable }) => {
+    const { roomId } = useParams();
+
+    const selectedObjectInfo = useSelector(
+        (store: IAppStore) => store.rooms.selectedRoom?.state.selectedObjectInfo
+    );
+    const dispatch = useDispatch<TAppDispatch>();
+
+    useEffect(() => {
+        if (!roomId) {
+            return;
+        }
+
+        dispatch(fetchRoomByIdThunk(roomId));
+    }, [roomId]);
 
     return (
         <>
             <div
                 style={{
                     width: 320,
-                    position: "absolute",
+                    position: 'absolute',
                     right: 0,
                     top: 0,
                     zIndex: 100,
                     opacity: 0.8,
                 }}
             >
-                <Leva fill hidden={!selectedMesheID} />
+                <Leva fill hidden={!selectedObjectInfo || !editable} />
             </div>
-            <div style={{ display: "flex" }}>
-                <Sidebar />
+            <div className="flex">
+                {editable && <Sidebar />}
                 <Space />
             </div>
         </>

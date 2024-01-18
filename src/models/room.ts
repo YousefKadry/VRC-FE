@@ -8,16 +8,41 @@ export interface IRoom<StateType> {
 
 export type TUpdatableRoomInfo = Partial<Omit<IRoom<any>, 'id' | 'state'>>;
 
+export type TRoomObjectsType = 'meshes' | 'clouds' | 'models';
+
 export interface IRoomState {
     meshes: Record<string, IMesh>;
-    selectedMeshId: IMesh['id'] | null;
+    clouds: Record<string, ICloud>;
+    models: Record<string, IModel>;
     stars: boolean;
-    clouds: boolean;
+    selectedObjectInfo: {
+        type: TRoomObjectsType;
+        id: IRoomObject['id'];
+    } | null;
 }
 
-export type TUpdatableRoomStateInfo = Partial<Omit<IRoomState, 'meshes' | 'selectedMeshId'>>;
+export type TUpdatableRoomStateInfo = Partial<
+    Omit<IRoomState, 'meshes' | 'clouds' | 'models' | 'selectedObjectInfo'>
+>;
 
 export type TVec3 = [number, number, number];
+
+export interface IRoomObject {
+    id: string;
+    position: TVec3;
+    rotation: TVec3;
+    scale: TVec3;
+}
+
+export type TUpdatableRoomObjectInfo = Partial<Omit<IRoomObject, 'id'>>;
+
+export interface ICloud extends IRoomObject {
+    color: string;
+}
+
+export interface IModel extends IRoomObject {
+    URL: string;
+}
 
 export type TMeshGeometryType =
     | 'box'
@@ -42,12 +67,6 @@ export type TMeshGeometryType =
     | 'tube'
     | 'wireframe';
 
-export interface IMesh {
-    id: string;
+export interface IMesh extends IRoomObject {
     geometryType: TMeshGeometryType;
-    position: TVec3;
-    rotation: TVec3;
-    scale: TVec3;
 }
-
-export type TUpdatableMeshInfo = Partial<Omit<IMesh, 'id'>>;
