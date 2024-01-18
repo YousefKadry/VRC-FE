@@ -2,6 +2,8 @@ import { useSelector } from 'react-redux';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sky, Stars } from '@react-three/drei';
 
+import SpaceClouds from './clouds/Clouds';
+
 import { IAppStore } from '../../../models/app-store';
 
 const Space = () => {
@@ -17,7 +19,7 @@ const Space = () => {
             <OrbitControls />
             <Sky />
             {selectedRoom.state.stars && <Stars />}
-            {/* {cloudsEnabled && <Cloud />} */}
+            <SpaceClouds />
         </Canvas>
     );
 };
