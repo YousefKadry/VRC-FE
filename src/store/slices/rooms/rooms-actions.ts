@@ -33,8 +33,7 @@ export const fetchRoomByIdThunk = (roomId: IRoom<string>['id']) => {
             return;
         }
 
-        dispatch(storeRoomsSliceActions.addRoom(data));
-        dispatch(storeRoomsSliceActions.setSelectedRoom(data.id));
+        dispatch(storeRoomsSliceActions.selectedRoom(data));
     };
 };
 
@@ -59,7 +58,7 @@ export const createNewRoomThunk = (
         }
 
         dispatch(storeRoomsSliceActions.addRoom(data));
-        dispatch(storeRoomsSliceActions.setSelectedRoom(data.id));
+        dispatch(storeRoomsSliceActions.selectedRoom(data));
     };
 };
 
