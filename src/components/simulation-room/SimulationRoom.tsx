@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Leva } from 'leva';
 
-import Sidebar from '../shared/Sidebar/Sidebar';
+import Sidebar from './sidebar/Sidebar';
 import Space from './space/Space';
 
 import { fetchRoomByIdThunk } from '../../store/slices/rooms/rooms-actions';
@@ -34,7 +34,7 @@ const SimulationRoom: React.FC<{ editable: boolean }> = ({ editable }) => {
                     position: 'absolute',
                     right: 0,
                     top: 0,
-                    zIndex: 100,
+                    zIndex: 10,
                     opacity: 0.8,
                 }}
             >
