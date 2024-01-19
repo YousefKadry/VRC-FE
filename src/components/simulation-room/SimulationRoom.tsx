@@ -42,7 +42,7 @@ const SimulationRoom: React.FC<{ editable: boolean }> = ({ editable }) => {
             </div>
             <div className="flex">
                 {editable && <Sidebar />}
-                <Space />
+                <Space editable={editable} />
             </div>
         </>
     );
