@@ -2,7 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { generateUUID } from 'three/src/math/MathUtils.js';
 
 import { IStoreRoomsSlice } from '../../../../models/app-store';
-import { IRoomState, TUpdatableRoomObjectInfo } from '../../../../models/room';
+import { IRoomState, TRoomObjectsType, TUpdatableRoomObjectInfo } from '../../../../models/room';
 import {
     IAddObjectsAction,
     IUpdateCloudColorAction,
@@ -17,7 +17,7 @@ const roomObjectsReducers = {
         }
 
         for (const [objectType, objects] of Object.entries(action.payload)) {
-            const storeObjects = (storeRoomsSlice.selectedRoom.state as any)[objectType];
+            const storeObjects = storeRoomsSlice.selectedRoom.state[objectType as TRoomObjectsType];
 
             for (const object of objects || []) {
                 const objectId = generateUUID();
