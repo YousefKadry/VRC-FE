@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { TransformControls } from '@react-three/drei';
 
+import useRoomObjController from './RoomObjController';
+
 import { IRoomObject, TVec3 } from '../../../models/room';
 import { IAppStore } from '../../../models/app-store';
 import { TAppDispatch } from '../../../store/app-store';
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice';
-import useRoomObjController from './RoomObjController';
+import RoomObjectUtil from '../../../utilities/room-object';
 
 export interface IObjectTransformControlsProps {
     orbitRef: any;
@@ -34,11 +36,11 @@ const SelectedObjectTransformControls: React.FC<IObjectTransformControlsProps> =
         dispatch(
             storeRoomsSliceActions.updateSelectedObject({
                 position: Object.values(position) as TVec3,
-                rotation: [
-                    (rotation._x * 180) / Math.PI,
-                    (rotation._y * 180) / Math.PI,
-                    (rotation._z * 180) / Math.PI,
-                ] as TVec3,
+                rotation: RoomObjectUtil.convertRotationFromEulerToDegree([
+                    rotation._x,
+                    rotation._y,
+                    rotation._z,
+                ]),
                 scale: Object.values(scale) as TVec3,
             })
         );
@@ -53,7 +55,7 @@ const SelectedObjectTransformControls: React.FC<IObjectTransformControlsProps> =
             mode={transformationMode as 'scale' | 'rotate' | 'translate'}
             position={selectedObj.position}
             scale={selectedObj.scale}
-            rotation={selectedObj.rotation.map((r: number) => (r * Math.PI) / 180) as TVec3}
+            rotation={RoomObjectUtil.convertRotationFromDegreeToEuler(selectedObj.rotation)}
             onObjectChange={handelMouseTransformation}
             onMouseUp={() => (orbitRef.current.enabled = true)}
         />

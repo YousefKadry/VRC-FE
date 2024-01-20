@@ -75,7 +75,7 @@ const Meshses3D = () => {
         <div className={'overflow-y-auto max-h-[86vh]'}>
             <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 '}>
                 {geometryTypes.map((item) => {
-                    return <MeshItem item={item} />;
+                    return <MeshItem key={item.type} item={item} />;
                 })}
             </div>
         </div>
