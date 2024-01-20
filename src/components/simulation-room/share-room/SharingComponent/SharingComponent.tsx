@@ -1,46 +1,36 @@
-import React, { useState, useEffect } from "react";
-import QRCodeGen from "./QRCode/QR-Code-Generator"
-import URLSharingComponent from "./URLSharing/URLSharingComponent";
-import LinkMessageDisplay from "./LinkMessage/LinkMessageDisplay";
+import React from 'react';
+import URLSharingComponent from './URLSharing/URLSharingComponent';
+import { QRCodeSVG } from 'qrcode.react';
+import { twJoin } from 'tailwind-merge';
 
-interface SharingComponentProps
-{
-    SharingURL?:string
-    RenderQR?:boolean
-    ShowMessage?:boolean
+interface SharingComponentProps {
+    sharingURL: string;
+    RenderQR?: boolean;
 }
 
-const SharingComponent: React.FC<SharingComponentProps> = ({
-  SharingURL,
-  RenderQR,
-  ShowMessage
-})=> {
+const SharingComponent: React.FC<SharingComponentProps> = ({ sharingURL, RenderQR }) => {
+    return (
+        <div className="flex-col w-full max-w-[460px] p-8 space-y-10">
+            {RenderQR ? (
+                <div
+                    className={twJoin(
+                        'flex justify-center items-center w-90 aspect-[1/0.80] rounded-xl ',
+                        'bg-gradient-to-tr from-gradientSimulationBox1 to-gradientSimulationBox2 bg-opacity-40 '
+                    )}
+                >
+                    <QRCodeSVG
+                        value={sharingURL}
+                        fgColor="#FFFFFF"
+                        bgColor="transparent"
+                        width="100%"
+                        height="75%"
+                    />
+                </div>
+            ) : null}
 
-  const [LinkMessage, setLinkMessage] = useState(0)
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-        setLinkMessage(0);
-    }, 2000);
-
-    return () => clearTimeout(timeout);
-
-},[LinkMessage])
-
-  return (
-     <div className="flex-col w-full max-w-[460px] p-8 space-y-10">
-
-        {RenderQR===true? 
-        <QRCodeGen SharingURL={SharingURL} setLinkMessage = {setLinkMessage}/>: ""}
-
-        <URLSharingComponent 
-        SharingURL={SharingURL} setLinkMessage = {setLinkMessage}/>
-
-        {ShowMessage==true ? 
-        <LinkMessageDisplay LinkMessage={LinkMessage}/> : ""}
-
-      </div>
-  );
-}
+            <URLSharingComponent sharingURL={sharingURL} />
+        </div>
+    );
+};
 
 export default SharingComponent;

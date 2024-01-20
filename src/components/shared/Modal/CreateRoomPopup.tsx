@@ -1,15 +1,11 @@
-import {Fragment, useRef, useState} from 'react'
-// @ts-ignore
-import { Dialog, Transition } from '@headlessui/react'
-import {useDispatch, useSelector} from "react-redux";
-import { storeUISliceActions } from "../../../store/slices/ui/ui-slice"
-import {useNavigate} from "react-router-dom";
+import { Fragment, useRef, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { storeUISliceActions } from '../../../store/slices/ui/ui-slice';
+import { useNavigate } from 'react-router-dom';
 
 const CreateRoomPopup = () => {
-
-    const {
-        isCreateRoomPopupShown
-    } =  useSelector((state: any) => state.ui);
+    const { isCreateRoomPopupShown } = useSelector((state: any) => state.ui);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -18,9 +14,9 @@ const CreateRoomPopup = () => {
 
     const closePopupHandler = (e: any) => {
         dispatch(storeUISliceActions.setIsCreateRoomModalShown(e));
-    }
+    };
 
-    const onSubmit = (e:any) => {
+    const onSubmit = (e: any) => {
         e.preventDefault();
 
         const roomName = formRef.current['roomName'].value;
@@ -31,12 +27,9 @@ const CreateRoomPopup = () => {
         }
 
         // @TODO: dispatch actions to store
-        closePopupHandler(false)
-        navigate(`/simulation-room`)
-    }
-
-
-
+        closePopupHandler(false);
+        navigate(`/simulation-room`);
+    };
 
     return (
         <Transition.Root show={isCreateRoomPopupShown} as={Fragment}>
@@ -54,7 +47,6 @@ const CreateRoomPopup = () => {
                 </Transition.Child>
 
                 <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-
                     <div className="flex min-h-full items-center justify-center text-center sm:items-center sm:p-0">
                         <Transition.Child
                             as={Fragment}
@@ -67,9 +59,12 @@ const CreateRoomPopup = () => {
                         >
                             <Dialog.Panel className="relative transform overflow-hidden space-y-6 rounded-2xl bg-secondary px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-2 sm:w-full sm:max-w-sm sm:p-6">
                                 <div>
-                                        <Dialog.Title as="h3" className="text-2xl font-bold text-white text-left leading-6">
-                                           Build A Room
-                                        </Dialog.Title>
+                                    <Dialog.Title
+                                        as="h3"
+                                        className="text-2xl font-bold text-white text-left leading-6"
+                                    >
+                                        Build A Room
+                                    </Dialog.Title>
                                 </div>
 
                                 <div>
@@ -80,7 +75,7 @@ const CreateRoomPopup = () => {
                                                     id="roomName"
                                                     name="roomName"
                                                     type="text"
-                                                    placeholder={"Room Name"}
+                                                    placeholder={'Room Name'}
                                                     autoComplete="roomName"
                                                     required
                                                     className="block bg-[#3b2063] focus:outline-none w-full p-2 rounded-md border-0 py-1.5 text-white placeholder:text-gray-400 sm:text-sm sm:leading-6"
@@ -92,7 +87,7 @@ const CreateRoomPopup = () => {
                                             <div className="mt-2">
                                                 <textarea
                                                     rows={4}
-                                                    placeholder={"Room Description"}
+                                                    placeholder={'Room Description'}
                                                     name="roomDescription"
                                                     id="roomDescription"
                                                     className="block w-full focus:outline-none bg-[#3b2063] p-2 rounded-md border-0 py-1.5 text-white shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6"
@@ -100,7 +95,6 @@ const CreateRoomPopup = () => {
                                                 />
                                             </div>
                                         </div>
-
 
                                         <div>
                                             <button
@@ -112,7 +106,6 @@ const CreateRoomPopup = () => {
                                             </button>
                                         </div>
                                     </form>
-
                                 </div>
                             </Dialog.Panel>
                         </Transition.Child>
@@ -120,7 +113,7 @@ const CreateRoomPopup = () => {
                 </div>
             </Dialog>
         </Transition.Root>
-    )
-}
+    );
+};
 
 export default CreateRoomPopup;

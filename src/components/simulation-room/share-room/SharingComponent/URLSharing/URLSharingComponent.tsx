@@ -1,24 +1,18 @@
-import React from "react"
-import SharingButton from "./SharingButton"
-import URLDisplay from "./URLDisplay"
+import React from 'react';
+import SharingButton from './SharingButton';
+import URLDisplay from './URLDisplay';
 
 interface URLSharingComponentProps {
-    SharingURL?:string
-    setLinkMessage: React.Dispatch<React.SetStateAction<number>>
+    sharingURL: string;
 }
 
-
-const URLSharingComponent: React.FC <URLSharingComponentProps> = ({
-    SharingURL,
-    setLinkMessage
-}) => {
-
+const URLSharingComponent: React.FC<URLSharingComponentProps> = ({ sharingURL }) => {
     return (
         <div className="flex items-center justify-between">
-            <URLDisplay SharingURL={SharingURL}/>
-            <SharingButton SharingURL={SharingURL} setLinkMessage={setLinkMessage}/>
+            <URLDisplay sharingURL={sharingURL} />
+            <SharingButton sharingURL={sharingURL} />
         </div>
-    )
-}
+    );
+};
 
 export default URLSharingComponent;
