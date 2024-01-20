@@ -1,12 +1,7 @@
-import SharingComponent from "./SharingComponent/sharingComponent";
-
+import SharingComponent from './SharingComponent/SharingComponent';
 
 const ShareRoom = () => {
-  return (
-     <>
-        <SharingComponent sharingURL={`${document.URL}/view`} RenderQR={true}/>
-      </>
-  );
-}
+    return <SharingComponent sharingURL={`${document.URL}/view`} RenderQR={true} />;
+};
 
 export default ShareRoom;
