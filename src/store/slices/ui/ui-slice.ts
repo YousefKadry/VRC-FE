@@ -5,6 +5,8 @@ import { INotification } from '../../../models/notification';
 const initialState: IStoreUISlice = {
     notification: null,
     isLoading: false,
+    isCreateRoomPopupShown: false,
+    isEnterRoomPopupShown: false,
 };
 
 const uiSlice = createSlice({
@@ -19,6 +21,12 @@ const uiSlice = createSlice({
         },
         setIsLoading: (storeUiSlice, action: PayloadAction<boolean>) => {
             storeUiSlice.isLoading = action.payload;
+        },
+        setIsCreateRoomModalShown: (storeUiSlice, action: PayloadAction<boolean>) => {
+            storeUiSlice.isCreateRoomPopupShown = action.payload;
+        },
+        setIsEnterRoomPopupShown: (storeUiSlice, action: PayloadAction<boolean>) => {
+            storeUiSlice.isEnterRoomPopupShown = action.payload;
         },
     },
 });

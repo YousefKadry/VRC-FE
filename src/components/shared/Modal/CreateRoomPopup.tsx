@@ -1,23 +1,46 @@
 import {Fragment, useRef, useState} from 'react'
 // @ts-ignore
 import { Dialog, Transition } from '@headlessui/react'
+import {useDispatch, useSelector} from "react-redux";
+import { storeUISliceActions } from "../../../store/slices/ui/ui-slice"
+import {useNavigate} from "react-router-dom";
 
 const CreateRoomPopup = () => {
-    const [open, setOpen] = useState(true)
+
+    const {
+        isCreateRoomPopupShown
+    } =  useSelector((state: any) => state.ui);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const formRef = useRef(null);
 
-    const onSubmit = (e: any) => {
-        e.preventDefault();
-        console.log(formRef.current['roomName'].value);
-        console.log(formRef.current['roomDescription'].value);
+    const closePopupHandler = (e: any) => {
+        dispatch(storeUISliceActions.setIsCreateRoomModalShown(e));
+    }
 
-        // TODO: Add logic to create room
+    const onSubmit = (e:any) => {
+        e.preventDefault();
+
+        const roomName = formRef.current['roomName'].value;
+        const roomDescription = formRef.current['roomDescription'].value;
+
+        if (roomName === '' || roomDescription === '') {
+            return;
+        }
+
+        // @TODO: dispatch actions to store
+        closePopupHandler(false)
+        navigate(`/simulation-room`)
     }
 
 
+
+
     return (
-        <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={setOpen}>
+        <Transition.Root show={isCreateRoomPopupShown} as={Fragment}>
+            <Dialog as="div" className="relative z-10" onClose={closePopupHandler}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"

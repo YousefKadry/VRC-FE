@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 
 const RoomCard = ({room}: { room: any }) => {
 
-    const roomUrl = `/rooms/${room.id}`
+    const roomUrl = `/simulation-room/${room.id}`
 
     const onShareButtonClick = (e: any) => {
         // copy the room link to the clipboard

@@ -100,11 +100,11 @@ export const ForgetPasswordThunk = (arg: IForgotPassword) =>{
         if (!data) {
             return;
         }
-        dispatch(storeUISliceActions.setNotification({type:'success',content:data}) );        
+        dispatch(storeUISliceActions.setNotification({type:'success',content:data}) );
 
-       
+
     };
-    
+
 }
 
 export const ResetPasswordThunk = (arg:IResetPassword) => {
@@ -121,7 +121,7 @@ export const ResetPasswordThunk = (arg:IResetPassword) => {
             return;
         }
 
-        dispatch(storeUISliceActions.setNotification({type:'success',content:data}) );        
+        dispatch(storeUISliceActions.setNotification({type:'success',content:data}) );
 
 
 

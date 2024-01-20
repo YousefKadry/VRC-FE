@@ -2,21 +2,46 @@ import {Fragment, useRef, useState} from 'react'
 // @ts-ignore
 import {Dialog, Transition} from '@headlessui/react'
 import {ArrowRightCircleIcon} from '@heroicons/react/20/solid'
+import {useDispatch, useSelector} from "react-redux";
+import {storeUISliceActions} from "../../../store/slices/ui/ui-slice.ts";
+import {useNavigate} from "react-router-dom";
 
 const EnterRoomPopup = () => {
-    const [open, setOpen] = useState(true)
+
+    const {
+        isEnterRoomPopupShown
+    } =  useSelector((state: any) => state.ui);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const formRef = useRef(null);
+
+    const closePopupHandler = (e: any) => {
+        dispatch(storeUISliceActions.setIsEnterRoomPopupShown(e));
+    }
 
     const onSubmit = (e: any) => {
         e.preventDefault();
-        console.log(formRef.current['roomUrl'].value);
 
-        // TODO: Add logic to redirect to room
+        const roomId = formRef.current['roomId'].value;
+
+        if (roomId === '') {
+            return;
+        }
+
+        // @TODO: validate the room id from backend & dispatch actions to store
+
+        // redirect to the room
+        closePopupHandler(false)
+        navigate(`/simulation-room/${roomId}`)
+
     }
 
+
     return (
-        <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={setOpen}>
+        <Transition.Root show={isEnterRoomPopupShown} as={Fragment}>
+            <Dialog as="div" className="relative z-10" onClose={closePopupHandler}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -45,7 +70,7 @@ const EnterRoomPopup = () => {
                                 className="relative transform overflow-hidden space-y-6 rounded-2xl bg-secondary px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-2 sm:w-full sm:max-w-sm sm:p-6">
                                 <div>
                                     <Dialog.Title as="h3" className="text-2xl font-bold text-white text-left leading-6">
-                                        Enter Room Link
+                                        Enter Room ID
                                     </Dialog.Title>
                                 </div>
 
@@ -54,10 +79,10 @@ const EnterRoomPopup = () => {
                                         <div className="mt-2 flex rounded-md shadow-sm">
                                                 <input
                                                     type="text"
-                                                    name="roomUrl"
-                                                    id="roomUrl"
+                                                    name="roomId"
+                                                    id="roomId"
                                                     className="block w-full focus:outline-none bg-[#3b2063] rounded-l-md border-0 py-1.5 p-2 text-white placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                                                    placeholder="Room URL"
+                                                    placeholder="Room ID"
                                                 />
                                             <button
                                                 type="button"

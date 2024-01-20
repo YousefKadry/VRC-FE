@@ -2,10 +2,13 @@
 import React from "react";
 import classes from "./DashboardText.module.css";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import { storeUISliceActions } from "../../../store/slices/ui/ui-slice"
 
 const DashBoardText: React.FC<{ activeSlider: number }> = ({ activeSlider }) => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const radius = 180;
 
@@ -24,7 +27,11 @@ const DashBoardText: React.FC<{ activeSlider: number }> = ({ activeSlider }) => 
 
 
   const joinRoomHandler = () => {
-    console.log("Join a room clicked");
+    dispatch(storeUISliceActions.setIsEnterRoomPopupShown(true));
+  };
+
+  const createRoomHandler = () => {
+    dispatch(storeUISliceActions.setIsCreateRoomModalShown(true));
   };
 
   return (
@@ -35,7 +42,7 @@ const DashBoardText: React.FC<{ activeSlider: number }> = ({ activeSlider }) => 
           <textPath xlinkHref="#curve" startOffset="0" role="button" onClick={joinRoomHandler} style={{ cursor: 'pointer' }}>
             Enter A Room
           </textPath>
-          <textPath xlinkHref="#curve" startOffset="31%" role="button" onClick={() => console.log("Create a room clicked")} style={{ cursor: 'pointer' }}>
+          <textPath xlinkHref="#curve" startOffset="31%" role="button" onClick={createRoomHandler} style={{ cursor: 'pointer' }}>
             Build A Room
           </textPath>
           <textPath xlinkHref="#curve" startOffset="61%" role="button" onClick={viewMyRoomsHandler} style={{ cursor: 'pointer' }}>
