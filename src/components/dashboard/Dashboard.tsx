@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import DashboardSlider from './dashboard-slider/DashboardSlider';
 import DashboardText from './dashboard-text/DashboardText';
-import CreateRoomPopup from "../shared/Modal/CreateRoomPopup.tsx";
-import EnterRoomPopup from "../shared/Modal/EnterRoomPopup.tsx";
+import CreateRoomPopup from "./Modal/CreateRoomPopup.tsx";
+import EnterRoomPopup from "./Modal/EnterRoomPopup.tsx";
 
 const Dashboard = () => {
     const [activeSlider, setActiveSlider] = useState(0);
