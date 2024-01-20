@@ -5,14 +5,14 @@ import { twJoin } from 'tailwind-merge';
 import SidebarButtons from './SidebarButtons.tsx';
 import ShareRoom from '../share-room/shareRoom.tsx';
 import CameraManager from '../camera-management/CameraManager.tsx';
-import AddMesh from '../object-editor/AddMesh.tsx';
 import PolyItems from '../poly-items/PolyItems.tsx';
 import SpecialEffects from '../special-effects/SpecialEffects.tsx';
 import TextManager from '../text-management/TextManager.tsx';
+import AddMesh from '../object-editor/AddMesh.tsx';
 
 import { ESimulationRoomButtonId } from '../../../models/simulation-room-sidebar.ts';
-import {storeRoomsSliceActions} from "../../../store/slices/rooms/rooms-slice.ts";
-import {useDispatch} from "react-redux";
+import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
+import { useDispatch } from 'react-redux';
 
 const Sidebar = () => {
     const [activeButtonId, setActiveButtonId] = useState<ESimulationRoomButtonId | null>(null);

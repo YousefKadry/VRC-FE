@@ -16,7 +16,8 @@ const SelectedObjectTransformControls: React.FC<IObjectTransformControlsProps> =
 
     const roomState = useSelector((store: IAppStore) => store.rooms.selectedRoom?.state);
     const selectedObjectInfo = roomState?.selectedObjectInfo;
-    const selectedObj = selectedObjectInfo && roomState[selectedObjectInfo.type][selectedObjectInfo.id];
+    const selectedObj =
+        selectedObjectInfo && roomState[selectedObjectInfo.type][selectedObjectInfo.id as string];
     const dispatch = useDispatch<TAppDispatch>();
 
     const [transformationMode, hideHelpers] = useRoomObjController({
@@ -52,7 +53,7 @@ const SelectedObjectTransformControls: React.FC<IObjectTransformControlsProps> =
             mode={transformationMode as 'scale' | 'rotate' | 'translate'}
             position={selectedObj.position}
             scale={selectedObj.scale}
-            rotation={selectedObj.rotation.map((r) => (r * Math.PI) / 180) as TVec3}
+            rotation={selectedObj.rotation.map((r: number) => (r * Math.PI) / 180) as TVec3}
             onObjectChange={handelMouseTransformation}
             onMouseUp={() => (orbitRef.current.enabled = true)}
         />
