@@ -10,33 +10,35 @@ import PolyItems from '../poly-items/PolyItems.tsx';
 import SpecialEffects from '../special-effects/SpecialEffects.tsx';
 import TextManager from '../text-management/TextManager.tsx';
 
+import { ESimulationRoomButtonId } from '../../../models/simulation-room-sidebar.ts';
+
 const Sidebar = () => {
-    const [activeButtonId, setActiveButtonId] = useState<string | null>(null);
+    const [activeButtonId, setActiveButtonId] = useState<ESimulationRoomButtonId | null>(null);
     const navigate = useNavigate();
 
     const renderFocus = () => {
         switch (activeButtonId) {
-            case 'camera-btn':
+            case ESimulationRoomButtonId.CAMERA_BTN:
                 return <CameraManager />;
-            case 'text-btn':
+            case ESimulationRoomButtonId.TEXT_BTN:
                 return <TextManager />;
-            case 'poly-items-btn':
+            case ESimulationRoomButtonId.POLY_ITEMS_BTN:
                 return <PolyItems />;
-            case 'meshes-btn':
+            case ESimulationRoomButtonId.MESHES_BTN:
                 return <AddMesh />;
-            case 'sharing-btn':
+            case ESimulationRoomButtonId.SHARING_BTN:
                 return <ShareRoom />;
-            case 'special-effect-btn':
+            case ESimulationRoomButtonId.SPECIAL_EFFECT_BTN:
                 return <SpecialEffects />;
             default:
                 return null;
         }
     };
 
-    const handleButtonClicking = (id: string | null) => {
-        if (id === 'back-home-btn') {
+    const handleButtonClicking = (id: ESimulationRoomButtonId | null) => {
+        if (id === ESimulationRoomButtonId.BACK_HOME_BTN) {
             navigate('/dashboard');
-        } else if (id === 'menu-closing-btn') {
+        } else if (id === ESimulationRoomButtonId.MENU_CLOSING_BTN) {
             setActiveButtonId(null);
         } else {
             setActiveButtonId(id);
