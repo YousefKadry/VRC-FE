@@ -1,5 +1,4 @@
 import React, { ChangeEvent } from "react";
-import { twMerge } from "tailwind-merge";
 
 interface CustomInputProps {
   type: "text" | "password";

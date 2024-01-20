@@ -86,44 +86,33 @@ export const autoLoginThunk = () => {
     };
 };
 
-
-export const ForgetPasswordThunk = (arg: IForgotPassword) =>{
+export const ForgetPasswordThunk = (arg: IForgotPassword) => {
     return async (dispatch: Dispatch) => {
-        const data = await AxiosUtil.sendRequest(
-            {
-                url: `${SERVER_URL}/api/forgot-password`,
-                method: 'GET',
-                params: { ...arg },
-            },
-        );
+        const data = await AxiosUtil.sendRequest({
+            url: `${SERVER_URL}/api/forgot-password`,
+            method: 'GET',
+            params: { ...arg },
+        });
 
         if (!data) {
             return;
         }
-        dispatch(storeUISliceActions.setNotification({type:'success',content:data}) );        
-
-       
+        dispatch(storeUISliceActions.setNotification({ type: 'success', content: data }));
     };
-    
-}
+};
 
-export const ResetPasswordThunk = (arg:IResetPassword) => {
+export const ResetPasswordThunk = (arg: IResetPassword) => {
     return async (dispatch: Dispatch) => {
-        const data = await AxiosUtil.sendRequest(
-            {
-                url: `${SERVER_URL}/api/set-password/${arg.token}`,
-                method: 'POST',
-                data: {...arg},
-            },
-        );
+        const data = await AxiosUtil.sendRequest({
+            url: `${SERVER_URL}/api/set-password/${arg.token}`,
+            method: 'POST',
+            data: { ...arg },
+        });
 
         if (!data) {
             return;
         }
 
-        dispatch(storeUISliceActions.setNotification({type:'success',content:data}) );        
-
-
-
+        dispatch(storeUISliceActions.setNotification({ type: 'success', content: data }));
     };
 };
