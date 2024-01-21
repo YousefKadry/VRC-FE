@@ -18,7 +18,7 @@ const simulationRoomSidebarButtons = [
     { id: ESimulationRoomButtonId.BACK_HOME_BTN, icon: faHome },
     { id: ESimulationRoomButtonId.CAMERA_BTN, icon: faCamera },
     { id: ESimulationRoomButtonId.TEXT_BTN, icon: faFont },
-    { id: ESimulationRoomButtonId.POLY_ITEMS_BTN, icon: faDownload },
+    { id: ESimulationRoomButtonId.GLTFs_ASSETS_BTN, icon: faDownload },
     { id: ESimulationRoomButtonId.SPECIAL_EFFECT_BTN, icon: faStarHalfStroke },
     { id: ESimulationRoomButtonId.MESHES_BTN, icon: faCircleNodes },
     { id: ESimulationRoomButtonId.SHARING_BTN, icon: faShareFromSquare },
