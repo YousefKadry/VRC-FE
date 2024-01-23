@@ -5,20 +5,15 @@ import { IAppStore } from '../../../../models/app-store';
 
 const SpaceClouds = () => {
     const selectedRoomClouds = useSelector((store: IAppStore) => store.rooms.selectedRoom?.state.clouds);
+    console.log(selectedRoomClouds);
 
     return (
         <group>
-            {Object.values(selectedRoomClouds || {}).map((cloud) => {
-                return (
-                    <Cloud
-                        key={cloud.id}
-                        color={cloud.color}
-                        position={cloud.position}
-                        rotation={cloud.rotation}
-                        scale={cloud.scale}
-                    />
-                );
-            })}
+            {Object.values(selectedRoomClouds || {}).map((cloud) => (
+                <group key={cloud.id}>
+                    <Cloud color={cloud.color} position={cloud.position} />
+                </group>
+            ))}
         </group>
     );
 };

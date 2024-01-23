@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useSelector } from 'react-redux';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Sky, Stars } from '@react-three/drei';
