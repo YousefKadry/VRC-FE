@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useInView } from 'react-intersection-observer';
 import { twJoin } from 'tailwind-merge';
 import { debounce } from 'lodash';
-
+import {BeatLoader} from'react-spinners';
 import RoomAssetsItem from './RoomAssetsItem.tsx';
 import CustomInput from '../../shared/Input.tsx';
 
@@ -80,6 +80,7 @@ const GLTFsAssets = () => {
                         );
                     })}
                 </ul>
+                {isLoading<BeatLoader/>}
             </div>
         </div>
     );

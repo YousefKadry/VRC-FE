@@ -1,3 +1,4 @@
+import { disable } from "debug";
 import React, { ChangeEvent } from "react";
 
 interface CustomInputProps {
@@ -8,6 +9,7 @@ interface CustomInputProps {
   className?: string;
   IconSrc?: string;
   IconAlt?: string;
+  disabled?:boolean;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -29,6 +31,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
+        disabled={isLoading}
       />
       {IconSrc && (
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
