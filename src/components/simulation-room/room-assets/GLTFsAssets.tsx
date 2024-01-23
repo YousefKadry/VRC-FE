@@ -14,7 +14,7 @@ import { storeAssetsSliceActions } from '../../../store/slices/assets/assets-sli
 
 const GLTFsAssets = () => {
     const { items: gltfs, searchInfo } = useSelector((store: IAppStore) => store.assets.gltfsInfo);
-    const { pageNumber, q, hasNext, allowFetchingNextPage } = searchInfo;
+    const { pageNumber, q, hasNext, allowFetchingNextPage, isLoading} = searchInfo;
 
     const dispatch = useDispatch<TAppDispatch>();
 
@@ -80,7 +80,7 @@ const GLTFsAssets = () => {
                         );
                     })}
                 </ul>
-                {searchInfo.isLoading && <BeatLoader/>}
+                {isLoading && <BeatLoader/>}
             </div>
         </div>
     );
