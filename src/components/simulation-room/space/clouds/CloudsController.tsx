@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { storeRoomsSliceActions } from '../../../../store/slices/rooms/rooms-slice';

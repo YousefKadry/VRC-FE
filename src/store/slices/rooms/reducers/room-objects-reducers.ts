@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { PayloadAction } from '@reduxjs/toolkit';
 import { generateUUID } from 'three/src/math/MathUtils.js';
 
