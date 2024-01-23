@@ -11,6 +11,7 @@ function getAssetsInitState<AssetsType>(): IRoomAssetsInfo<AssetsType> {
             pageNumber: 0,
             allowFetchingNextPage: true,
             hasNext: true,
+            isLoading:false
         },
         items: [],
     };

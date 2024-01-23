@@ -4,7 +4,7 @@ export interface IRoomAssetsSearchInfo {
     pageSize: number;
     hasNext: boolean;
     allowFetchingNextPage: boolean;
-    isLoading:false;
+    isLoading:boolean;
 }
 
 export interface IRoomAssetsInfo<AssetsType> {

@@ -80,7 +80,7 @@ const GLTFsAssets = () => {
                         );
                     })}
                 </ul>
-                {isLoading<BeatLoader/>}
+                {searchInfo.isLoading && <BeatLoader/>}
             </div>
         </div>
     );
