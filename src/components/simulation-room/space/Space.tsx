@@ -1,13 +1,22 @@
-/* eslint-disable prettier/prettier */
+import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Sky, Stars } from '@react-three/drei';
+import { OrbitControls, Plane, Sky, Stars } from '@react-three/drei';
 
 import SpaceClouds from './clouds/Clouds';
+import Meshes from './meshes/Meshes';
+import SelectedObjectTransformControls from '../transformation-controller/SelectedObjectTransformControls';
 
 import { IAppStore } from '../../../models/app-store';
 
-const Space = () => {
+export interface ISpaceProps {
+    editable: boolean;
+}
+
+const Space: React.FC<ISpaceProps> = (props) => {
+    const { editable } = props;
+
+    const orbitRef = useRef(null);
     const selectedRoom = useSelector((store: IAppStore) => store.rooms.selectedRoom);
 
     if (!selectedRoom) {
@@ -15,12 +24,22 @@ const Space = () => {
     }
 
     return (
-        <Canvas style={{ height: '100vh', width: '100%' }}>
+        <Canvas style={{ height: '100vh', width: '100%' }} camera={{ position: [-10, 15, 20] }}>
+            <OrbitControls ref={orbitRef} />
+
             <ambientLight intensity={Math.PI / 2} />
-            <OrbitControls />
+            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
+            <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
+
+            <Plane args={[10, 10, 10, 10]} rotation={[1.5 * Math.PI, 0, 0]} position={[0, 0, 0]}>
+                <meshStandardMaterial attach="material" color="#f9c74f" wireframe />
+            </Plane>
+
             <Sky />
             {selectedRoom.state.stars && <Stars />}
+            <Meshes />
             <SpaceClouds />
+            {editable && <SelectedObjectTransformControls orbitRef={orbitRef} />}
         </Canvas>
     );
 };

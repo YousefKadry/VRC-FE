@@ -12,6 +12,8 @@ export interface IStoreRoomsSlice {
 export interface IStoreUISlice {
     notification: INotification | null;
     isLoading: boolean;
+    isCreateRoomPopupShown: boolean;
+    isEnterRoomPopupShown: boolean;
 }
 
 export interface IStoreAuthSlice {

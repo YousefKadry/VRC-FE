@@ -17,8 +17,6 @@ export interface IUserInfo {
     email: string;
 }
 
-
-
 export interface IForgotPassword {
     email: string;
 }
@@ -28,5 +26,3 @@ export interface IResetPassword {
     password: string;
     repeatedPassword: string;
 }
-
-

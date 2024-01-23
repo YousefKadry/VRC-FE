@@ -1,28 +1,26 @@
 import RoomCard from "./RoomCard.tsx";
-
-const ROOMS = [
-    {
-        imageUrl: "https://random.imagecdn.app/600/600",
-        name: "Room 1",
-        description: "This is the first room",
-        url: "https://placeholder.siemens.com/room1",
-    },
-    {
-        imageUrl: "https://random.imagecdn.app/500/500",
-        name: "Room 2",
-        description: "This is the second room",
-        url: "https://placeholder.siemens.com/room2",
-    },
-    {
-        imageUrl: "https://random.imagecdn.app/700/700",
-        name: "Room 3",
-        description: "This is the third room",
-        url: "https://placeholder.siemens.com/room3",
-    },
-
-];
+import {useDispatch, useSelector} from "react-redux";
+import {fetchRoomsThunk} from "../../store/slices/rooms/rooms-actions.ts";
+import {useEffect, useState} from "react";
+import {TAppDispatch} from "../../store/app-store.ts";
 
 const Rooms = () => {
+
+    const dispatch = useDispatch<TAppDispatch>();
+
+    useEffect(() => {
+        dispatch(fetchRoomsThunk());
+    }, []);
+
+    const {
+        rooms
+    } = useSelector((state: any) => state.rooms);
+
+    // get key of rooms object
+    const roomKeys: string [] = Object.keys(rooms);
+    const roomValues: any[] = Object.values(rooms);
+
+
     return (
         <div className={"py-10 px-20 space-y-10"}>
             <div>
@@ -31,11 +29,21 @@ const Rooms = () => {
             </div>
 
             <div>
-                <div className={"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4    gap-10"}>
-                    {ROOMS.map((room, index) => (
-                        <RoomCard key={index} room={room} />
-                    ))}
-                </div>
+                {
+                    roomKeys.length > 0  ? (
+                        <div className={"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4    gap-10"}>
+                            {
+                                roomKeys.map((_, index) => (
+                                    <RoomCard key={roomValues[index].id} room={roomValues[index]}/>
+                                ))
+                            }
+                        </div>
+                    ) : (
+                        <div className={"flex justify-center items-center"}>
+                            <p className={"text-xl font-medium"}>You have not created any rooms yet</p>
+                        </div>
+                    )
+                }
             </div>
         </div>
     )

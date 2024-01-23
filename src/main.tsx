@@ -17,7 +17,7 @@ AxiosUtil.requestInterceptor();
 AxiosUtil.responseInterceptor();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
+    // <React.StrictMode>
         <Provider store={appStore}>
             <PersistGate loading={null} persistor={persistedStore}>
                 <BrowserRouter>
@@ -25,5 +25,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 </BrowserRouter>
             </PersistGate>
         </Provider>
-    </React.StrictMode>
+    // </React.StrictMode>
 );
