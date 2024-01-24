@@ -75,19 +75,24 @@ export const saveSelectedRoomThunk = () => {
             selectedObjectInfo: undefined,
         };
 
-        const data = await AxiosUtil.sendRequest({
-            url: `${SERVER_URL}/api/rooms/${selectedRoom.id}/update`,
-            method: 'PATCH',
-            data: {
-                ...selectedRoom,
-                state: JSON.stringify(stateAsJSON),
+        const data = await AxiosUtil.sendRequest(
+            {
+                url: `${SERVER_URL}/api/rooms/${selectedRoom.id}/update`,
+                method: 'PATCH',
+                data: {
+                    ...selectedRoom,
+                    state: JSON.stringify(stateAsJSON),
+                    isUpdated: undefined,
+                },
             },
-        });
+            { showSpinner: false }
+        );
 
         if (!data) {
             return;
         }
 
         dispatch(storeRoomsSliceActions.addRoom(data));
+        dispatch(storeRoomsSliceActions.markSelectedRoomAsNotUpdated());
     };
 };

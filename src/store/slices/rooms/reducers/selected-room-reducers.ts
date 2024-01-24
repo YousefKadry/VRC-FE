@@ -13,6 +13,8 @@ const selectedRoomReducers = {
             ...storeRoomsSlice.selectedRoom,
             ...action.payload,
         };
+
+        storeRoomsSlice.selectedRoom.isUpdated = true;
     },
     updateSelectedRoomState(
         storeRoomsSlice: IStoreRoomsSlice,
@@ -26,6 +28,15 @@ const selectedRoomReducers = {
             ...storeRoomsSlice.selectedRoom.state,
             ...action.payload,
         };
+
+        storeRoomsSlice.selectedRoom.isPublic = true;
+    },
+    markSelectedRoomAsNotUpdated(storeRoomsSlice: IStoreRoomsSlice) {
+        if (!storeRoomsSlice.selectedRoom) {
+            return;
+        }
+
+        storeRoomsSlice.selectedRoom.isUpdated = false;
     },
 };
 
