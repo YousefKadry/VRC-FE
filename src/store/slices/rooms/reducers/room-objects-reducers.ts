@@ -6,7 +6,9 @@ import { IStoreRoomsSlice } from '../../../../models/app-store';
 import { IRoomObject, IRoomState, TRoomObjectsType, TUpdatableRoomObjectInfo } from '../../../../models/room';
 import {
     IAddObjectsAction,
+    IDeleteCloudAction,
     IUpdateCloudColorAction,
+    IUpdateCloudPositionAction,
     IUpdateMeshGeometryAction,
     IUpdateModelURLAction,
 } from '../../../../models/rooms-slice-actions';
@@ -110,6 +112,36 @@ const roomObjectsReducers = {
 
         targetCloud.color = color;
         storeRoomsSlice.selectedRoom!.isUpdated = true;
+    },
+
+    updateCloudPosition(
+        storeRoomsSlice: IStoreRoomsSlice,
+        action: PayloadAction<IUpdateCloudPositionAction>
+    ) {
+        const { id, newPosition } = action.payload;
+
+        if (storeRoomsSlice.selectedRoom) {
+            const selectedRoom = storeRoomsSlice.selectedRoom;
+            const updatedClouds = { ...selectedRoom.state.clouds };
+
+            if (updatedClouds[id]) {
+                updatedClouds[id].position = newPosition;
+                storeRoomsSlice.selectedRoom.state.clouds = updatedClouds;
+            }
+        }
+    },
+
+    deleteCloud(storeRoomsSlice: IStoreRoomsSlice, action: PayloadAction<IDeleteCloudAction>) {
+        const { id } = action.payload;
+
+        if (storeRoomsSlice.selectedRoom) {
+            const clouds = { ...storeRoomsSlice.selectedRoom.state.clouds };
+
+            if (clouds[id]) {
+                delete clouds[id];
+                storeRoomsSlice.selectedRoom.state.clouds = clouds;
+            }
+        }
     },
     updateModelURL(storeRoomsSlice: IStoreRoomsSlice, action: PayloadAction<IUpdateModelURLAction>) {
         const { id, url } = action.payload;

@@ -1,3 +1,4 @@
+import { Vector3 } from 'three';
 import { ICloud, IMesh, IModel, IRoomObject } from './room';
 
 export interface IAddObjectsAction {
@@ -14,6 +15,15 @@ export interface IUpdateMeshGeometryAction {
 export interface IUpdateCloudColorAction {
     id: IRoomObject['id'];
     color: ICloud['color'];
+}
+
+export interface IUpdateCloudPositionAction {
+    id: IRoomObject['id'];
+    newPosition: Vector3;
+}
+
+export interface IDeleteCloudAction {
+    id: IRoomObject['id'];
 }
 
 export interface IUpdateModelURLAction {
