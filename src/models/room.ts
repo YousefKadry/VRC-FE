@@ -28,7 +28,7 @@ export type TUpdatableRoomStateInfo = Partial<
 export type TVec3 = [number, number, number];
 
 export interface IRoomObject {
-    id: string;
+    id?: string;
     position: TVec3;
     rotation: TVec3;
     scale: TVec3;

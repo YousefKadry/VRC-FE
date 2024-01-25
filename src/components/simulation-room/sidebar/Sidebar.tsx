@@ -5,16 +5,19 @@ import { twJoin } from 'tailwind-merge';
 import SidebarButtons from './SidebarButtons.tsx';
 import ShareRoom from '../share-room/shareRoom.tsx';
 import CameraManager from '../camera-management/CameraManager.tsx';
-import AddMesh from '../object-editor/AddMesh.tsx';
 import PolyItems from '../poly-items/PolyItems.tsx';
 import SpecialEffects from '../special-effects/SpecialEffects.tsx';
 import TextManager from '../text-management/TextManager.tsx';
+import AddMesh from '../object-editor/AddMesh.tsx';
 
 import { ESimulationRoomButtonId } from '../../../models/simulation-room-sidebar.ts';
+import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
+import { useDispatch } from 'react-redux';
 
 const Sidebar = () => {
     const [activeButtonId, setActiveButtonId] = useState<ESimulationRoomButtonId | null>(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const renderFocus = () => {
         switch (activeButtonId) {
@@ -37,6 +40,7 @@ const Sidebar = () => {
 
     const handleButtonClicking = (id: ESimulationRoomButtonId | null) => {
         if (id === ESimulationRoomButtonId.BACK_HOME_BTN) {
+            dispatch(storeRoomsSliceActions.selectedRoom(null));
             navigate('/dashboard');
         } else if (id === ESimulationRoomButtonId.MENU_CLOSING_BTN) {
             setActiveButtonId(null);

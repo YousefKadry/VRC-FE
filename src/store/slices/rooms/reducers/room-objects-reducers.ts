@@ -43,8 +43,8 @@ const roomObjectsReducers = {
             return;
         }
 
-        storeRoomsSlice.selectedRoom!.state[selectedObjectInfo.type][selectedObjectInfo.id] = {
-            ...storeRoomsSlice.selectedRoom!.state[selectedObjectInfo.type][selectedObjectInfo.id],
+        storeRoomsSlice.selectedRoom!.state[selectedObjectInfo.type][selectedObjectInfo.id as string] = {
+            ...storeRoomsSlice.selectedRoom!.state[selectedObjectInfo.type][selectedObjectInfo.id as string],
             ...action.payload,
         };
     },
@@ -55,13 +55,13 @@ const roomObjectsReducers = {
             return;
         }
 
-        delete storeRoomsSlice.selectedRoom!.state[selectedObjectInfo.type][selectedObjectInfo.id];
+        delete storeRoomsSlice.selectedRoom!.state[selectedObjectInfo.type][selectedObjectInfo.id as string];
         storeRoomsSlice.selectedRoom!.state.selectedObjectInfo = null;
     },
     updateMeshGeometry(storeRoomsSlice: IStoreRoomsSlice, action: PayloadAction<IUpdateMeshGeometryAction>) {
         const { id, geometryType } = action.payload;
 
-        const targetMesh = storeRoomsSlice.selectedRoom?.state.meshes[id];
+        const targetMesh = storeRoomsSlice.selectedRoom?.state.meshes[id as string];
 
         if (!targetMesh) {
             return;
@@ -72,7 +72,7 @@ const roomObjectsReducers = {
     updateCloudColor(storeRoomsSlice: IStoreRoomsSlice, action: PayloadAction<IUpdateCloudColorAction>) {
         const { id, color } = action.payload;
 
-        const targetCloud = storeRoomsSlice.selectedRoom?.state.clouds[id];
+        const targetCloud = storeRoomsSlice.selectedRoom?.state.clouds[id as string];
 
         if (!targetCloud) {
             return;
@@ -83,7 +83,7 @@ const roomObjectsReducers = {
     updateModelURL(storeRoomsSlice: IStoreRoomsSlice, action: PayloadAction<IUpdateModelURLAction>) {
         const { id, url } = action.payload;
 
-        const targetModel = storeRoomsSlice.selectedRoom?.state.models[id];
+        const targetModel = storeRoomsSlice.selectedRoom?.state.models[id as string];
 
         if (!targetModel) {
             return;
