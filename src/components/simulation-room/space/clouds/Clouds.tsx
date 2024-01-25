@@ -23,12 +23,12 @@ const SpaceClouds = () => {
 
                 return (
                     <Clouds
-                        key={cloud.id}
+                        key={id}
                         rotation={RoomObjectUtil.convertRotationFromDegreeToEuler(rotation)}
                         {...restProps}
                         onClick={() => handleObjectSelection(id)}
                     >
-                        <Cloud color={cloud.color} />
+                        <Cloud color={color} />
                     </Clouds>
                 );
             })}

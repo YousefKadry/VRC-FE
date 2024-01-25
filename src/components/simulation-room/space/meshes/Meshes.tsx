@@ -19,17 +19,17 @@ const Meshes = () => {
     };
 
     return Object.values(meshes || {}).map((mesh) => {
-        const { id, geometryType, rotation, ...restProps } = mesh;
+        const { id, geometryType, rotation, color, ...restProps } = mesh;
 
         return (
             <mesh
                 key={id}
-                onClick={() => handleObjectSelection(mesh.id)}
+                onClick={() => handleObjectSelection(id)}
                 rotation={RoomObjectUtil.convertRotationFromDegreeToEuler(rotation)}
                 {...restProps}
             >
                 <MeshGeometry geometryType={geometryType} />
-                <meshStandardMaterial color="hotpink" side={DoubleSide} />
+                <meshStandardMaterial color={color} side={DoubleSide} />
             </mesh>
         );
     });

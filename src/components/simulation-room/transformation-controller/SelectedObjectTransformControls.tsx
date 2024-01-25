@@ -27,6 +27,15 @@ const SelectedObjectTransformControls: React.FC<IObjectTransformControlsProps> =
         transformationChangeHandler: (type, value) => {
             dispatch(storeRoomsSliceActions.updateSelectedObject({ [type]: value }));
         },
+        changeColorHandler: (color) => {
+            dispatch(storeRoomsSliceActions.updateSelectedObject({ color }));
+        },
+        deleteObjectHandler: () => {
+            dispatch(storeRoomsSliceActions.deleteSelectedObject());
+        },
+        unselectObjectHandler: () => {
+            dispatch(storeRoomsSliceActions.selectObject(null));
+        },
     });
 
     const handelMouseTransformation = (event: any) => {

@@ -14,7 +14,7 @@ const SpecialEffects: React.FC = () => {
     };
 
     const handleAddClouds = () => {
-        dispatch(storeRoomsSliceActions.addObjects({ clouds: [{ color: 'white' }] }));
+        dispatch(storeRoomsSliceActions.addObjects({ clouds: [{ color: '#ffffff' }] }));
     };
 
     return (

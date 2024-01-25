@@ -38,11 +38,11 @@ export interface IRoomObject {
 
 export type TRoomObjectKeys = 'id' | 'position' | 'rotation' | 'scale';
 
-export type TUpdatableRoomObjectInfo = Partial<Omit<IRoomObject, 'id'>>;
-
 export interface IColorfulObject extends IRoomObject {
     color: string;
 }
+
+export type TUpdatableRoomObjectInfo = Partial<Omit<IColorfulObject, 'id'>>;
 
 export interface ICloud extends IColorfulObject {}
 
