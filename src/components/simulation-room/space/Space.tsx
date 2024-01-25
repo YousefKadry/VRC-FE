@@ -39,7 +39,9 @@ const Space: React.FC<ISpaceProps> = (props) => {
             {selectedRoom.state.stars && <Stars />}
             <Meshes />
             <SpaceClouds />
-            {editable && <SelectedObjectTransformControls orbitRef={orbitRef} />}
+            {editable && selectedRoom.state.selectedObjectInfo && (
+                <SelectedObjectTransformControls orbitRef={orbitRef} />
+            )}
         </Canvas>
     );
 };

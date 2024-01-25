@@ -23,7 +23,10 @@ const roomsReducers = {
     clearRooms(storeRoomsSlice: IStoreRoomsSlice) {
         storeRoomsSlice.rooms = {};
     },
-    selectedRoom(storeRoomsSlice: IStoreRoomsSlice, action: PayloadAction<IRoom<string> | null>) {
+    selectedRoom(
+        storeRoomsSlice: IStoreRoomsSlice,
+        action: PayloadAction<Omit<IRoom<string>, 'isUpdated'> | null>
+    ) {
         const room = action.payload;
 
         if (room === null) {
@@ -45,6 +48,7 @@ const roomsReducers = {
                 ...initialRoomState,
                 ...stateAsJSON,
             },
+            isUpdated: false,
         };
     },
 };
