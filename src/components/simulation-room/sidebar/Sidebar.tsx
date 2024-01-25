@@ -5,7 +5,7 @@ import { twJoin } from 'tailwind-merge';
 import SidebarButtons from './SidebarButtons.tsx';
 import ShareRoom from '../share-room/shareRoom.tsx';
 import CameraManager from '../camera-management/CameraManager.tsx';
-import PolyItems from '../poly-items/PolyItems.tsx';
+import GLTFsAssets from '../room-assets/GLTFsAssets.tsx';
 import SpecialEffects from '../special-effects/SpecialEffects.tsx';
 import TextManager from '../text-management/TextManager.tsx';
 import AddMesh from '../object-editor/AddMesh.tsx';
@@ -25,8 +25,8 @@ const Sidebar = () => {
                 return <CameraManager />;
             case ESimulationRoomButtonId.TEXT_BTN:
                 return <TextManager />;
-            case ESimulationRoomButtonId.POLY_ITEMS_BTN:
-                return <PolyItems />;
+            case ESimulationRoomButtonId.GLTFs_ASSETS_BTN:
+                return <GLTFsAssets />;
             case ESimulationRoomButtonId.MESHES_BTN:
                 return <AddMesh />;
             case ESimulationRoomButtonId.SHARING_BTN:
