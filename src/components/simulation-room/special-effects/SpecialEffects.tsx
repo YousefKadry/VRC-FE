@@ -4,8 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { IAppStore } from '../../../models/app-store';
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice';
 import Switch from '../../ui/switch/Switch';
-import CloudController from '../space/clouds/CloudsController';
-import classes from '../object-editor/AddMesh.module.css';
 
 const SpecialEffects: React.FC = () => {
     const dispatch = useDispatch();
@@ -16,12 +14,11 @@ const SpecialEffects: React.FC = () => {
     };
 
     const handleAddClouds = () => {
-        dispatch(storeRoomsSliceActions.addClouds());
+        dispatch(storeRoomsSliceActions.addObjects({ clouds: [{ color: 'white' }] }));
     };
-    const selectedRoomClouds = useSelector((store: IAppStore) => store.rooms.selectedRoom?.state.clouds);
 
     return (
-        <div className={`flex gap-x-12 gap-y- flex-wrap overflow-auto ${classes['scrollbar-hide']}`}>
+        <div className={`flex gap-x-12 gap-y-4 flex-wrap overflow-auto`}>
             <Switch
                 id="stars"
                 checked={starsVisibility}
@@ -36,15 +33,6 @@ const SpecialEffects: React.FC = () => {
             >
                 Add Cloud
             </button>
-
-            {Object.values(selectedRoomClouds || {}).map((cloud) => (
-                <CloudController
-                    key={cloud.id}
-                    cloudId={cloud.id}
-                    initialColor={cloud.color}
-                    initialPosition={cloud.position}
-                />
-            ))}
         </div>
     );
 };

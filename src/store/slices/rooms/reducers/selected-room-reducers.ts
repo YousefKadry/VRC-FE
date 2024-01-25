@@ -29,7 +29,7 @@ const selectedRoomReducers = {
             ...action.payload,
         };
 
-        storeRoomsSlice.selectedRoom.isPublic = true;
+        storeRoomsSlice.selectedRoom.isUpdated = true;
     },
     markSelectedRoomAsNotUpdated(storeRoomsSlice: IStoreRoomsSlice) {
         if (!storeRoomsSlice.selectedRoom) {

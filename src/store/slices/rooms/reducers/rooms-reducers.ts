@@ -7,6 +7,7 @@ const initialRoomState: IRoomState = {
     meshes: {},
     clouds: {},
     models: {},
+    texts: {},
     stars: false,
     selectedObjectInfo: null,
 };

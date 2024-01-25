@@ -3,7 +3,7 @@ import CustomInput from '../shared/Input';
 import CustomButton from '../shared/Button';
 import handelEmailInput from './hooks/handleEmailInput';
 import handelButtonClick from './hooks/handelButtonClick';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { TAppDispatch } from '../../store/app-store';
 import { ForgetPasswordThunk } from '../../store/slices/auth/auth-actions';

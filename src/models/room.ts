@@ -9,12 +9,13 @@ export interface IRoom<StateType> {
 
 export type TUpdatableRoomInfo = Partial<Omit<IRoom<any>, 'id' | 'state' | 'isUpdated'>>;
 
-export type TRoomObjectsType = 'meshes' | 'clouds' | 'models';
+export type TRoomObjectsType = 'meshes' | 'clouds' | 'models' | 'texts';
 
 export interface IRoomState {
     meshes: Record<string, IMesh>;
     clouds: Record<string, ICloud>;
     models: Record<string, IModel>;
+    texts: Record<string, IText>;
     stars: boolean;
     selectedObjectInfo: {
         type: TRoomObjectsType;
@@ -29,20 +30,28 @@ export type TUpdatableRoomStateInfo = Partial<
 export type TVec3 = [number, number, number];
 
 export interface IRoomObject {
-    id?: string;
+    id: string;
     position: TVec3;
     rotation: TVec3;
     scale: TVec3;
 }
 
+export type TRoomObjectKeys = 'id' | 'position' | 'rotation' | 'scale';
+
 export type TUpdatableRoomObjectInfo = Partial<Omit<IRoomObject, 'id'>>;
 
-export interface ICloud extends IRoomObject {
+export interface IColorfulObject extends IRoomObject {
     color: string;
 }
 
+export interface ICloud extends IColorfulObject {}
+
 export interface IModel extends IRoomObject {
     URL: string;
+}
+
+export interface IText extends IColorfulObject {
+    text: string;
 }
 
 export type TMeshGeometryType =
@@ -52,22 +61,19 @@ export type TMeshGeometryType =
     | 'cone'
     | 'cylinder'
     | 'dodecahedron'
-    | 'edges'
     | 'extrude'
     | 'icosahedron'
     | 'lathe'
     | 'octahedron'
     | 'plane'
-    | 'polyhedron'
     | 'ring'
     | 'shape'
     | 'sphere'
     | 'tetrahedron'
     | 'torus'
     | 'torus-knot'
-    | 'tube'
-    | 'wireframe';
+    | 'tube';
 
-export interface IMesh extends IRoomObject {
+export interface IMesh extends IColorfulObject {
     geometryType: TMeshGeometryType;
 }

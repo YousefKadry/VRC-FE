@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import PasswordIcon from '../../assets/Password.svg';
 import CustomButton from '../shared/Button';
 import CustomInput from '../shared/Input';

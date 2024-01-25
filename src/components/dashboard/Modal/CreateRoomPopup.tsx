@@ -1,19 +1,18 @@
-import React, {Fragment, useEffect, useRef} from 'react';
-import {Dialog, Transition} from '@headlessui/react';
-import {useDispatch, useSelector} from 'react-redux';
-import {storeUISliceActions} from '../../../store/slices/ui/ui-slice';
-import {useNavigate} from 'react-router-dom';
-import {IAppStore} from "../../../models/app-store.ts";
-import appStore, {TAppDispatch} from "../../../store/app-store.ts";
-import {createNewRoomThunk} from "../../../store/slices/rooms/rooms-actions.ts";
+import React, { Fragment, useEffect, useRef } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { storeUISliceActions } from '../../../store/slices/ui/ui-slice';
+import { useNavigate } from 'react-router-dom';
+import { IAppStore } from '../../../models/app-store.ts';
+import { TAppDispatch } from '../../../store/app-store.ts';
+import { createNewRoomThunk } from '../../../store/slices/rooms/rooms-actions.ts';
 
 const CreateRoomPopup = () => {
-    const {isCreateRoomPopupShown} = useSelector((store: IAppStore) => store.ui);
-    const {selectedRoom} = useSelector((store: IAppStore) => store.rooms);
+    const { isCreateRoomPopupShown } = useSelector((store: IAppStore) => store.ui);
+    const { selectedRoom } = useSelector((store: IAppStore) => store.rooms);
     const dispatch = useDispatch<TAppDispatch>();
     const navigate = useNavigate();
     const formRef = useRef<HTMLFormElement>(null);
-
 
     useEffect(() => {
         if (!selectedRoom) {
@@ -22,7 +21,6 @@ const CreateRoomPopup = () => {
 
         handleClosePopup(false);
         navigate(`/simulation-room/${selectedRoom.id}`);
-
     }, [selectedRoom]);
 
     const handleClosePopup = (isPopupOpen: boolean) => {
@@ -64,7 +62,7 @@ const CreateRoomPopup = () => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="fixed inset-0 bg-gray-700 bg-opacity-75 transition-opacity"/>
+                    <div className="fixed inset-0 bg-gray-700 bg-opacity-75 transition-opacity" />
                 </Transition.Child>
 
                 <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -78,8 +76,7 @@ const CreateRoomPopup = () => {
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                            <Dialog.Panel
-                                className="relative transform overflow-hidden space-y-6 rounded-2xl bg-secondary px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-2 sm:w-full sm:max-w-sm sm:p-6">
+                            <Dialog.Panel className="relative transform overflow-hidden space-y-6 rounded-2xl bg-secondary px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-2 sm:w-full sm:max-w-sm sm:p-6">
                                 <div>
                                     <Dialog.Title
                                         as="h3"
@@ -90,7 +87,11 @@ const CreateRoomPopup = () => {
                                 </div>
 
                                 <div>
-                                    <form className="space-y-6 text-white" ref={formRef} onSubmit={handleCreateRoom}>
+                                    <form
+                                        className="space-y-6 text-white"
+                                        ref={formRef}
+                                        onSubmit={handleCreateRoom}
+                                    >
                                         <div>
                                             <div className="mt-2">
                                                 <input
