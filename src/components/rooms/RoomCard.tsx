@@ -6,7 +6,7 @@ const RoomCard = ({room}: { room: any }) => {
 
     const onShareButtonClick = (e: any) => {
         // copy the room link to the clipboard
-        navigator.clipboard.writeText(roomUrl).then(() => {
+        navigator.clipboard.writeText(room.id).then(() => {
 
             // display copied to the user
             e.target.disabled = true
@@ -41,7 +41,7 @@ const RoomCard = ({room}: { room: any }) => {
 
                 <div className={"px-4 space-x-2 mb-2"}>
                     <button className={"px-3 py-1 hover:bg-[#180a2d] rounded font-medium text-sm"}>
-                        <Link to={roomUrl} target={"_blank"}>
+                        <Link to={roomUrl}>
                             OPEN
                         </Link>
                     </button>

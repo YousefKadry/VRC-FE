@@ -5,11 +5,17 @@ import { storeUISliceActions } from '../store/slices/ui/ui-slice';
 import { storeAuthSliceActions } from '../store/slices/auth/auth-slice';
 
 class AxiosUtil {
-    public static async sendRequest(axiosConfig: AxiosRequestConfig, options: { showError?: boolean } = {}) {
-        const { showError } = options;
+    public static async sendRequest(
+        axiosConfig: AxiosRequestConfig,
+        options: { showError?: boolean; showSpinner?: boolean } = {}
+    ) {
+        const { showError, showSpinner } = options;
 
         appStore.dispatch(storeUISliceActions.setNotification(null));
-        appStore.dispatch(storeUISliceActions.setIsLoading(true));
+
+        if (showSpinner !== false) {
+            appStore.dispatch(storeUISliceActions.setIsLoading(true));
+        }
 
         let responseData;
 

@@ -4,9 +4,10 @@ export interface IRoom<StateType> {
     description: string;
     state: StateType;
     isPublic: boolean;
+    isUpdated: boolean;
 }
 
-export type TUpdatableRoomInfo = Partial<Omit<IRoom<any>, 'id' | 'state'>>;
+export type TUpdatableRoomInfo = Partial<Omit<IRoom<any>, 'id' | 'state' | 'isUpdated'>>;
 
 export type TRoomObjectsType = 'meshes' | 'clouds' | 'models';
 
@@ -28,7 +29,7 @@ export type TUpdatableRoomStateInfo = Partial<
 export type TVec3 = [number, number, number];
 
 export interface IRoomObject {
-    id: string;
+    id?: string;
     position: TVec3;
     rotation: TVec3;
     scale: TVec3;

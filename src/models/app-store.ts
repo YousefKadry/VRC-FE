@@ -3,6 +3,7 @@ import { PersistPartial } from 'redux-persist/lib/persistReducer';
 import { IUserInfo } from './auth';
 import { INotification } from './notification';
 import { IRoom, IRoomState } from './room';
+import { IRoomAssetsInfo, IRoomGLTF, IRoomHDRI } from './room-assets';
 
 export interface IStoreRoomsSlice {
     rooms: Record<string, IRoom<string>>;
@@ -22,8 +23,14 @@ export interface IStoreAuthSlice {
     token: string | null;
 }
 
+export interface IStoreAssetsSlice {
+    gltfsInfo: IRoomAssetsInfo<IRoomGLTF>;
+    hdrisInfo: IRoomAssetsInfo<IRoomHDRI>;
+}
+
 export interface IAppStore {
     ui: IStoreUISlice;
     auth: IStoreAuthSlice & PersistPartial;
     rooms: IStoreRoomsSlice;
+    assets: IStoreAssetsSlice;
 }
