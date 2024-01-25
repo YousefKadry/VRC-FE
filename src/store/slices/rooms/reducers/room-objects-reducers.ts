@@ -60,9 +60,10 @@ const roomObjectsReducers = {
 
         for (const [key, value] of Object.entries(action.payload)) {
             const selectedObjectValueProxy = selectedObject[key as keyof IRoomObject];
-            const selectedObjectValue = !selectedObjectValueProxy
-                ? selectedObjectValueProxy
-                : current(selectedObjectValueProxy);
+            const selectedObjectValue =
+                !selectedObjectValueProxy || typeof selectedObjectValueProxy !== 'object'
+                    ? selectedObjectValueProxy
+                    : current(selectedObjectValueProxy);
 
             isThereAnyChange ||= !isEqual(selectedObjectValue, value);
         }

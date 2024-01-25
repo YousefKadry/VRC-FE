@@ -13,7 +13,7 @@ const MeshItem: React.FC<IMeshItemProps> = (props) => {
     const handleMeshItemClicked = () => {
         dispatch(
             storeRoomsSliceActions.addObjects({
-                meshes: [{ geometryType: props.type, color: 'white' }],
+                meshes: [{ geometryType: props.type, color: '#ffffff' }],
             })
         );
     };
