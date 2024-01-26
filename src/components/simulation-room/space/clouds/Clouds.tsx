@@ -17,7 +17,7 @@ const SpaceClouds = () => {
     };
 
     return (
-        <Clouds>
+        <>
             {Object.values(clouds || {}).map((cloud) => {
                 const { id, color, rotation, ...restProps } = cloud;
 
@@ -32,7 +32,7 @@ const SpaceClouds = () => {
                     </Clouds>
                 );
             })}
-        </Clouds>
+        </>
     );
 };
 
