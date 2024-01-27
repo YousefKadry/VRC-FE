@@ -34,6 +34,7 @@ export const fetchNextGLTFsThunk = () => {
                 pageNumber: pageNumber + 1,
                 hasNext: data.hasNext,
                 allowFetchingNextPage: false,
+                isLoading:false
             })
         );
     };

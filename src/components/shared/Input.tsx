@@ -8,6 +8,7 @@ interface CustomInputProps {
   className?: string;
   IconSrc?: string;
   IconAlt?: string;
+  disabled:boolean
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -18,6 +19,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   IconSrc,
   IconAlt,
   type,
+  disabled
 }) => {
   return (
     <>
@@ -29,6 +31,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
+        disabled={disabled}
       />
       {IconSrc && (
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">

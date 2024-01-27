@@ -11,10 +11,11 @@ import { fetchNextGLTFsThunk } from '../../../store/slices/assets/assets-actions
 import { TAppDispatch } from '../../../store/app-store.ts';
 import { IAppStore } from '../../../models/app-store.ts';
 import { storeAssetsSliceActions } from '../../../store/slices/assets/assets-slice.ts';
+import { BeatLoader } from 'react-spinners';
 
 const GLTFsAssets = () => {
     const { items: gltfs, searchInfo } = useSelector((store: IAppStore) => store.assets.gltfsInfo);
-    const { pageNumber, q, hasNext, allowFetchingNextPage } = searchInfo;
+    const { pageNumber, q, hasNext, allowFetchingNextPage,isLoading } = searchInfo;
 
     const dispatch = useDispatch<TAppDispatch>();
 
@@ -66,6 +67,7 @@ const GLTFsAssets = () => {
                 )}
                 placeholder="Search GLTFs"
                 handleChange={handleSearchQuery}
+                disabled={isLoading}
             />
 
             <div id="inf-list-container" className="overflow-auto h-full">
@@ -80,6 +82,7 @@ const GLTFsAssets = () => {
                         );
                     })}
                 </ul>
+                {isLoading &&  <BeatLoader/>}
             </div>
         </div>
     );
