@@ -13,23 +13,26 @@ const SpecialEffects: React.FC = () => {
         dispatch(storeRoomsSliceActions.updateSelectedRoomState({ [id]: checked }));
     };
 
-    return (
-        <div>
-            <div className="flex gap-x-12 gap-y-4 flex-wrap">
-                <Switch
-                    id="stars"
-                    checked={starsVisibility}
-                    title="Stars"
-                    toggleHandler={(checked) => handleEffectsChanging(checked, 'stars')}
-                />
+    const handleAddClouds = () => {
+        dispatch(storeRoomsSliceActions.addObjects({ clouds: [{ color: '#ffffff' }] }));
+    };
 
-                {/* <Switch
-                    id="clouds"
-                    checked={cloudsVisibility}
-                    title="Clouds"
-                    toggleHandler={(checked) => handleEffectsChanging(checked, 'clouds')}
-                /> */}
-            </div>
+    return (
+        <div className={`flex gap-x-12 gap-y-4 flex-wrap overflow-auto`}>
+            <Switch
+                id="stars"
+                checked={starsVisibility}
+                title="Stars"
+                toggleHandler={(checked) => handleEffectsChanging(checked, 'stars')}
+            />
+
+            <button
+                className="ml-10 bg-[#9167C2] text-white py-1 px-3 rounded-lg hover:bg-[#7d5aa6]"
+                id="add-Clouds"
+                onClick={handleAddClouds}
+            >
+                Add Cloud
+            </button>
         </div>
     );
 };

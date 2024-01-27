@@ -18,8 +18,6 @@ const MeshGeometry: React.FC<React.PropsWithChildren<IMeshGeometryProps>> = ({ g
             return <cylinderGeometry />;
         case 'dodecahedron':
             return <dodecahedronGeometry />;
-        case 'edges':
-            return <edgesGeometry />;
         case 'extrude':
             return <extrudeGeometry />;
         case 'icosahedron':
@@ -30,8 +28,6 @@ const MeshGeometry: React.FC<React.PropsWithChildren<IMeshGeometryProps>> = ({ g
             return <octahedronGeometry />;
         case 'plane':
             return <planeGeometry />;
-        case 'polyhedron':
-            return <polyhedronGeometry />;
         case 'ring':
             return <ringGeometry />;
         case 'shape':
@@ -46,8 +42,6 @@ const MeshGeometry: React.FC<React.PropsWithChildren<IMeshGeometryProps>> = ({ g
             return <torusKnotGeometry />;
         case 'tube':
             return <tubeGeometry />;
-        case 'wireframe':
-            return <wireframeGeometry />;
         default:
             return null;
     }

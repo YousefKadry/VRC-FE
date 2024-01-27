@@ -11,6 +11,7 @@ function getAssetsInitState<AssetsType>(): IRoomAssetsInfo<AssetsType> {
             pageNumber: 0,
             allowFetchingNextPage: true,
             hasNext: true,
+            isLoading: false,
         },
         items: [],
     };
@@ -25,6 +26,9 @@ const assetsSlice = createSlice({
     name: 'assets',
     initialState,
     reducers: {
+        putGLTFs(storeRoomAssetsSlice, action: PayloadAction<Array<IRoomGLTF>>) {
+            storeRoomAssetsSlice.gltfsInfo.items = action.payload;
+        },
         addGLTFs(storeRoomAssetsSlice, action: PayloadAction<Array<IRoomGLTF>>) {
             storeRoomAssetsSlice.gltfsInfo.items.push(...action.payload);
         },
@@ -44,6 +48,29 @@ const assetsSlice = createSlice({
             // if the query changed we need to reset all info
             storeRoomAssetsSlice.gltfsInfo = getAssetsInitState<IRoomGLTF>();
             storeRoomAssetsSlice.gltfsInfo.searchInfo.q = action.payload.q || '';
+        },
+        putHDRIs(storeRoomAssetsSlice, action: PayloadAction<Array<IRoomHDRI>>) {
+            storeRoomAssetsSlice.hdrisInfo.items = action.payload;
+        },
+        addHDRIs(storeRoomAssetsSlice, action: PayloadAction<Array<IRoomHDRI>>) {
+            storeRoomAssetsSlice.hdrisInfo.items.push(...action.payload);
+        },
+        updateHDRIsSearchInfo(storeRoomAssetsSlice, action: PayloadAction<Partial<IRoomAssetsSearchInfo>>) {
+            if (
+                action.payload.q === undefined ||
+                action.payload.q === storeRoomAssetsSlice.hdrisInfo.searchInfo.q
+            ) {
+                storeRoomAssetsSlice.hdrisInfo.searchInfo = {
+                    ...storeRoomAssetsSlice.hdrisInfo.searchInfo,
+                    ...action.payload,
+                };
+
+                return;
+            }
+
+            // if the query changed we need to reset all info
+            storeRoomAssetsSlice.hdrisInfo = getAssetsInitState<IRoomHDRI>();
+            storeRoomAssetsSlice.hdrisInfo.searchInfo.q = action.payload.q || '';
         },
     },
 });

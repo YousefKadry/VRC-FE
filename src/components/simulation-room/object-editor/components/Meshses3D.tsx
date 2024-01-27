@@ -1,81 +1,33 @@
+import { TMeshGeometryType } from '../../../../models/room';
 import MeshItem from './MeshItem';
 
-const geometryTypes = [
-    {
-        type: 'box',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'capsule',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'cone',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'cylinder',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'dodecahedron',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'edges',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'extrude',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'lathe',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'octahedron',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'plane',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'ring',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'shape',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'sphere',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'tetrahedron',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'torus',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'torus-knot',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-    {
-        type: 'tube',
-        imgUrl: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item',
-    },
-];
+const geometryTypes: Record<TMeshGeometryType, { imgURL: string }> = {
+    box: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    capsule: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    circle: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    cone: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    cylinder: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    dodecahedron: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    extrude: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    icosahedron: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    lathe: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    octahedron: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    plane: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    ring: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    shape: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    sphere: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    tetrahedron: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    torus: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    'torus-knot': { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+    tube: { imgURL: 'https://craftypixels.com/placeholder-image/500x500/e2d6f3/000&text=3D Item' },
+};
+
 const Meshses3D = () => {
     return (
         <div className={'overflow-y-auto max-h-[86vh]'}>
             <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 '}>
-                {geometryTypes.map((item) => {
-                    return <MeshItem key={item.type} item={item} />;
+                {Object.entries(geometryTypes).map(([type, info]) => {
+                    return <MeshItem key={type} type={type as TMeshGeometryType} imgURL={info.imgURL} />;
                 })}
             </div>
         </div>

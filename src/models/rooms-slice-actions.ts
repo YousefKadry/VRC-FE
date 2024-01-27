@@ -1,22 +1,8 @@
-import { ICloud, IMesh, IModel, IRoomObject } from './room';
+import { ICloud, IMesh, IModel, IText, TRoomObjectKeys } from './room';
 
 export interface IAddObjectsAction {
-    meshes?: Array<Omit<IMesh, 'id'>>;
-    clouds?: Array<Omit<ICloud, 'id'>>;
-    models?: Array<Omit<IModel, 'id'>>;
-}
-
-export interface IUpdateMeshGeometryAction {
-    id: IRoomObject['id'];
-    geometryType: IMesh['geometryType'];
-}
-
-export interface IUpdateCloudColorAction {
-    id: IRoomObject['id'];
-    color: ICloud['color'];
-}
-
-export interface IUpdateModelURLAction {
-    id: IRoomObject['id'];
-    url: IModel['URL'];
+    meshes?: Array<Omit<IMesh, TRoomObjectKeys>>;
+    clouds?: Array<Omit<ICloud, TRoomObjectKeys>>;
+    models?: Array<Omit<IModel, TRoomObjectKeys>>;
+    texts?: Array<Omit<IText, TRoomObjectKeys>>;
 }
