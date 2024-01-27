@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Plane, Sky, Stars } from '@react-three/drei';
-import { ARButton, XR } from '@react-three/xr';
+import { ARButton, VRButton, XR } from '@react-three/xr';
 
 import SpaceClouds from './clouds/Clouds';
 import Meshes from './meshes/Meshes';
@@ -26,7 +26,7 @@ const Space: React.FC<ISpaceProps> = (props) => {
 
     return (
         <>
-            {/* <VRButton /> */}
+            <VRButton />
             <ARButton />
             <Canvas style={{ height: '100vh', width: '100%' }} camera={{ position: [-10, 15, 20] }}>
                 <XR>
