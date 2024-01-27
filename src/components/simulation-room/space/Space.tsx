@@ -6,6 +6,7 @@ import { OrbitControls, Plane, Sky, Stars } from '@react-three/drei';
 import SpaceClouds from './clouds/Clouds';
 import Meshes from './meshes/Meshes';
 import SelectedObjectTransformControls from '../transformation-controller/SelectedObjectTransformControls';
+import Models from './models/Models';
 
 import { IAppStore } from '../../../models/app-store';
 
@@ -39,6 +40,7 @@ const Space: React.FC<ISpaceProps> = (props) => {
             {selectedRoom.state.stars && <Stars />}
             <Meshes />
             <SpaceClouds />
+            <Models />
             {editable && selectedRoom.state.selectedObjectInfo && (
                 <SelectedObjectTransformControls orbitRef={orbitRef} />
             )}
