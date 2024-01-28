@@ -28,39 +28,40 @@ const Space: React.FC<ISpaceProps> = (props) => {
         <>
             <VRButton
                 style={{
+                    width: '12%',
                     position: 'absolute',
                     bottom: '24px',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    padding: '12px 24px',
-                    border: '1px solid white',
+                    padding: '.75% .75%',
+                    margin: '0 -50px',
+                    border: '3px solid #1E083C',
                     borderRadius: '4px',
-                    background: '#1E083C',
+                    background: '#311B52',
                     color: 'white',
                     font: '0.8125rem sans-serif',
                     outline: 'none',
                     zIndex: '99999',
                     cursor: 'pointer',
-                    borderColor: '#1E083C',
                     opacity: '0.9',
                 }}
             />
             <ARButton
                 style={{
+                    width: '12%',
                     position: 'absolute',
                     bottom: '24px',
                     left: '60%',
                     transform: 'translateX(-50%)',
-                    padding: '12px 24px',
-                    border: '1px solid white',
+                    padding: '.75% .75%',
+                    border: '3px solid #1E083C',
                     borderRadius: '4px',
-                    background: '#1E083C',
+                    background: '#311B52',
                     color: 'white',
                     font: '0.8125rem sans-serif',
                     outline: 'none',
                     zIndex: '99999',
                     cursor: 'pointer',
-                    borderColor: '#1E083C',
                     opacity: '0.9',
                 }}
             />
