@@ -16,6 +16,8 @@ const Dashboard = React.lazy(() => import('../components/dashboard/Dashboard'));
 const Rooms = React.lazy(() => import('../components/rooms/Rooms'));
 const SimulationRoom = React.lazy(() => import('../components/simulation-room/SimulationRoom.tsx'));
 
+const SharedRoom = React.lazy(() => import('../components/shared-room/SharedRoom.tsx'));
+
 const AppRoutes = () => {
     const hasAutoLoginFinished = !!useSelector((store: IAppStore) => store.auth.hasAutoLoginFinished);
 
@@ -41,6 +43,8 @@ const AppRoutes = () => {
                 <Route path="/simulation-room/:roomId" element={<SimulationRoom editable={true} />} />
                 <Route path="/simulation-room/:roomId/view" element={<SimulationRoom editable={false} />} />
             </Route>
+            
+            <Route path="/shared-room/:roomId" element={<SharedRoom/>} />
 
             <Route path="*" element={<h1>Not Found: 404</h1>} />
         </Routes>
