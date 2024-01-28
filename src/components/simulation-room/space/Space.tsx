@@ -26,8 +26,44 @@ const Space: React.FC<ISpaceProps> = (props) => {
 
     return (
         <>
-            <VRButton />
-            <ARButton />
+            <VRButton
+                style={{
+                    position: 'absolute',
+                    bottom: '24px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    padding: '12px 24px',
+                    border: '1px solid white',
+                    borderRadius: '4px',
+                    background: '#1E083C',
+                    color: 'white',
+                    font: '0.8125rem sans-serif',
+                    outline: 'none',
+                    zIndex: '99999',
+                    cursor: 'pointer',
+                    borderColor: '#1E083C',
+                    opacity: '0.9',
+                }}
+            />
+            <ARButton
+                style={{
+                    position: 'absolute',
+                    bottom: '24px',
+                    left: '60%',
+                    transform: 'translateX(-50%)',
+                    padding: '12px 24px',
+                    border: '1px solid white',
+                    borderRadius: '4px',
+                    background: '#1E083C',
+                    color: 'white',
+                    font: '0.8125rem sans-serif',
+                    outline: 'none',
+                    zIndex: '99999',
+                    cursor: 'pointer',
+                    borderColor: '#1E083C',
+                    opacity: '0.9',
+                }}
+            />
             <Canvas style={{ height: '100vh', width: '100%' }} camera={{ position: [-10, 15, 20] }}>
                 <XR>
                     <OrbitControls ref={orbitRef} />
