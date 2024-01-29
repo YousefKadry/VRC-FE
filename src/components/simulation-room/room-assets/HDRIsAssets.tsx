@@ -76,7 +76,6 @@ const HDRIsAssets = () => {
                                 ref={idx === hdris.length - 1 ? listEndElementRef : undefined}
                                 key={hdri.name}
                                 item={hdri}
-                                onClickHandler={() => {}}
                             />
                         );
                     })}
