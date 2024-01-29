@@ -28,6 +28,7 @@ const assetsSlice = createSlice({
         addGLTFs(storeRoomAssetsSlice, action: PayloadAction<Array<IRoomGLTF>>) {
             storeRoomAssetsSlice.gltfsInfo.items.push(...action.payload);
         },
+
         updateGLTFsSearchInfo(storeRoomAssetsSlice, action: PayloadAction<Partial<IRoomAssetsSearchInfo>>) {
             if (
                 action.payload.q === undefined ||
@@ -44,6 +45,28 @@ const assetsSlice = createSlice({
             // if the query changed we need to reset all info
             storeRoomAssetsSlice.gltfsInfo = getAssetsInitState<IRoomGLTF>();
             storeRoomAssetsSlice.gltfsInfo.searchInfo.q = action.payload.q || '';
+        },
+
+        addHDRIs(storeRoomAssetsSlice, action: PayloadAction<Array<IRoomHDRI>>) {
+            storeRoomAssetsSlice.hdrisInfo.items.push(...action.payload);
+        },
+
+        updateHDRIsSearchInfo(storeRoomAssetsSlice, action: PayloadAction<Partial<IRoomAssetsSearchInfo>>) {
+            if (
+                action.payload.q === undefined ||
+                action.payload.q === storeRoomAssetsSlice.hdrisInfo.searchInfo.q
+            ) {
+                storeRoomAssetsSlice.hdrisInfo.searchInfo = {
+                    ...storeRoomAssetsSlice.hdrisInfo.searchInfo,
+                    ...action.payload,
+                };
+
+                return;
+            }
+
+            // if the query changed we need to reset all info
+            storeRoomAssetsSlice.hdrisInfo = getAssetsInitState<IRoomHDRI>();
+            storeRoomAssetsSlice.hdrisInfo.searchInfo.q = action.payload.q || '';
         },
     },
 });

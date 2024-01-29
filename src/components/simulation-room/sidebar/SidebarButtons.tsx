@@ -7,6 +7,7 @@ import {
     faDownload,
     faFont,
     faHome,
+    faImage,
     faShareFromSquare,
     faStarHalfStroke,
 } from '@fortawesome/free-solid-svg-icons';
@@ -18,6 +19,7 @@ const simulationRoomSidebarButtons = [
     { id: ESimulationRoomButtonId.BACK_HOME_BTN, icon: faHome },
     { id: ESimulationRoomButtonId.CAMERA_BTN, icon: faCamera },
     { id: ESimulationRoomButtonId.TEXT_BTN, icon: faFont },
+    { id: ESimulationRoomButtonId.HDRIs_ASSETS_BTN, icon: faImage },
     { id: ESimulationRoomButtonId.GLTFs_ASSETS_BTN, icon: faDownload },
     { id: ESimulationRoomButtonId.SPECIAL_EFFECT_BTN, icon: faStarHalfStroke },
     { id: ESimulationRoomButtonId.MESHES_BTN, icon: faCircleNodes },

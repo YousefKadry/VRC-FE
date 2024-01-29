@@ -38,3 +38,36 @@ export const fetchNextGLTFsThunk = () => {
         );
     };
 };
+
+export const fetchNextHDRIsThunk = () => {
+    return async (dispatch: Dispatch) => {
+        const { q, pageNumber, pageSize } = appStore.getState().assets.hdrisInfo.searchInfo;
+
+        const data = await AxiosUtil.sendRequest(
+            {
+                url: `${SERVER_URL}/api/hdris`,
+                method: 'GET',
+                params: {
+                    q,
+                    pageSize,
+                    pageNumber: pageNumber + 1,
+                },
+            },
+            { showSpinner: pageNumber === 0 }
+        );
+
+        if (!data) {
+            return;
+        }
+
+        dispatch(storeAssetsSliceActions.addHDRIs(data.models));
+
+        dispatch(
+            storeAssetsSliceActions.updateHDRIsSearchInfo({
+                pageNumber: pageNumber + 1,
+                hasNext: data.hasNext,
+                allowFetchingNextPage: false,
+            })
+        );
+    };
+};

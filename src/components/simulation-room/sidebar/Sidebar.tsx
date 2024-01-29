@@ -13,6 +13,7 @@ import AddMesh from '../object-editor/AddMesh.tsx';
 import { ESimulationRoomButtonId } from '../../../models/simulation-room-sidebar.ts';
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
 import { useDispatch } from 'react-redux';
+import HDRIsAssets from '../room-assets/HDRIsAssets.tsx';
 
 const Sidebar = () => {
     const [activeButtonId, setActiveButtonId] = useState<ESimulationRoomButtonId | null>(null);
@@ -25,6 +26,8 @@ const Sidebar = () => {
                 return <CameraManager />;
             case ESimulationRoomButtonId.TEXT_BTN:
                 return <TextManager />;
+            case ESimulationRoomButtonId.HDRIs_ASSETS_BTN:
+                return <HDRIsAssets />;
             case ESimulationRoomButtonId.GLTFs_ASSETS_BTN:
                 return <GLTFsAssets />;
             case ESimulationRoomButtonId.MESHES_BTN:
