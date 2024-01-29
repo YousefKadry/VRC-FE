@@ -11,6 +11,7 @@ import { fetchNextGLTFsThunk } from '../../../store/slices/assets/assets-actions
 import { TAppDispatch } from '../../../store/app-store.ts';
 import { IAppStore } from '../../../models/app-store.ts';
 import { storeAssetsSliceActions } from '../../../store/slices/assets/assets-slice.ts';
+import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
 
 const GLTFsAssets = () => {
     const { items: gltfs, searchInfo } = useSelector((store: IAppStore) => store.assets.gltfsInfo);
@@ -71,11 +72,19 @@ const GLTFsAssets = () => {
             <div id="inf-list-container" className="overflow-auto h-full">
                 <ul className="grid grid-cols-2 gap-4 select-none">
                     {gltfs.map((gltf, idx) => {
+                        const handleModelItemClicked = () => {
+                            dispatch(
+                                storeRoomsSliceActions.addObjects({
+                                    models: [{ URL: gltf.gltfUrl }],
+                                })
+                            );
+                        };
                         return (
                             <RoomAssetsItem
                                 ref={idx === gltfs.length - 1 ? listEndElementRef : undefined}
                                 key={gltf.name}
                                 item={gltf}
+                                onClickHandler={handleModelItemClicked}
                             />
                         );
                     })}

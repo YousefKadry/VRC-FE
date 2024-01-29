@@ -6,6 +6,8 @@ import { ARButton, VRButton, XR } from '@react-three/xr';
 
 import SpaceClouds from './clouds/Clouds';
 import Meshes from './meshes/Meshes';
+import Texts from './texts/Texts';
+
 import SelectedObjectTransformControls from '../transformation-controller/SelectedObjectTransformControls';
 import Models from './models/Models';
 
@@ -84,6 +86,7 @@ const Space: React.FC<ISpaceProps> = (props) => {
                         <meshStandardMaterial attach="material" color="#f9c74f" wireframe />
                     </Plane>
                     <Models />
+                    <Texts />
                     <Sky />
                     {selectedRoom.state.stars && <Stars />}
                     <Meshes />
