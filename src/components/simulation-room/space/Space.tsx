@@ -6,6 +6,8 @@ import { ARButton, VRButton, XR } from '@react-three/xr';
 
 import SpaceClouds from './clouds/Clouds';
 import Meshes from './meshes/Meshes';
+import Texts from './texts/Texts';
+
 import SelectedObjectTransformControls from '../transformation-controller/SelectedObjectTransformControls';
 
 import { IAppStore } from '../../../models/app-store';
@@ -82,7 +84,7 @@ const Space: React.FC<ISpaceProps> = (props) => {
                     <Plane args={[10, 10, 10, 10]} rotation={[1.5 * Math.PI, 0, 0]} position={[0, 0, 0]}>
                         <meshStandardMaterial attach="material" color="#f9c74f" wireframe />
                     </Plane>
-
+                    <Texts />
                     <Sky />
                     {selectedRoom.state.stars && <Stars />}
                     <Meshes />
