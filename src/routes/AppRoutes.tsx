@@ -44,7 +44,7 @@ const AppRoutes = () => {
                 <Route path="/simulation-room/:roomId/view" element={<SimulationRoom editable={false} />} />
             </Route>
             
-            <Route path="/shared-room/:roomId" element={<SharedRoom/>} />
+            <Route path="/publicRoom/:roomId" element={<SharedRoom/>} />
 
             <Route path="*" element={<h1>Not Found: 404</h1>} />
         </Routes>
