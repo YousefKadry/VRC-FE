@@ -85,19 +85,13 @@ const DashboardSlider: React.FC<{ activeSliderHandler: (activeSlider: number) =>
                 }
             >
                 <SwiperSlide>
-                    <a role="button">
-                        <DashboardSliderImg imgSrc={DashboardEnterRoomImg} />
-                    </a>
+                    <DashboardSliderImg imgSrc={DashboardEnterRoomImg} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <a role="button">
-                        <DashboardSliderImg imgSrc={DashboardBuildRoomImg} />
-                    </a>
+                    <DashboardSliderImg imgSrc={DashboardBuildRoomImg} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <a role="button">
-                        <DashboardSliderImg imgSrc={DashboardViewRoomImg} />
-                    </a>
+                    <DashboardSliderImg imgSrc={DashboardViewRoomImg} />
                 </SwiperSlide>
             </Swiper>
         </div>
