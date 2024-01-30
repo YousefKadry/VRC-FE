@@ -20,7 +20,7 @@ const ShareRoom = () => {
 
     return (
         <>
-        {isPublicLocal ? <SharingComponent sharingURL={`${document.location.origin}/shared-room/${roomID}`} RenderQR={true} /> : ""}      
+        {isPublicLocal ? <SharingComponent sharingURL={`${document.location.origin}/shared-room/${roomID}`} RenderQR={true} /> : null}      
         <div className="flex-col w-full max-w-[460px] p-8 space-y-10">
             <CustomButton
                 onClick={handleShareToggle}
