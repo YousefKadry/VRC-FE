@@ -13,6 +13,9 @@ import RightArrowIcon from '../../../assets/icons/right-arrow.svg';
 import LeftArrowIcon from '../../../assets/icons/left-arrow.svg';
 
 import classes from './DashboardSlider.module.css';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { storeUISliceActions } from '../../../store/slices/ui/ui-slice';
 
 const DashboardSlider: React.FC<{ activeSliderHandler: (activeSlider: number) => void }> = (props) => {
     const { activeSliderHandler } = props;
@@ -26,7 +29,35 @@ const DashboardSlider: React.FC<{ activeSliderHandler: (activeSlider: number) =>
         if (activeIndex !== clickedIndex) {
             swiperRef.current?.swiper.slideTo(clickedIndex);
             return;
+        } else {
+            switch (activeIndex) {
+                case 0:
+                    joinRoomHandler();
+                    break;
+                case 1:
+                    createRoomHandler();
+                    break;
+                case 2:
+                    viewMyRoomsHandler();
+                    break;
+                default:
+                // Handle other cases if needed
+            }
         }
+    };
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const viewMyRoomsHandler = () => {
+        navigate('/rooms');
+    };
+
+    const joinRoomHandler = () => {
+        dispatch(storeUISliceActions.setIsEnterRoomPopupShown(true));
+    };
+
+    const createRoomHandler = () => {
+        dispatch(storeUISliceActions.setIsCreateRoomModalShown(true));
     };
 
     return (
@@ -40,7 +71,7 @@ const DashboardSlider: React.FC<{ activeSliderHandler: (activeSlider: number) =>
                 ref={swiperRef}
                 modules={[Navigation]}
                 spaceBetween={40}
-                slidesPerView={2.45}
+                slidesPerView={2.55}
                 centeredSlides={true}
                 navigation={true}
                 onSlideChange={(swiper) => activeSliderHandler(swiper.activeIndex)}
@@ -54,17 +85,27 @@ const DashboardSlider: React.FC<{ activeSliderHandler: (activeSlider: number) =>
                 }
             >
                 <SwiperSlide>
-                    <DashboardSliderImg imgSrc={DashboardEnterRoomImg} />
+                    <a href="#enter-room" role="button" style={{ cursor: 'pointer' }}>
+                        <DashboardSliderImg imgSrc={DashboardEnterRoomImg} />
+                    </a>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <DashboardSliderImg imgSrc={DashboardBuildRoomImg} />
+                    <a
+                        className="hover:opacit-10"
+                        href="#build-room"
+                        role="button"
+                        style={{ cursor: 'pointer' }}
+                    >
+                        <DashboardSliderImg imgSrc={DashboardBuildRoomImg} />
+                    </a>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <DashboardSliderImg imgSrc={DashboardViewRoomImg} />
+                    <a href="#view-room" role="button" style={{ cursor: 'pointer' }}>
+                        <DashboardSliderImg imgSrc={DashboardViewRoomImg} />
+                    </a>
                 </SwiperSlide>
             </Swiper>
         </div>
     );
 };
-
 export default DashboardSlider;
