@@ -82,8 +82,7 @@ function AssetsInfiniteList<AssetType extends IRoomAssetsItem>(
                 <ul className="grid grid-cols-2 gap-4 select-none">
                     {items.map((item, idx) => {
                         return (
-                            //todo: change thumbnailUrl to id (as a key)
-                            <button key={item.thumbnailUrl} onClick={clickAssetsItemHandler.bind(null, item)}>
+                            <button key={item.id} onClick={clickAssetsItemHandler.bind(null, item)}>
                                 <RoomAssetsItem
                                     ref={idx === items.length - 1 ? listEndElementRef : undefined}
                                     item={item}

@@ -7,7 +7,7 @@ function getAssetsInitState<AssetsType>(): IRoomAssetsInfo<AssetsType> {
     return {
         searchInfo: {
             q: '',
-            pageSize: 50,
+            pageSize: 20,
             pageNumber: 0,
             allowFetchingNextPage: true,
             hasNext: true,

@@ -6,6 +6,8 @@ import { TAppDispatch } from '../../../store/app-store.ts';
 import { IAppStore } from '../../../models/app-store.ts';
 import { storeAssetsSliceActions } from '../../../store/slices/assets/assets-slice.ts';
 import { fetchNextGLTFsThunk } from '../../../store/slices/assets/assets-actions.ts';
+import { IRoomGLTF } from '../../../models/room-assets.ts';
+import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
 
 const GLTFsAssets = () => {
     const gltfsInfo = useSelector((store: IAppStore) => store.assets.gltfsInfo);
@@ -24,6 +26,10 @@ const GLTFsAssets = () => {
         dispatch(storeAssetsSliceActions.updateGLTFsSearchInfo({ q: query }));
     };
 
+    const handleAddingGLTFToRoom = (gltf: IRoomGLTF) => {
+        dispatch(storeRoomsSliceActions.addObjects({ models: [{ URL: gltf.gltfUrl }] }));
+    };
+
     return (
         <AssetsInfiniteList
             infiniteListContainerId="gltfs-inf-list-container"
@@ -32,7 +38,7 @@ const GLTFsAssets = () => {
             allowFetchingNextPageHandler={handleAllowingNextGLTFsFetching}
             fetchNextPageHandler={handleNextGLTFsFetching}
             changeQueryHandler={handleQueryChanging}
-            clickAssetsItemHandler={console.log}
+            clickAssetsItemHandler={handleAddingGLTFToRoom}
         />
     );
 };
