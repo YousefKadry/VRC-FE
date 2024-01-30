@@ -6,3 +6,5 @@ export interface IAddObjectsAction {
     models?: Array<Omit<IModel, TRoomObjectKeys>>;
     texts?: Array<Omit<IText, TRoomObjectKeys>>;
 }
+
+

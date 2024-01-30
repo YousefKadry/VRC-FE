@@ -15,6 +15,7 @@ export interface IRoomState {
     meshes: Record<string, IMesh>;
     clouds: Record<string, ICloud>;
     models: Record<string, IModel>;
+    background: string;
     texts: Record<string, IText>;
     stars: boolean;
     selectedObjectInfo: {
