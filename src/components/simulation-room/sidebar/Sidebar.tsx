@@ -27,7 +27,7 @@ const Sidebar = () => {
             case ESimulationRoomButtonId.TEXT_BTN:
                 return <TextManager />;
             case ESimulationRoomButtonId.HDRIs_ASSETS_BTN:
-                return <HDRIsAssets />
+                return <HDRIsAssets />;
             case ESimulationRoomButtonId.GLTFs_ASSETS_BTN:
                 return <GLTFsAssets />;
             case ESimulationRoomButtonId.MESHES_BTN:
