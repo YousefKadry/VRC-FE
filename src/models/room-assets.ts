@@ -4,6 +4,7 @@ export interface IRoomAssetsSearchInfo {
     pageSize: number;
     hasNext: boolean;
     allowFetchingNextPage: boolean;
+    isLoading: boolean;
 }
 
 export interface IRoomAssetsInfo<AssetsType> {
@@ -13,6 +14,7 @@ export interface IRoomAssetsInfo<AssetsType> {
 
 export interface IRoomAssetsItem {
     name: string;
+    id: string;
     thumbnailUrl: string;
 }
 

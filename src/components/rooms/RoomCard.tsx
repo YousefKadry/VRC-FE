@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-const RoomCard = ({room}: { room: any }) => {
+const RoomCard = ({room, index}: { room: any, index: number}) => {
 
     const roomUrl = `/simulation-room/${room.id}`
 
@@ -26,7 +26,7 @@ const RoomCard = ({room}: { room: any }) => {
             <div className="flex-col space-y-4 text-white mb-3">
 
                 <div className={"h-36 overflow-hidden"}>
-                    <img src={`https://random.imagecdn.app/700/70${Math.floor(Math.random() * 10)}`} alt={"room image"}/>
+                    <img src={`https://placehold.co/408x144/906c96/eee?font=oswald&text=ROOM ${index + 1}`} alt={"room image"}/>
                 </div>
 
                 <div className={"h-2/3 px-7 space-y-1 "}>

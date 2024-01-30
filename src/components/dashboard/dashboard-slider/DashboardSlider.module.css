@@ -7,6 +7,12 @@
     display: flex !important;
     align-items: center;
     height: max-content !important;
+    transition: transform 0.2s;
+}
+
+.dashboard-slider-container [class*='swiper']:hover {
+    transform: scale(1.015);
+    cursor: pointer;
 }
 
 .dashboard-slider-container [class*='swiper-button-disabled'] {

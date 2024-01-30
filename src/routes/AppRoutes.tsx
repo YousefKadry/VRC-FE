@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import ProtectedRoutes from './ProtectedRoutes.tsx';
 
 import { IAppStore } from '../models/app-store';
+import NotFound from '../components/not-found/NotFound.tsx';
 
 const Login = React.lazy(() => import('../components/auth/Login'));
 const SignUp = React.lazy(() => import('../components/auth/SignUp'));
@@ -46,7 +47,7 @@ const AppRoutes = () => {
             
             <Route path="/shared-room/:roomId" element={<SharedRoom/>} />
 
-            <Route path="*" element={<h1>Not Found: 404</h1>} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 };
