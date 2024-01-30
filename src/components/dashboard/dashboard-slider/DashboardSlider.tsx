@@ -85,22 +85,17 @@ const DashboardSlider: React.FC<{ activeSliderHandler: (activeSlider: number) =>
                 }
             >
                 <SwiperSlide>
-                    <a href="#enter-room" role="button" style={{ cursor: 'pointer' }}>
+                    <a role="button">
                         <DashboardSliderImg imgSrc={DashboardEnterRoomImg} />
                     </a>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <a
-                        className="hover:opacit-10"
-                        href="#build-room"
-                        role="button"
-                        style={{ cursor: 'pointer' }}
-                    >
+                    <a role="button">
                         <DashboardSliderImg imgSrc={DashboardBuildRoomImg} />
                     </a>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <a href="#view-room" role="button" style={{ cursor: 'pointer' }}>
+                    <a role="button">
                         <DashboardSliderImg imgSrc={DashboardViewRoomImg} />
                     </a>
                 </SwiperSlide>

@@ -12,6 +12,7 @@
 
 .dashboard-slider-container [class*='swiper']:hover {
     transform: scale(1.015);
+    cursor: pointer;
 }
 
 .dashboard-slider-container [class*='swiper-button-disabled'] {
