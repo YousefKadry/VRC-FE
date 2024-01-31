@@ -12,6 +12,7 @@ import { IAppStore } from '../../../models/app-store';
 
 const SpaceObjects = () => {
     const selectedRoom = useSelector((store: IAppStore) => store.rooms.selectedRoom);
+    const applySky = selectedRoom?.state.sky;
 
     if (!selectedRoom) {
         return null;
@@ -21,7 +22,7 @@ const SpaceObjects = () => {
         <>
             <Models />
             <Texts />
-            {selectedRoom.state.background ? <EnvironmentBackground /> : <Sky />}
+            {selectedRoom.state.background ? <EnvironmentBackground /> : applySky ? <Sky /> : null}
             {selectedRoom.state.stars && <Stars />}
             <Meshes />
             <SpaceClouds />

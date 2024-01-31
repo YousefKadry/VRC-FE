@@ -18,6 +18,7 @@ export interface IRoomState {
     background: string;
     texts: Record<string, IText>;
     stars: boolean;
+    sky: boolean;
     selectedObjectInfo: {
         type: TRoomObjectsType;
         id: IRoomObject['id'];
@@ -25,7 +26,7 @@ export interface IRoomState {
 }
 
 export type TUpdatableRoomStateInfo = Partial<
-    Omit<IRoomState, 'meshes' | 'clouds' | 'models' | 'selectedObjectInfo'>
+    Omit<IRoomState, 'meshes' | 'clouds' | 'models' | 'texts' | 'selectedObjectInfo'>
 >;
 
 export type TVec3 = [number, number, number];
