@@ -7,10 +7,11 @@ function getAssetsInitState<AssetsType>(): IRoomAssetsInfo<AssetsType> {
     return {
         searchInfo: {
             q: '',
-            pageSize: 50,
+            pageSize: 20,
             pageNumber: 0,
             allowFetchingNextPage: true,
             hasNext: true,
+            isLoading: false,
         },
         items: [],
     };
@@ -25,10 +26,12 @@ const assetsSlice = createSlice({
     name: 'assets',
     initialState,
     reducers: {
+        putGLTFs(storeRoomAssetsSlice, action: PayloadAction<Array<IRoomGLTF>>) {
+            storeRoomAssetsSlice.gltfsInfo.items = action.payload;
+        },
         addGLTFs(storeRoomAssetsSlice, action: PayloadAction<Array<IRoomGLTF>>) {
             storeRoomAssetsSlice.gltfsInfo.items.push(...action.payload);
         },
-
         updateGLTFsSearchInfo(storeRoomAssetsSlice, action: PayloadAction<Partial<IRoomAssetsSearchInfo>>) {
             if (
                 action.payload.q === undefined ||
@@ -46,11 +49,12 @@ const assetsSlice = createSlice({
             storeRoomAssetsSlice.gltfsInfo = getAssetsInitState<IRoomGLTF>();
             storeRoomAssetsSlice.gltfsInfo.searchInfo.q = action.payload.q || '';
         },
-
+        putHDRIs(storeRoomAssetsSlice, action: PayloadAction<Array<IRoomHDRI>>) {
+            storeRoomAssetsSlice.hdrisInfo.items = action.payload;
+        },
         addHDRIs(storeRoomAssetsSlice, action: PayloadAction<Array<IRoomHDRI>>) {
             storeRoomAssetsSlice.hdrisInfo.items.push(...action.payload);
         },
-
         updateHDRIsSearchInfo(storeRoomAssetsSlice, action: PayloadAction<Partial<IRoomAssetsSearchInfo>>) {
             if (
                 action.payload.q === undefined ||

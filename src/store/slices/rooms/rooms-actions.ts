@@ -37,6 +37,21 @@ export const fetchRoomByIdThunk = (roomId: IRoom<string>['id']) => {
     };
 };
 
+export const fetchSharedRoomByIdThunk = (roomId: IRoom<string>['id']) => {
+    return async (dispatch: Dispatch) => {
+        const data = await AxiosUtil.sendRequest({
+            url: `${SERVER_URL}/api/rooms/publicRoom/${roomId}`,
+            method: 'GET'
+        });
+
+        if (!data) {
+            return;
+        }
+
+       dispatch(storeRoomsSliceActions.selectedRoom(data));
+    };
+};
+
 export const createNewRoomThunk = (
     title: IRoom<string>['title'],
     description: IRoom<string>['description']
@@ -48,7 +63,7 @@ export const createNewRoomThunk = (
             data: {
                 title,
                 description,
-                isPublic: false,
+                isPublic: true,
                 state: '',
             },
         });
