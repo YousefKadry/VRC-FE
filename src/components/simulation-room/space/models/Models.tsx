@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLoader } from '@react-three/fiber';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
+import GLTFModel from './GLTFModel';
 
 import { IAppStore } from '../../../../models/app-store';
 import { IRoomObject } from '../../../../models/room';
@@ -19,19 +19,16 @@ const Models = () => {
 
     return Object.values(models || {}).map((model) => {
         const { id, URL, rotation, ...restProps } = model;
-        const gltf = useLoader(GLTFLoader, URL);
+
         return (
-            <mesh
+            <scene
                 key={id}
-                onClick={() => handleModelSelection(id)}
-                rotation={RoomObjectUtil.convertRotationFromDegreeToEuler(rotation)}
                 {...restProps}
-                castShadow
-                receiveShadow
+                rotation={RoomObjectUtil.convertRotationFromDegreeToEuler(rotation)}
+                onClick={handleModelSelection.bind(null, id)}
             >
-                <primitive object={gltf.scene} />
-                {/* <meshStandardMaterial side={DoubleSide} /> */}
-            </mesh>
+                <GLTFModel gltfURL={URL} />
+            </scene>
         );
     });
 };
