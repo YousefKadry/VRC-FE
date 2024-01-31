@@ -1,13 +1,14 @@
-import { useRef } from 'react';
+import { Suspense, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Canvas } from '@react-three/fiber';
-import {OrbitControls, Plane, Stars } from '@react-three/drei';
+import { OrbitControls, Plane, Stars } from '@react-three/drei';
 import { ARButton, VRButton, XR } from '@react-three/xr';
 
 import SpaceClouds from './clouds/Clouds';
 import Meshes from './meshes/Meshes';
 import Texts from './texts/Texts';
 import EnvironmentBackground from './EnvironmentBackground/EnvironmentBackground';
+import Spinner from '../../ui/spinner/Spinner';
 
 import SelectedObjectTransformControls from '../transformation-controller/SelectedObjectTransformControls';
 import Models from './models/Models';
@@ -29,7 +30,7 @@ const Space: React.FC<ISpaceProps> = (props) => {
     }
 
     return (
-        <>
+        <Suspense fallback={<Spinner loading={true} />}>
             <VRButton
                 style={{
                     width: '12%',
@@ -82,15 +83,13 @@ const Space: React.FC<ISpaceProps> = (props) => {
                         intensity={Math.PI}
                     />
                     <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-                    
-                    
 
                     <Plane args={[10, 10, 10, 10]} rotation={[1.5 * Math.PI, 0, 0]} position={[0, 0, 0]}>
                         <meshStandardMaterial attach="material" color="#f9c74f" wireframe />
                     </Plane>
                     <Models />
                     <Texts />
-                    <EnvironmentBackground/>
+                    <EnvironmentBackground />
                     {selectedRoom.state.stars && <Stars />}
                     <Meshes />
                     <SpaceClouds />
@@ -99,7 +98,7 @@ const Space: React.FC<ISpaceProps> = (props) => {
                     )}
                 </XR>
             </Canvas>
-        </>
+        </Suspense>
     );
 };
 
