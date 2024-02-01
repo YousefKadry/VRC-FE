@@ -1,7 +1,6 @@
 import React from 'react';
 import { twJoin } from 'tailwind-merge';
 import {
-    faArrowLeft,
     faCamera,
     faCircleNodes,
     faDownload,
@@ -24,7 +23,6 @@ const simulationRoomSidebarButtons = [
     { id: ESimulationRoomButtonId.SPECIAL_EFFECT_BTN, icon: faStarHalfStroke },
     { id: ESimulationRoomButtonId.MESHES_BTN, icon: faCircleNodes },
     { id: ESimulationRoomButtonId.SHARING_BTN, icon: faShareFromSquare },
-    { id: ESimulationRoomButtonId.MENU_CLOSING_BTN, icon: faArrowLeft },
 ];
 
 export interface ISimulationRoomSidebarButtonsProps {
@@ -38,16 +36,12 @@ const SidebarButtons: React.FC<ISimulationRoomSidebarButtonsProps> = (props) => 
     return (
         <ul className="w-full flex flex-col items-center">
             {simulationRoomSidebarButtons.map((btn) => {
-                if (btn.id === ESimulationRoomButtonId.MENU_CLOSING_BTN && !activeButtonId) {
-                    return null;
-                }
-
                 return (
                     <button
                         key={btn.id}
                         onClick={buttonClickHandler.bind(null, btn.id)}
                         className={twJoin(
-                            'py-6 w-full outline-none',
+                            'py-4 w-full outline-none',
                             btn.id === ESimulationRoomButtonId.BACK_HOME_BTN || btn.id === activeButtonId
                                 ? 'bg-[#311B52]'
                                 : '',
@@ -56,7 +50,7 @@ const SidebarButtons: React.FC<ISimulationRoomSidebarButtonsProps> = (props) => 
                                 : ''
                         )}
                     >
-                        <FontAwesomeIcon className="text-white text-4xl" icon={btn.icon} />
+                        <FontAwesomeIcon className="text-white text-2xl" icon={btn.icon} />
                     </button>
                 );
             })}

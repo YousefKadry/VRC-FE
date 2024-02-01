@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { twJoin } from 'tailwind-merge';
 
@@ -9,11 +10,10 @@ import GLTFsAssets from '../room-assets/GLTFsAssets.tsx';
 import SpecialEffects from '../special-effects/SpecialEffects.tsx';
 import TextManager from '../text-management/TextManager.tsx';
 import AddMesh from '../object-editor/AddMesh.tsx';
+import HDRIsAssets from '../room-assets/HDRIsAssets.tsx';
 
 import { ESimulationRoomButtonId } from '../../../models/simulation-room-sidebar.ts';
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
-import { useDispatch } from 'react-redux';
-import HDRIsAssets from '../room-assets/HDRIsAssets.tsx';
 
 const Sidebar = () => {
     const [activeButtonId, setActiveButtonId] = useState<ESimulationRoomButtonId | null>(null);
@@ -45,16 +45,16 @@ const Sidebar = () => {
         if (id === ESimulationRoomButtonId.BACK_HOME_BTN) {
             dispatch(storeRoomsSliceActions.selectedRoom(null));
             navigate('/dashboard');
-        } else if (id === ESimulationRoomButtonId.MENU_CLOSING_BTN) {
-            setActiveButtonId(null);
         } else {
-            setActiveButtonId(id);
+            setActiveButtonId((activeId) => {
+                return id !== activeId ? id : null;
+            });
         }
     };
 
     return (
         <div
-            className={`relative z-10 shrink-0 w-24 h-screen overflow-hidden transition-all duration-200 p-0`}
+            className={`relative z-10 shrink-0 w-16 h-screen overflow-hidden transition-all duration-200 p-0`}
         >
             <div className="h-full w-full overflow-x-hidden overflow-y-auto bg-[#1E083C]">
                 <SidebarButtons activeButtonId={activeButtonId} buttonClickHandler={handleButtonClicking} />
@@ -62,9 +62,9 @@ const Sidebar = () => {
 
             <div
                 className={twJoin(
-                    'fixed top-0 bottom-0 left-24 right-0 z-10',
+                    'fixed top-0 bottom-0 left-16 right-0 z-10',
                     'flex flex-col px-5 py-10 items-center transition-all duration-200 bg-[#311B52]',
-                    !activeButtonId ? 'w-0 opacity-0' : 'max-w-[450px] opacity-100'
+                    !activeButtonId ? 'w-0 opacity-0' : 'max-w-[350px] opacity-100'
                 )}
             >
                 {renderFocus()}

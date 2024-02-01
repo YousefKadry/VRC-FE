@@ -1,8 +1,11 @@
+import { ChangeEvent, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { twJoin } from 'tailwind-merge';
+
 import CustomButton from '../../shared/Button';
 import CustomInput from '../../shared/Input';
-import { ChangeEvent, useRef } from 'react';
+
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
-import { useDispatch } from 'react-redux';
 import { TAppDispatch } from '../../../store/app-store.ts';
 
 const TextManager = () => {
@@ -27,18 +30,24 @@ const TextManager = () => {
     };
 
     return (
-        <div className="w-full px-8">
+        <div className="w-full">
             <CustomInput
-                handleChange={handleTextChange}
                 type="text"
+                className={twJoin(
+                    'bg-[#442a68] placeholder:text-white border-[1px] border-purple-700',
+                    'text-center outline-none'
+                )}
                 placeholder="Enter your text here"
-                className="bg-[#442a68] mt-[95px] pl-[18px] h-[60px] border-[1px] border-[#855EB5] text-center"
+                handleChange={handleTextChange}
             />
 
-            <div className=" flex items-center justify-end">
+            <div className="flex items-center justify-end">
                 <CustomButton
+                    className={twJoin(
+                        'from-RoomButtonGradient1 to-RoomButtonGradient2',
+                        'w-fit max-w-full px-12 py-2.5 text-base rounded-lg'
+                    )}
                     onClick={handleInsertText}
-                    className="w-[120px] h-[40px] flex items-center justify-center bg-gradient-to-r from-[#9167C2] to-[#533b78]"
                 >
                     Insert
                 </CustomButton>

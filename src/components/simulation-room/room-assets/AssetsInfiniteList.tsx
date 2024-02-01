@@ -66,15 +66,15 @@ function AssetsInfiniteList<AssetType extends IRoomAssetsItem>(
     );
 
     return (
-        <div className={'flex flex-col space-y-10 w-full h-full'}>
+        <div className={'flex flex-col space-y-8 w-full h-full'}>
             <CustomInput
                 type="text"
                 className={twJoin(
                     'w-full text-center outline-none',
-                    'bg-gradient-to-r from-[#7542b0] to-[#7d5cae] text-white placeholder:text-white/80'
+                    'bg-[#442a68] placeholder:text-white border-[1px] border-purple-700'
                 )}
-                defaultValue={q}
                 placeholder={searchInputPlaceholder}
+                defaultValue={q}
                 handleChange={handleSearchQuery}
             />
 
@@ -91,7 +91,7 @@ function AssetsInfiniteList<AssetType extends IRoomAssetsItem>(
                         );
                     })}
                 </ul>
-                {isLoading && <BeatLoader className="p-6 text-center" color="white" />}
+                {isLoading && <BeatLoader className="p-5 text-center" color="white" />}
             </div>
         </div>
     );

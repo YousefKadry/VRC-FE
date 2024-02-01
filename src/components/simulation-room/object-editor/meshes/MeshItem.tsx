@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+
 import { storeRoomsSliceActions } from '../../../../store/slices/rooms/rooms-slice';
 import { TMeshGeometryType } from '../../../../models/room';
 
@@ -19,16 +20,16 @@ const MeshItem: React.FC<IMeshItemProps> = (props) => {
     };
 
     return (
-        <div
+        <li
             className={'rounded-lg bg-gradient-to-r from-[#8c43e6] to-[#8b6bb2] p-0.5 cursor-grabbing'}
             onClick={handleMeshItemClicked}
         >
             <img className={'rounded-lg w-full aspect-square'} src={props.imgURL} />
 
             <div className={'p-2'}>
-                <h4 className={'text-white font-bold'}>{props.type}</h4>
+                <h4 className={'text-white font-bold capitalize text-sm'}>{props.type}</h4>
             </div>
-        </div>
+        </li>
     );
 };
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { twJoin } from 'tailwind-merge';
 
+import CustomButton from '../../shared/Button';
 import Switch from '../../ui/switch/Switch';
 
 import { IAppStore } from '../../../models/app-store';
@@ -37,13 +39,15 @@ const SpecialEffects: React.FC = () => {
                 />
             </div>
 
-            <button
-                className="w-full bg-[#9167C2] text-white p-2 rounded-lg hover:bg-[#7d5aa6]"
-                id="add-Clouds"
+            <CustomButton
+                className={twJoin(
+                    'from-RoomButtonGradient1 to-RoomButtonGradient2',
+                    'w-full px-4 py-3 mt-0 text-base rounded-lg'
+                )}
                 onClick={handleAddClouds}
             >
                 Add Cloud
-            </button>
+            </CustomButton>
         </div>
     );
 };
