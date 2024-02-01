@@ -11,6 +11,7 @@ const initialRoomState: IRoomState = {
     background: '',
     stars: false,
     sky: true,
+    basePlane: true,
     selectedObjectInfo: null,
 };
 

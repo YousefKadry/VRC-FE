@@ -10,8 +10,11 @@ const SpecialEffects: React.FC = () => {
     const dispatch = useDispatch();
     const starsVisibility = useSelector((store: IAppStore) => store.rooms.selectedRoom?.state.stars ?? false);
     const skyVisibility = useSelector((store: IAppStore) => store.rooms.selectedRoom?.state.sky ?? true);
+    const basePlaneVisibility = useSelector(
+        (store: IAppStore) => store.rooms.selectedRoom?.state.basePlane ?? true
+    );
 
-    const handleEffectsChanging = (checked: boolean, id: 'stars' | 'sky') => {
+    const handleEffectsChanging = (checked: boolean, id: 'stars' | 'sky' | 'basePlane') => {
         dispatch(storeRoomsSliceActions.updateSelectedRoomState({ [id]: checked }));
     };
 
@@ -21,7 +24,7 @@ const SpecialEffects: React.FC = () => {
 
     return (
         <div className="w-full flex flex-col gap-6">
-            <div className="flex justify-center gap-x-12 gap-y-4 flex-wrap overflow-auto">
+            <div className="flex flex-col gap-y-4 flex-wrap overflow-auto">
                 <Switch
                     id="stars"
                     checked={starsVisibility}
@@ -32,8 +35,15 @@ const SpecialEffects: React.FC = () => {
                 <Switch
                     id="sky"
                     checked={skyVisibility}
-                    title="sky"
+                    title="Sky"
                     toggleHandler={(checked) => handleEffectsChanging(checked, 'sky')}
+                />
+
+                <Switch
+                    id="basePlane"
+                    checked={basePlaneVisibility}
+                    title="Base Plane"
+                    toggleHandler={(checked) => handleEffectsChanging(checked, 'basePlane')}
                 />
             </div>
 

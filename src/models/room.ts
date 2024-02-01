@@ -19,6 +19,7 @@ export interface IRoomState {
     texts: Record<string, IText>;
     stars: boolean;
     sky: boolean;
+    basePlane: boolean;
     selectedObjectInfo: {
         type: TRoomObjectsType;
         id: IRoomObject['id'];
