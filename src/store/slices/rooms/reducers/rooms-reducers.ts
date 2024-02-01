@@ -8,8 +8,10 @@ const initialRoomState: IRoomState = {
     clouds: {},
     models: {},
     texts: {},
-    background:"",
+    background: '',
     stars: false,
+    sky: true,
+    basePlane: true,
     selectedObjectInfo: null,
 };
 
