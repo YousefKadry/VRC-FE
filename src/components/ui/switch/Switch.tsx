@@ -2,7 +2,7 @@ import React from 'react';
 import ReactSwitch, { ReactSwitchProps } from 'react-switch';
 import { twMerge } from 'tailwind-merge';
 
-const Switch: React.FC<{
+export interface ISwitchProps {
     id: string;
     checked: boolean;
     title?: string | React.ReactNode;
@@ -10,7 +10,9 @@ const Switch: React.FC<{
     containerClassName?: React.HTMLAttributes<HTMLLabelElement>['className'];
     titleClassName?: React.HTMLAttributes<HTMLSpanElement>['className'];
     toggleHandler: ReactSwitchProps['onChange'];
-}> = (props) => {
+}
+
+const Switch: React.FC<ISwitchProps> = (props) => {
     const { id, title, checked, disable, containerClassName, titleClassName, toggleHandler } = props;
 
     return (
@@ -21,6 +23,8 @@ const Switch: React.FC<{
                 containerClassName
             )}
         >
+            {title && <span className={twMerge('font-medium text-lg', titleClassName)}>{title}</span>}
+
             <ReactSwitch
                 id={id}
                 checked={checked}
@@ -29,8 +33,6 @@ const Switch: React.FC<{
                 offColor="#bbb"
                 disabled={disable === true}
             />
-
-            {title && <span className={twMerge('font-medium text-lg', titleClassName)}>{title}</span>}
         </label>
     );
 };
