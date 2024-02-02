@@ -19,26 +19,31 @@ const RoomCard = ({ room, index }: { room: any; index: number }) => {
     };
 
     return (
-        <div className="bg-secondary rounded-xl">
+        <div className="bg-secondary rounded-xl overflow-hidden">
             <div className="flex-col space-y-4 text-white mb-3">
-                <div className={'h-36 overflow-hidden'}>
+                <div className={'h-36'}>
                     <img
+                        className={'w-full h-full object-cover'}
                         src={`https://placehold.co/408x144/906c96/eee?font=oswald&text=ROOM ${index + 1}`}
                         alt={'room image'}
                     />
                 </div>
 
-                <div className={'h-2/3 px-7 space-y-1 '}>
+                <div className={'h-2/3 px-7 space-y-1'}>
                     <div>
-                        <h5 className="font-bold text-2xl">{room.title}</h5>
+                        <h5 title={room.title} className="font-bold text-2xl truncate">
+                            {room.title}
+                        </h5>
                     </div>
 
                     <div>
-                        <p className="text-md">{room.description}</p>
+                        <p title={room.description} className="text-md truncate">
+                            {room.description}
+                        </p>
                     </div>
                 </div>
 
-                <div className={'px-4 space-x-2 mb-2'}>
+                <div className={'px-4 space-x-2 mb-2 truncate'}>
                     <button className={'px-3 py-1 hover:bg-[#180a2d] rounded font-medium text-sm'}>
                         <Link to={roomUrl}>OPEN</Link>
                     </button>
