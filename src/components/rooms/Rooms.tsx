@@ -18,7 +18,7 @@ const Rooms = () => {
     const roomValues: any[] = Object.values(rooms);
 
     return (
-        <div className={'py-10 px-20 space-y-10'}>
+        <div className={'py-10 px-5 md:px-20 space-y-10'}>
             <div>
                 <h1 className={'text-3xl font-bold'}>My Rooms</h1>
                 <p className={'xl:text-xl sm:text-lg font-semibold'}>You can find your rooms here.</p>

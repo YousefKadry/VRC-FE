@@ -19,9 +19,9 @@ const RoomCard = ({ room, index }: { room: any; index: number }) => {
     };
 
     return (
-        <div className="bg-secondary rounded-xl">
+        <div className="bg-secondary rounded-xl overflow-hidden">
             <div className="flex-col space-y-4 text-white mb-3">
-                <div className={'h-36 overflow-hidden'}>
+                <div className={'h-36'}>
                     <img
                         className={'w-full h-full object-cover'}
                         src={`https://placehold.co/408x144/906c96/eee?font=oswald&text=ROOM ${index + 1}`}
@@ -30,12 +30,16 @@ const RoomCard = ({ room, index }: { room: any; index: number }) => {
                 </div>
 
                 <div className={'h-2/3 px-7 space-y-1'}>
-                    <div className={'truncate'}>
-                        <h5 className="font-bold text-2xl">{room.title}</h5>
+                    <div>
+                        <h5 title={room.title} className="font-bold text-2xl truncate">
+                            {room.title}
+                        </h5>
                     </div>
 
-                    <div className={'truncate '}>
-                        <p className="text-md">{room.description}</p>
+                    <div>
+                        <p title={room.description} className="text-md truncate">
+                            {room.description}
+                        </p>
                     </div>
                 </div>
 
