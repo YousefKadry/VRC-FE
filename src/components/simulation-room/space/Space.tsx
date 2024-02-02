@@ -30,19 +30,11 @@ const Space: React.FC<ISpaceProps> = (props) => {
         <Suspense fallback={<Spinner loading={true} />}>
             <SpaceXRControllers />
 
-            <Canvas style={{ height: '100vh', width: '100%' }} camera={{ position: [-70, 85, -40] }}>
+            <Canvas style={{ height: '100vh', width: '100%' }} camera={{ position: [-70, 85, -40] }} shadows>
                 <XR>
                     <OrbitControls ref={orbitRef} />
 
-                    <ambientLight intensity={Math.PI / 2} />
-                    <spotLight
-                        position={[10, 10, 10]}
-                        angle={0.15}
-                        penumbra={1}
-                        decay={0}
-                        intensity={Math.PI}
-                    />
-                    <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
+                    {selectedRoom.state.ambientLight && <ambientLight intensity={Math.PI / 3} castShadow />}
 
                     <SpaceObjects />
 
