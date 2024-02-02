@@ -23,22 +23,23 @@ const RoomCard = ({ room, index }: { room: any; index: number }) => {
             <div className="flex-col space-y-4 text-white mb-3">
                 <div className={'h-36 overflow-hidden'}>
                     <img
+                        className={'w-full h-full object-cover'}
                         src={`https://placehold.co/408x144/906c96/eee?font=oswald&text=ROOM ${index + 1}`}
                         alt={'room image'}
                     />
                 </div>
 
-                <div className={'h-2/3 px-7 space-y-1 '}>
-                    <div>
+                <div className={'h-2/3 px-7 space-y-1'}>
+                    <div className={'truncate'}>
                         <h5 className="font-bold text-2xl">{room.title}</h5>
                     </div>
 
-                    <div>
+                    <div className={'truncate '}>
                         <p className="text-md">{room.description}</p>
                     </div>
                 </div>
 
-                <div className={'px-4 space-x-2 mb-2'}>
+                <div className={'px-4 space-x-2 mb-2 truncate'}>
                     <button className={'px-3 py-1 hover:bg-[#180a2d] rounded font-medium text-sm'}>
                         <Link to={roomUrl}>OPEN</Link>
                     </button>
