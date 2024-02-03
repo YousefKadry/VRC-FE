@@ -19,7 +19,7 @@ const RoomCard = ({ room, index }: { room: any; index: number }) => {
     };
 
     return (
-        <div className="bg-secondary rounded-xl overflow-hidden">
+        <div className="bg-secondary rounded-xl overflow-hidden w-full max-w-md justify-self-center">
             <div className="flex-col space-y-4 text-white mb-3">
                 <div className={'h-36'}>
                     <img
