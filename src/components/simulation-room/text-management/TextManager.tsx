@@ -1,8 +1,10 @@
-import CustomButton from '../../shared/Button';
-import CustomInput from '../../shared/Input';
 import { ChangeEvent, useRef } from 'react';
-import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
 import { useDispatch } from 'react-redux';
+
+import CustomButton from '../../shared/Button';
+import Input from '../../shared/Input';
+
+import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
 import { TAppDispatch } from '../../../store/app-store.ts';
 
 const TextManager = () => {
@@ -28,11 +30,12 @@ const TextManager = () => {
 
     return (
         <div className="w-full px-8">
-            <CustomInput
-                handleChange={handleTextChange}
+            <Input
                 type="text"
+                id="text"
                 placeholder="Enter your text here"
                 className="bg-[#442a68] mt-[95px] pl-[18px] h-[60px] border-[1px] border-[#855EB5] text-center"
+                onChange={handleTextChange}
             />
 
             <div className=" flex items-center justify-end">
