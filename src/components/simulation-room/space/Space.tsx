@@ -13,11 +13,12 @@ import SelectedObjectTransformControls from '../transformation-controller/Select
 import { IAppStore } from '../../../models/app-store';
 
 export interface ISpaceProps {
-    editable: boolean;
+    isInViewMode: boolean;
+    showModeButton: boolean;
 }
 
 const Space: React.FC<ISpaceProps> = (props) => {
-    const { editable } = props;
+    const { isInViewMode, showModeButton } = props;
 
     const orbitRef = useRef(null);
     const selectedRoom = useSelector((store: IAppStore) => store.rooms.selectedRoom);
@@ -27,31 +28,33 @@ const Space: React.FC<ISpaceProps> = (props) => {
     }
 
     return (
-        <Suspense fallback={<Spinner loading={true} />}>
-            <SpaceXRControllers />
+        <div className="w-full h-full bg-simulation-room-bg">
+            <Suspense fallback={<Spinner loading={true} />}>
+                <SpaceXRControllers isInViewMode={isInViewMode} showModeButton={showModeButton} />
 
-            <Canvas style={{ height: '100vh', width: '100%' }} camera={{ position: [-70, 85, -40] }}>
-                <XR>
-                    <OrbitControls ref={orbitRef} />
+                <Canvas style={{ height: '100vh', width: '100%' }} camera={{ position: [-70, 85, -40] }}>
+                    <XR>
+                        <OrbitControls ref={orbitRef} />
 
-                    <ambientLight intensity={Math.PI / 2} />
-                    <spotLight
-                        position={[10, 10, 10]}
-                        angle={0.15}
-                        penumbra={1}
-                        decay={0}
-                        intensity={Math.PI}
-                    />
-                    <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
+                        <ambientLight intensity={Math.PI / 2} />
+                        <spotLight
+                            position={[10, 10, 10]}
+                            angle={0.15}
+                            penumbra={1}
+                            decay={0}
+                            intensity={Math.PI}
+                        />
+                        <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
 
-                    <SpaceObjects />
+                        <SpaceObjects />
 
-                    {editable && selectedRoom.state.selectedObjectInfo && (
-                        <SelectedObjectTransformControls orbitRef={orbitRef} />
-                    )}
-                </XR>
-            </Canvas>
-        </Suspense>
+                        {!isInViewMode && selectedRoom.state.selectedObjectInfo && (
+                            <SelectedObjectTransformControls orbitRef={orbitRef} />
+                        )}
+                    </XR>
+                </Canvas>
+            </Suspense>
+        </div>
     );
 };
 
