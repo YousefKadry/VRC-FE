@@ -12,6 +12,8 @@ import { TAppDispatch } from '../../store/app-store';
 import { IAppStore } from '../../models/app-store';
 import { IRoom, IRoomState } from '../../models/room';
 
+import classes from './SimulationRoom.module.css';
+
 const SimulationRoom: React.FC<{ editable: boolean }> = ({ editable }) => {
     const { roomId } = useParams();
 
@@ -45,19 +47,11 @@ const SimulationRoom: React.FC<{ editable: boolean }> = ({ editable }) => {
 
     return (
         <>
-            <div
-                style={{
-                    width: 320,
-                    position: 'absolute',
-                    right: 0,
-                    top: 0,
-                    zIndex: 10,
-                    opacity: 0.8,
-                }}
-            >
+            <div className={classes['space-leva-container']}>
                 <Leva fill hidden={!selectedObjectInfo || !editable} />
             </div>
-            <div className="flex">
+
+            <div className="flex bg-simulation-room-bg">
                 {editable && <Sidebar />}
                 <Space editable={editable} />
             </div>

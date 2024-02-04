@@ -1,10 +1,10 @@
 .custom-range-input {
     background: linear-gradient(
         to right,
-        #a47cd4 0%,
-        #a47cd4 var(--input-val),
-        #fff var(--input-val),
-        #fff 100%
+        var(--range-input-primary-bg) 0%,
+        var(--range-input-primary-bg) var(--input-val),
+        var(--range-input-secondary-bg) var(--input-val),
+        var(--range-input-secondary-bg) 100%
     );
 }
 
@@ -14,5 +14,5 @@
     height: 15px;
     border-radius: 50%;
     cursor: ew-resize;
-    background-color: #a47cd4;
+    background-color: var(--range-input-primary-bg);
 }
