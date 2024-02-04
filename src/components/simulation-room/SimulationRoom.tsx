@@ -51,7 +51,7 @@ const SimulationRoom: React.FC<{ editable: boolean }> = ({ editable }) => {
                 <Leva fill hidden={!selectedObjectInfo || !editable} />
             </div>
 
-            <div className="flex">
+            <div className="flex overflow-hidden">
                 {editable && <Sidebar />}
                 <Space isInViewMode={!editable} showModeButton={true} />
             </div>
