@@ -39,6 +39,7 @@ const TextManager = () => {
                     'border border-simulation-room-bg',
                     'text-center outline-none'
                 )}
+                inputContainerProps={{ className: 'mt-0' }}
                 placeholder="Enter your text here"
                 onChange={handleTextChange}
             />

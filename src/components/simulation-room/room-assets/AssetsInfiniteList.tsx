@@ -75,6 +75,7 @@ function AssetsInfiniteList<AssetType extends IRoomAssetsItem>(
                     'border border-simulation-room-bg',
                     'text-center outline-none'
                 )}
+                inputContainerProps={{ className: 'mt-0' }}
                 placeholder={searchInputPlaceholder}
                 defaultValue={q}
                 onChange={handleSearchQuery}
