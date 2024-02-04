@@ -40,9 +40,9 @@ const RestPassword = () => {
     return (
         <>
             <title>Reset Password</title>
-            <div className="parent-container flex items-center justify-center w-screen h-screen bg-primary">
-                <div className="child-element flex items-start flex-col w-[80%] sm:w-[60%] lg:w-[36%] h-[55%] bg-secondary rounded-[10px] px-12 py-8 justify-center">
-                    <h1 className="text-white font-bold text-3xl sm:text-4xl selft-start mb-4">
+            <div className="parent-container flex items-center justify-center w-screen h-screen bg-primary ">
+                <div className="child-element flex items-start flex-col w-[80%] sm:w-[60%] lg:w-[36%] bg-secondary rounded-[10px] px-12 py-[45px] justify-center">
+                    <h1 className="text-white font-bold text-3xl sm:text-4xl selft-start mt-5">
                         Reset Password
                     </h1>
 
@@ -94,7 +94,7 @@ const RestPassword = () => {
                         )}
 
                         {/* Reset Button */}
-                        <div className="-mt-1">
+                        <div className="-mt-1 mb-5">
                             <CustomButton>
                                 <span className="text-white">Reset</span>
                             </CustomButton>

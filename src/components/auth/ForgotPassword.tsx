@@ -28,9 +28,9 @@ const ForgotPassword = () => {
     return (
         <>
             <title>Forgot Password</title>
-            <div className="parent-container flex items-center justify-center w-screen h-screen bg-primary">
-                <div className="child-element flex items-start flex-col w-[80%] sm:w-[60%] lg:w-[36%] h-[55%] bg-secondary rounded-[10px] px-12 py-8 justify-center">
-                    <h1 className="text-white font-bold text-3xl sm:text-4xl selft-start mb-4">
+            <div className="parent-container flex items-center justify-center w-4/5 md:2/3 xl:w-1/2 m-auto h-screen bg-primary">
+                <div className="child-element flex items-center flex-col  sm:w-[60%] h-[55%] bg-secondary rounded-[10px] px-12 py-8 justify-center">
+                    <h1 className="text-white font-bold text-2xl md:text-3xl selft-start mb-4 text-center">
                         Forgot Password?
                     </h1>
 

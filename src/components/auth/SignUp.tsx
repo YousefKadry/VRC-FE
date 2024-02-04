@@ -43,9 +43,9 @@ function Signup() {
     <>
       <title>Sign Up</title>
       <div className="flex h-screen">
-        <div className="flex-1 basis-1/3 h-screen bg-primary text-[#FFF] p-6 flex items-center">
+        <div className="flex-1 basis-2/3 lg:basis-1/3 h-screen bg-primary text-[#FFF] p-6 flex items-center">
           <div className="w-full px-5">
-            <h1 className="font-bold text-6xl text-center my-10">SIGN UP</h1>
+            <h1 className="font-bold text-5xl sm:text-6xl text-center my-10">SIGN UP</h1>
             <form className="mt-6 w-full" onSubmit={handleFormSubmitting}>
               {/* Name Input */}
               <div className="flex flex-col sm:flex-row justify-between my-6">

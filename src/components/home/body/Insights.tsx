@@ -10,7 +10,7 @@ const FeaturesSection: FunctionComponent = () => {
           <p className="text-2xl md:text-3xl font-bold text-stats mb-4 md:pt-5">Redefine Your Experience.</p>
           <p className="text-2xl md:text-3xl font-bold text-footer">Reinvent Your Virtual Room.</p>
         </div>
-        <div className="flex flex-col md:flex-row justify-between items-center w-full md:flex-1 px-2 md:px-20">
+        <div className="flex flex-col lg:flex-row justify-between items-center w-full md:flex-1 px-2 md:px-20">
           <div className="flex items-center mb-4 md:mb-0">
             <img src={membersIcon} className="w-10 h-10 text-footer" alt="Members Icon" />
             <div className="ml-2">

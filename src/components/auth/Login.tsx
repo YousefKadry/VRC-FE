@@ -42,7 +42,7 @@ function Login() {
                 />
                 <div className="flex-1 basis-1/3 h-screen bg-primary text-[#FFF] p-6 flex items-center">
                     <div className="w-full px-5">
-                        <h1 className="font-bold text-6xl text-center my-10">SIGN IN</h1>
+                        <h1 className="font-bold text-5xl min-[320px]:text-6xl text-center my-10">SIGN IN</h1>
                         <form onSubmit={handleFormSubmitting} className="mt-6 w-full">
                             {/* Email Input */}
                             <div className="relative w-full py">
@@ -82,7 +82,7 @@ function Login() {
                             <CustomButton type="submit">Sign in</CustomButton>
                         </form>
                         {/* Recovery */}
-                        <div className="flex my-4 items-center justify-between">
+                        <div className="flex flex-col 2xl:flex-row 2xl:items-center my-4 justify-between">
                             <p className="text-[#B6B6B6]">
                                 Don't have an account?{' '}
                                 <a href="/sign-up" className="text-tertiary">

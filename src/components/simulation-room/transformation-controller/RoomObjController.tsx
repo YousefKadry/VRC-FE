@@ -80,7 +80,7 @@ const useRoomObjController = (args: {
         },
         { collapsed: true, order: 3 },
         undefined,
-        [selectedObj]
+        []
     );
 
     useControls(
@@ -98,11 +98,8 @@ const useRoomObjController = (args: {
 
     useEffect(() => {
         updateTransformations({ Translate: position, Rotate: rotation, Scale: scale });
-
-        if (selectedObj && 'color' in selectedObj) {
-            updateColor({ color: (selectedObj as IColorfulObject).color });
-        }
-    }, [position, rotation, scale, selectedObj]);
+        updateColor({ color: (selectedObj as IColorfulObject).color });
+    }, [position, rotation, scale, (selectedObj as IColorfulObject).color]);
 
     return [mouseController.Mode, mouseController['hide controller']];
 };

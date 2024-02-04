@@ -1,35 +1,123 @@
+import React, { FunctionComponent, useState } from 'react';
 import { useDispatch } from 'react-redux';
-
 import { storeAuthSliceActions } from '../../store/slices/auth/auth-slice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Logo from '../../assets/icons/home-logo-dark.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { IAppStore } from '../../models/app-store';
+import { useSelector } from 'react-redux';
 
-const Navbar = () => {
+const FrameHeader: FunctionComponent = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleLogout = () => {
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const isAuth = !!useSelector((store: IAppStore) => store.auth.userInfo);
+    const handleSignInClick = () => {
+        navigate('/login');
+    };
+    const handleSignOutClick = () => {
         dispatch(storeAuthSliceActions.resetAuthInfo());
+        navigate('/home');
+    };
+    const toggleDropdown = () => {
+        setDropdownOpen(!isDropdownOpen);
     };
 
     return (
-        <div className={'flex justify-between items-center bg-secondary py-3 px-10 md:px-20'}>
-            <div className={'py-1'}>
-                <Link to={'/'}>
-                    <h1 className={'text-lg md:text-xl font-bold'}>SIEMENS Virtual Room Creator</h1>
-                </Link>
+        <header className="flex justify-between items-center bg-white p-2 px-3 md:px-20">
+            <div className="flex items-center">
+                <img src={Logo} alt="Logo" className="mr-2 h-6 w-9" />
+                <div className="text-sm font-bold text-black">SIEMENS VRC</div>
             </div>
+            <div className="flex items-center">
+                <div className="hidden md:block">
+                    <nav className="md:flex">
+                        <Link to="/home" className="ml-4 text-black">
+                            Home
+                        </Link>
+                        {isAuth && (
+                            <Link to="/dashboard" className="ml-4 text-black">
+                                Dashboard
+                            </Link>
+                        )}
+                        <Link to="/about" className="ml-4 text-black">
+                            About Us
+                        </Link>
+                        <Link to="/contact" className="ml-4 text-black">
+                            Contact Us
+                        </Link>
+                    </nav>
+                </div>
+                <div className="relative inline-block md:hidden">
+                    <button
+                        id="dropdownHoverButton"
+                        className="text-black hover:bg-homeBg font-medium rounded-lg text-lg px-5 py-2.5 text-center inline-flex items-center"
+                        type="button"
+                        onClick={toggleDropdown}
+                    >
+                        <FontAwesomeIcon icon={faBars} />
+                    </button>
 
-            <div className={'flex-col'}>
+                    {isDropdownOpen && (
+                        <div
+                            id="dropdownHover"
+                            className="z-10 absolute top-full left-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-36 dark:bg-gray-700"
+                        >
+                            <ul
+                                className="py-2 text-md text-gray-700 dark:text-gray-200"
+                                aria-labelledby="dropdownHoverButton"
+                            >
+                                <li>
+                                    <a
+                                        href="/home"
+                                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    >
+                                        Home
+                                    </a>
+                                </li>
+                                {isAuth && (
+                                    <li>
+                                        <a
+                                            href="/dashboard"
+                                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        >
+                                            Dashboard
+                                        </a>
+                                    </li>
+                                )}
+                                <li>
+                                    <a
+                                        href="/about"
+                                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    >
+                                        About Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="/contact"
+                                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    >
+                                        Contact Us
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    )}
+                </div>
+
                 <button
-                    className={
-                        'bg-white text-primary font-medium px-5 py-2 rounded-2xl hover:bg-primary hover:text-white transition duration-500 ease-in-out'
-                    }
-                    onClick={handleLogout}
+                    className="ml-4 bg-secondary rounded-md px-6 py-3 flex items-center"
+                    onClick={isAuth ? handleSignOutClick : handleSignInClick}
                 >
-                    Logout
+                    <div className="text-white">{isAuth ? 'Sign Out' : 'Sign In'}</div>
+                    <span className="text-white ml-2">&rarr;</span>
                 </button>
             </div>
-        </div>
+        </header>
     );
 };
 
-export default Navbar;
+export default FrameHeader;

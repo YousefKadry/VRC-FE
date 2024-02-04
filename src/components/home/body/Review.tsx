@@ -28,7 +28,7 @@ const App: React.FC = () => {
             <div className="p-5 box-border rounded-[20px] m-2.5 shadow text-footer flex flex-col gap-5 bg-gray-50">
                 <form className="flex" onSubmit={handleSubmit}>
                     <div className="flex-1 py-0 px-2.5 flex flex-wrap">
-                        <div className="mb-3.5 relative">
+                        <div className="mb-3.5 relative mr-5">
                             <label htmlFor="name" className="block mb-1.5 font-bold">
                                 Name
                             </label>
@@ -38,11 +38,11 @@ const App: React.FC = () => {
                                     placeholder="Name"
                                     IconSrc={Name}
                                     IconAlt="Name Icon"
-                                    className="p-2 mr-5 w-[320px] lg:w-[250px] !text-black text-sm box-border rounded-3xl border border-gray-300 bg-white shadow-inner transition duration-300 focus:shadow-outline focus:outline-none"
+                                    className="p-2 w-[320px] lg:w-[250px] !text-black text-sm box-border rounded-3xl border border-gray-300 bg-white shadow-inner transition duration-300 focus:shadow-outline focus:outline-none"
                                 />
                             </div>
                         </div>
-                        <div className="mb-3.5 relative">
+                        <div className="mb-3.5 relative mr-5">
                             <label htmlFor="phone" className="block mb-1.5 font-bold">
                                 Phone Number
                             </label>

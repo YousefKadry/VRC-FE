@@ -8,6 +8,7 @@ import { IAppStore } from '../models/app-store';
 import NotFound from '../components/not-found/NotFound.tsx';
 
 const Home = React.lazy(() => import('../components/home/Home.tsx'));
+const Contact = React.lazy(() => import('../components/Contact-Us/Contact.tsx'));
 
 const Login = React.lazy(() => import('../components/auth/Login'));
 const SignUp = React.lazy(() => import('../components/auth/SignUp'));
@@ -29,7 +30,6 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route element={<ProtectedRoutes redirectWhen="AUTH" redirectTo="/dashboard" />}>
-                <Route path="/home" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -45,7 +45,8 @@ const AppRoutes = () => {
                 <Route path="/simulation-room/:roomId" element={<SimulationRoom editable={true} />} />
                 <Route path="/simulation-room/:roomId/view" element={<SimulationRoom editable={false} />} />
             </Route>
-
+            <Route path="/home" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );
