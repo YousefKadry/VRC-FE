@@ -3,12 +3,12 @@ import { twJoin } from 'tailwind-merge';
 import {
     faCamera,
     faCircleNodes,
-    faDownload,
     faFont,
     faHome,
     faImage,
     faShareFromSquare,
     faStarHalfStroke,
+    faCubes,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -19,9 +19,9 @@ const simulationRoomSidebarButtons = [
     { id: ESimulationRoomButtonId.CAMERA_BTN, icon: faCamera, title: 'Camera Control' },
     { id: ESimulationRoomButtonId.TEXT_BTN, icon: faFont, title: 'Add Text' },
     { id: ESimulationRoomButtonId.HDRIs_ASSETS_BTN, icon: faImage, title: 'Room Background' },
-    { id: ESimulationRoomButtonId.GLTFs_ASSETS_BTN, icon: faDownload, title: 'Models' },
+    { id: ESimulationRoomButtonId.GLTFs_ASSETS_BTN, icon: faCircleNodes, title: 'Models' },
+    { id: ESimulationRoomButtonId.MESHES_BTN, icon: faCubes, title: 'Meshes' },
     { id: ESimulationRoomButtonId.SPECIAL_EFFECT_BTN, icon: faStarHalfStroke, title: 'Special Effects' },
-    { id: ESimulationRoomButtonId.MESHES_BTN, icon: faCircleNodes, title: 'Meshes' },
     { id: ESimulationRoomButtonId.SHARING_BTN, icon: faShareFromSquare, title: 'Share' },
 ];
 
@@ -40,18 +40,19 @@ const SidebarButtons: React.FC<ISimulationRoomSidebarButtonsProps> = (props) => 
                     <button
                         key={btn.id}
                         className={twJoin(
+                            'text-simulation-room-sidebar-color',
                             'py-4 w-full outline-none',
                             btn.id === ESimulationRoomButtonId.BACK_HOME_BTN || btn.id === activeButtonId
-                                ? 'bg-[#311B52]'
+                                ? 'bg-simulation-room-sidebar-menu-bg'
                                 : '',
                             btn.id === ESimulationRoomButtonId.BACK_HOME_BTN
-                                ? 'opacity-85 hover:opacity-100 border-b-2'
+                                ? 'opacity-85 hover:opacity-100 border-b-2 border-simulation-room-sidebar-color'
                                 : ''
                         )}
                         title={btn.title}
                         onClick={buttonClickHandler.bind(null, btn.id)}
                     >
-                        <FontAwesomeIcon className="text-white text-2xl" icon={btn.icon} />
+                        <FontAwesomeIcon className="text-2xl" icon={btn.icon} />
                     </button>
                 );
             })}

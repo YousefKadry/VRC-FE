@@ -71,9 +71,11 @@ function AssetsInfiniteList<AssetType extends IRoomAssetsItem>(
                 type="text"
                 id="assets-search-input"
                 className={twJoin(
-                    'w-full text-center outline-none',
-                    'bg-[#442a68] placeholder:text-white border-[1px] border-purple-700'
+                    'bg-simulation-room-sidebar-bg placeholder:text-simulation-room-sidebar-color text-simulation-room-sidebar-color',
+                    'border border-simulation-room-bg',
+                    'text-center outline-none'
                 )}
+                inputContainerProps={{ className: 'mt-0' }}
                 placeholder={searchInputPlaceholder}
                 defaultValue={q}
                 onChange={handleSearchQuery}
@@ -92,7 +94,12 @@ function AssetsInfiniteList<AssetType extends IRoomAssetsItem>(
                         );
                     })}
                 </ul>
-                {isLoading && <BeatLoader className="p-5 text-center" color="white" />}
+                {isLoading && (
+                    <BeatLoader
+                        className="p-5 text-center"
+                        color="rgb(var(--simulation-room-sidebar-menu-color))"
+                    />
+                )}
             </div>
         </div>
     );

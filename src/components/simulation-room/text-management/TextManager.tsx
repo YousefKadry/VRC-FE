@@ -35,9 +35,11 @@ const TextManager = () => {
                 type="text"
                 id="text"
                 className={twJoin(
-                    'bg-[#442a68] placeholder:text-white border-[1px] border-purple-700',
+                    'bg-simulation-room-sidebar-bg placeholder:text-simulation-room-sidebar-color text-simulation-room-sidebar-color',
+                    'border border-simulation-room-bg',
                     'text-center outline-none'
                 )}
+                inputContainerProps={{ className: 'mt-0' }}
                 placeholder="Enter your text here"
                 onChange={handleTextChange}
             />
@@ -45,7 +47,7 @@ const TextManager = () => {
             <div className="flex items-center justify-end">
                 <CustomButton
                     className={twJoin(
-                        'from-RoomButtonGradient1 to-RoomButtonGradient2',
+                        'text-simulation-room-gradient-color from-simulation-room-gradient-from to-simulation-room-gradient-to',
                         'w-fit max-w-full px-12 py-2.5 text-base rounded-lg'
                     )}
                     onClick={handleInsertText}

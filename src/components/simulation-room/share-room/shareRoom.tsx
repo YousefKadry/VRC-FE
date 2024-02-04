@@ -29,7 +29,7 @@ const ShareRoom = () => {
             <div className="flex-col w-full">
                 <CustomButton
                     className={twJoin(
-                        'from-RoomButtonGradient1 to-RoomButtonGradient2',
+                        'text-simulation-room-gradient-color from-simulation-room-gradient-from to-simulation-room-gradient-to',
                         'w-full px-4 py-3 mt-0 text-base rounded-lg'
                     )}
                     onClick={handleShareToggle}

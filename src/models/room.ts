@@ -9,7 +9,11 @@ export interface IRoom<StateType> {
 
 export type TUpdatableRoomInfo = Partial<Omit<IRoom<any>, 'id' | 'state' | 'isUpdated'>>;
 
+export type TCoord = 'x' | 'y' | 'z';
+
 export type TRoomObjectsType = 'meshes' | 'clouds' | 'models' | 'texts';
+
+export type TRoomEffects = 'stars' | 'sky' | 'basePlane';
 
 export interface IRoomState {
     meshes: Record<string, IMesh>;

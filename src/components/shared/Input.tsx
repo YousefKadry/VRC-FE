@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 export interface InputProps
     extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
     id: string;
+    inputContainerProps?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
     inputLabel?: string;
     inputError?: string;
     IconSrc?: string;
@@ -11,10 +12,22 @@ export interface InputProps
 }
 
 const Input: React.FC<InputProps> = (props) => {
-    const { id, type, className, inputLabel, inputError, IconSrc, IconAlt, ...restProps } = props;
+    const {
+        id,
+        type,
+        className,
+        inputContainerProps,
+        inputLabel,
+        inputError,
+        IconSrc,
+        IconAlt,
+        ...restProps
+    } = props;
+
+    const { className: inputContainerClassName, ...inputPropsRestProps } = inputContainerProps || {};
 
     return (
-        <div className="w-full mt-4">
+        <div className={twMerge('w-full mt-4', inputContainerClassName)} {...inputPropsRestProps}>
             {inputLabel && (
                 <label
                     className="block text-white text-[15px] ml-1 mb-0.5 truncate"

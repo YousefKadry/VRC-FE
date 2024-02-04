@@ -23,9 +23,12 @@ const SharingButton: React.FC<SharingButtonProps> = ({ sharingURL }) => {
     return (
         <CustomButton
             onClick={onShare}
-            className={twJoin('from-RoomButtonGradient1 to-RoomButtonGradient2', 'w-fit m-0 rounded-lg')}
+            className={twJoin(
+                'from-simulation-room-gradient-from to-simulation-room-gradient-to',
+                'w-fit m-0 rounded-lg'
+            )}
         >
-            <FontAwesomeIcon className="text-white text-xl" icon={faShare} />
+            <FontAwesomeIcon className="text-simulation-room-gradient-color text-xl" icon={faShare} />
         </CustomButton>
     );
 };

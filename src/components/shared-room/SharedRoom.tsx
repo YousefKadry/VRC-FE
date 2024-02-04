@@ -1,13 +1,13 @@
-import  { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Space from '../simulation-room/space/Space';
 
 import { TAppDispatch } from '../../store/app-store';
-import { fetchSharedRoomByIdThunk} from '../../store/slices/rooms/rooms-actions';
+import { fetchSharedRoomByIdThunk } from '../../store/slices/rooms/rooms-actions';
 
-const SharedRoom=()=>{
+const SharedRoom = () => {
     const { roomId } = useParams();
     const dispatch = useDispatch<TAppDispatch>();
 
@@ -19,9 +19,7 @@ const SharedRoom=()=>{
         dispatch(fetchSharedRoomByIdThunk(roomId));
     }, [roomId]);
 
-    return  <Space editable={false} />
-    
-
-}
+    return <Space isInViewMode={true} showModeButton={false} />;
+};
 
 export default SharedRoom;

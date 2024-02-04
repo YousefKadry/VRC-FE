@@ -7,6 +7,7 @@ import Switch from '../../ui/switch/Switch';
 
 import { IAppStore } from '../../../models/app-store';
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice';
+import { TRoomEffects } from '../../../models/room';
 
 const SpecialEffects: React.FC = () => {
     const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const SpecialEffects: React.FC = () => {
         (store: IAppStore) => store.rooms.selectedRoom?.state.basePlane ?? true
     );
 
-    const handleEffectsChanging = (checked: boolean, id: 'stars' | 'sky' | 'basePlane') => {
+    const handleEffectsChanging = (checked: boolean, id: TRoomEffects) => {
         dispatch(storeRoomsSliceActions.updateSelectedRoomState({ [id]: checked }));
     };
 
@@ -24,34 +25,37 @@ const SpecialEffects: React.FC = () => {
         dispatch(storeRoomsSliceActions.addObjects({ clouds: [{ color: '#ffffff' }] }));
     };
 
+    const effects: Array<{ id: TRoomEffects; title: string; checked: boolean }> = [
+        { id: 'stars', title: 'Stars', checked: starsVisibility },
+        { id: 'sky', title: 'Sky', checked: skyVisibility },
+        { id: 'basePlane', title: 'Base Plane', checked: basePlaneVisibility },
+    ];
+
     return (
         <div className="w-full flex flex-col gap-6">
             <div className="flex flex-col gap-y-4 flex-wrap overflow-auto">
-                <Switch
-                    id="stars"
-                    checked={starsVisibility}
-                    title="Stars"
-                    toggleHandler={(checked) => handleEffectsChanging(checked, 'stars')}
-                />
-
-                <Switch
-                    id="sky"
-                    checked={skyVisibility}
-                    title="Sky"
-                    toggleHandler={(checked) => handleEffectsChanging(checked, 'sky')}
-                />
-
-                <Switch
-                    id="basePlane"
-                    checked={basePlaneVisibility}
-                    title="Base Plane"
-                    toggleHandler={(checked) => handleEffectsChanging(checked, 'basePlane')}
-                />
+                {effects.map((effect) => {
+                    return (
+                        <Switch
+                            key={effect.id}
+                            id={effect.id}
+                            checked={effect.checked}
+                            title={effect.title}
+                            onSwitchBg="rgb(var(--simulation-room-sidebar-bg))"
+                            onSwitchHandleBg="rgb(var(--simulation-room-sidebar-color))"
+                            onSwitchColor="rgb(var(--simulation-room-sidebar-color))"
+                            offSwitchBg="rgb(var(--simulation-room-sidebar-menu-color))"
+                            offSwitchHandleBg="rgb(var(--simulation-room-sidebar-menu-bg))"
+                            offSwitchColor="rgb(var(--simulation-room-sidebar-menu-bg))"
+                            toggleHandler={(checked) => handleEffectsChanging(checked, effect.id)}
+                        />
+                    );
+                })}
             </div>
 
             <CustomButton
                 className={twJoin(
-                    'from-RoomButtonGradient1 to-RoomButtonGradient2',
+                    'text-simulation-room-gradient-color from-simulation-room-gradient-from to-simulation-room-gradient-to',
                     'w-full px-4 py-3 mt-0 text-base rounded-lg'
                 )}
                 onClick={handleAddClouds}
