@@ -8,6 +8,7 @@ import { TAppDispatch } from '../../store/app-store';
 import { ResetPasswordThunk } from '../../store/slices/auth/auth-actions';
 
 import handlePasswordInput from './hooks/handelPasswordInput';
+import { storeUISliceActions } from '../../store/slices/ui/ui-slice.ts';
 
 const RestPassword = () => {
     const dispatch = useDispatch<TAppDispatch>();
@@ -18,8 +19,23 @@ const RestPassword = () => {
     const { token } = useParams<{ token: string }>();
 
     const handleResetPassword = () => {
+        if (passwordHandler.password === '' || repeatPasswordHandler.password === '') {
+            dispatch(
+                storeUISliceActions.setNotification({
+                    type: 'error',
+                    content: 'Please fill in all the fields',
+                })
+            );
+            return;
+        }
+
         if (passwordHandler.password !== repeatPasswordHandler.password) {
-            alert('Passwords do not match!');
+            dispatch(
+                storeUISliceActions.setNotification({
+                    type: 'error',
+                    content: 'Passwords do not match',
+                })
+            );
             return;
         }
 

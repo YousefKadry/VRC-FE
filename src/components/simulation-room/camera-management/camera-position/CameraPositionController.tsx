@@ -7,7 +7,7 @@ const CameraPositionController = () => {
 
     return (
         <div>
-            <h2 className="text-xl font-bold my-4">Position</h2>
+            <h2 className="text-xl font-bold mb-4">Position</h2>
 
             <div className="flex flex-col gap-4">
                 <RangeInput
