@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { twJoin } from 'tailwind-merge';
 
 import CustomButton from '../../shared/Button';
-import CustomInput from '../../shared/Input';
+import Input from '../../shared/Input';
 
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
 import { TAppDispatch } from '../../../store/app-store.ts';
@@ -31,14 +31,15 @@ const TextManager = () => {
 
     return (
         <div className="w-full">
-            <CustomInput
+            <Input
                 type="text"
+                id="text"
                 className={twJoin(
                     'bg-[#442a68] placeholder:text-white border-[1px] border-purple-700',
                     'text-center outline-none'
                 )}
                 placeholder="Enter your text here"
-                handleChange={handleTextChange}
+                onChange={handleTextChange}
             />
 
             <div className="flex items-center justify-end">

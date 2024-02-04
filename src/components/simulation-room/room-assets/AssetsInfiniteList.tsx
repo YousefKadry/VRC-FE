@@ -4,7 +4,7 @@ import { debounce } from 'lodash';
 import { twJoin } from 'tailwind-merge';
 import { BeatLoader } from 'react-spinners';
 
-import CustomInput from '../../shared/Input';
+import Input from '../../shared/Input';
 
 import RoomAssetsItem from './RoomAssetsItem';
 import { IRoomAssetsInfo, IRoomAssetsItem } from '../../../models/room-assets';
@@ -67,15 +67,16 @@ function AssetsInfiniteList<AssetType extends IRoomAssetsItem>(
 
     return (
         <div className={'flex flex-col space-y-8 w-full h-full'}>
-            <CustomInput
+            <Input
                 type="text"
+                id="assets-search-input"
                 className={twJoin(
                     'w-full text-center outline-none',
                     'bg-[#442a68] placeholder:text-white border-[1px] border-purple-700'
                 )}
                 placeholder={searchInputPlaceholder}
                 defaultValue={q}
-                handleChange={handleSearchQuery}
+                onChange={handleSearchQuery}
             />
 
             <div id={infiniteListContainerId} className="overflow-auto h-full">
