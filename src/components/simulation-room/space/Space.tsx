@@ -32,7 +32,11 @@ const Space: React.FC<ISpaceProps> = (props) => {
             <Suspense fallback={<Spinner loading={true} />}>
                 <SpaceXRControllers isInViewMode={isInViewMode} showModeButton={showModeButton} />
 
-                <Canvas style={{ height: '100vh', width: '100%' }} camera={{ position: [-70, 85, -40] }}>
+                <Canvas
+                    style={{ height: '100vh', width: '100%' }}
+                    camera={{ position: [-70, 85, -40] }}
+                    shadows
+                >
                     <XR>
                         <OrbitControls ref={orbitRef} />
 
