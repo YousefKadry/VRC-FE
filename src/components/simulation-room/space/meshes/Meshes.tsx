@@ -27,6 +27,8 @@ const Meshes = () => {
                 onClick={() => handleObjectSelection(id)}
                 rotation={RoomObjectUtil.convertRotationFromDegreeToEuler(rotation)}
                 {...restProps}
+                castShadow
+                receiveShadow
             >
                 <MeshGeometry geometryType={geometryType} />
                 <meshStandardMaterial color={color} side={DoubleSide} />

@@ -34,6 +34,8 @@ const Texts = () => {
                 rotation={RoomObjectUtil.convertRotationFromDegreeToEuler(rotation)}
                 scale={scale}
                 position={position}
+                castShadow
+                receiveShadow
             >
                 <textGeometry args={[text, { font, size: 1, height: 0.3 }]} />
                 <meshStandardMaterial color={color} side={DoubleSide} />

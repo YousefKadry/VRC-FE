@@ -36,6 +36,9 @@ const SelectedObjectTransformControls: React.FC<IObjectTransformControlsProps> =
         unselectObjectHandler: () => {
             dispatch(storeRoomsSliceActions.selectObject(null));
         },
+        changeIntensityHandler: (intensity) => {
+            dispatch(storeRoomsSliceActions.updateSelectedObject({ intensity }));
+        },
     });
 
     const handelMouseTransformation = (event: any) => {

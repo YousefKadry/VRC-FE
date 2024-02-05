@@ -18,7 +18,7 @@ const ShareRoom = () => {
     };
 
     return (
-        <>
+        <div className="w-full overflow-auto">
             {isPublicLocal ? (
                 <SharingComponent
                     sharingURL={`${document.location.origin}/shared-room/${roomID}`}
@@ -37,7 +37,7 @@ const ShareRoom = () => {
                     {isPublicLocal ? 'Change room access to private' : 'Share Room'}
                 </CustomButton>
             </div>
-        </>
+        </div>
     );
 };
 

@@ -9,6 +9,7 @@ import Texts from './texts/Texts';
 import Meshes from './meshes/Meshes';
 
 import { IAppStore } from '../../../models/app-store';
+import Lights from './lights/Lights';
 
 const SpaceObjects = () => {
     const selectedRoom = useSelector((store: IAppStore) => store.rooms.selectedRoom);
@@ -20,6 +21,7 @@ const SpaceObjects = () => {
 
     return (
         <>
+            <Lights />
             {selectedRoom.state.basePlane && (
                 <Plane args={[100, 100, 15, 15]} rotation={[1.5 * Math.PI, 0, 0]} position={[0, 0, 0]}>
                     <meshStandardMaterial attach="material" color="#f9c74f" wireframe />
