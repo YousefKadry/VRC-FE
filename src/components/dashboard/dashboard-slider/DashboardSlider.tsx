@@ -79,13 +79,13 @@ const DashboardSlider: React.FC<{ activeSliderHandler: (activeSlider: number) =>
                 style={{ maxHeight: '80vh' } as any}
             >
                 <SwiperSlide>
-                    <DashboardSliderImg imgSrc={DashboardEnterRoomImg} />
+                    <DashboardSliderImg imgSrc={DashboardEnterRoomImg} imgAlt="enter-room-id" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <DashboardSliderImg imgSrc={DashboardBuildRoomImg} />
+                    <DashboardSliderImg imgSrc={DashboardBuildRoomImg} imgAlt="build-new-room" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <DashboardSliderImg imgSrc={DashboardViewRoomImg} />
+                    <DashboardSliderImg imgSrc={DashboardViewRoomImg} imgAlt="view-rooms" />
                 </SwiperSlide>
             </Swiper>
         </div>

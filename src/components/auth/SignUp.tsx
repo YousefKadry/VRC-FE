@@ -53,7 +53,7 @@ function Signup() {
 
                         <form className="mt-6 w-full" onSubmit={handleFormSubmitting}>
                             {/* Name Input */}
-                            <div className="flex flex-col sm:flex-row justify-between my-6">
+                            <div className="flex flex-col sm:flex-row gap-x-4 justify-between">
                                 <Input
                                     type="text"
                                     id="fname"
