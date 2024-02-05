@@ -42,7 +42,6 @@
 
 - **/**: Serves as the main layout for the application.
   - *Nested Routes:*
-    - **/dashboard**: Allows user to navigate through different application features.
     - **/rooms**: Displays information and features related to the user's rooms.
     - **/simulation-room/:roomId**: Displays the simulation room creator (including sidebar and controls).
     - **/shared-room/:roomId**: Displays a public simulation room in share mode (user does not have to be the project owner).
