@@ -1,35 +1,32 @@
 import RangeInput from '../../../ui/range-input/RangeInput';
 
+import { TCoord } from '../../../../models/room';
+
+const coords: Array<TCoord> = ['x', 'y', 'z'];
+
 const CameraPositionController = () => {
-    const handlePositionChanging = (coord: 'x' | 'y' | 'z', event: React.ChangeEvent<HTMLInputElement>) => {
+    const handlePositionChanging = (coord: TCoord, event: React.ChangeEvent<HTMLInputElement>) => {
         console.log(coord, event.target.value);
     };
 
     return (
         <div>
-            <h2 className="text-xl font-bold my-4">Position</h2>
+            <h2 className="text-xl font-bold mb-4">Position</h2>
 
             <div className="flex flex-col gap-4">
-                <RangeInput
-                    id="xCoord"
-                    name="xCoord"
-                    label="X"
-                    onChange={handlePositionChanging.bind(null, 'x')}
-                />
-
-                <RangeInput
-                    id="yCoord"
-                    name="yCoord"
-                    label="Y"
-                    onChange={handlePositionChanging.bind(null, 'y')}
-                />
-
-                <RangeInput
-                    id="zCoord"
-                    name="zCoord"
-                    label="Z"
-                    onChange={handlePositionChanging.bind(null, 'z')}
-                />
+                {coords.map((coord) => {
+                    return (
+                        <RangeInput
+                            key={coord}
+                            id={`${coord}Coord`}
+                            name={`${coord}Coord`}
+                            label={coord.toUpperCase()}
+                            primaryBg="rgb(var(--simulation-room-sidebar-bg))"
+                            secondaryBg="rgb(var(--simulation-room-sidebar-color))"
+                            onChange={handlePositionChanging.bind(null, coord)}
+                        />
+                    );
+                })}
             </div>
         </div>
     );

@@ -15,13 +15,20 @@ export default {
                 gradientSimulationBox2: 'rgba(125, 101, 160, 0.40)',
                 gradientSimulationBox1alt: 'rgba(143, 104, 206, 0.2)',
                 gradientSimulationBox2alt: 'rgba(143, 104, 206, 0.2)',
-                RoomButtonGradient1:'#501794',
-                RoomButtonGradient2:'#7E5DAF'
-                
+                RoomButtonGradient1: '#501794',
+                RoomButtonGradient2: '#7E5DAF',
+
+                // simulation-room
+                'simulation-room-bg': 'rgb(var(--simulation-room-bg))',
+                'simulation-room-sidebar-bg': 'rgb(var(--simulation-room-sidebar-bg))',
+                'simulation-room-sidebar-color': 'rgb(var(--simulation-room-sidebar-color))',
+                'simulation-room-sidebar-menu-bg': 'rgb(var(--simulation-room-sidebar-menu-bg))',
+                'simulation-room-sidebar-menu-color': 'rgb(var(--simulation-room-sidebar-menu-color))',
+                'simulation-room-gradient-from': 'rgb(var(--simulation-room-gradient-from))',
+                'simulation-room-gradient-to': 'rgb(var(--simulation-room-gradient-to))',
+                'simulation-room-gradient-color': 'rgb(var(--simulation-room-gradient-color))',
             },
         },
     },
-    plugins: [
-       
-    ],
+    plugins: [],
 };

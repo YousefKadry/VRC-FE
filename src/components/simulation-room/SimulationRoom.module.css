@@ -1,0 +1,28 @@
+.space-leva-container {
+    --leva-colors-elevation1: rgb(var(--simulation-room-sidebar-menu-bg));
+    --leva-colors-elevation2: rgb(var(--simulation-room-sidebar-bg));
+    --leva-colors-elevation3: rgb(var(--simulation-room-sidebar-menu-bg));
+
+    --leva-colors-highlight1: rgba(var(--simulation-room-sidebar-menu-color), 0.5);
+    --leva-colors-highlight2: rgba(var(--simulation-room-sidebar-menu-color), 0.7);
+    --leva-colors-highlight3: rgba(var(--simulation-room-sidebar-menu-color));
+
+    --leva-colors-accent1: rgb(var(--simulation-room-sidebar-menu-color), 0.2);
+    --leva-colors-accent2: rgb(var(--simulation-room-sidebar-menu-bg));
+    --leva-colors-accent3: rgb(var(--simulation-room-sidebar-menu-color), 0.2);
+
+    position: fixed;
+    right: 0.75rem;
+    top: 0.75rem;
+    width: 320px;
+    z-index: 10;
+}
+
+.space-leva-container [class*='leva-c-PJLV'] {
+    --leva-colors-folderTextColor: rgba(var(--simulation-room-sidebar-color)) !important;
+    --leva-colors-folderWidgetColor: rgba(var(--simulation-room-sidebar-color)) !important;
+}
+
+.space-leva-container [class*='leva-c-bHmsMj'] {
+    background: var(--leva-colors-elevation3);
+}

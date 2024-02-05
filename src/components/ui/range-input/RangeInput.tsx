@@ -17,10 +17,29 @@ const getInputPercentageVal = (val?: any, min?: any, max?: any) => {
     return ((valNum - minNum) / (maxNum - minNum)) * 100;
 };
 
-const RangeInput: React.FC<
-    React.InputHTMLAttributes<HTMLInputElement> & { id: string; name: string; label?: string }
-> = (props) => {
-    const { id, name, label, className, value, min, max, style, onInput, ...restProps } = props;
+export interface IRangeInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    id: string;
+    name: string;
+    label?: string;
+    primaryBg?: string;
+    secondaryBg?: string;
+}
+
+const RangeInput: React.FC<IRangeInputProps> = (props) => {
+    const {
+        id,
+        name,
+        label,
+        className,
+        value,
+        min,
+        max,
+        style,
+        primaryBg,
+        secondaryBg,
+        onInput,
+        ...restProps
+    } = props;
 
     const [inputValue, setInputValue] = useState(value || getDefaultValue(min, max));
 
@@ -48,7 +67,14 @@ const RangeInput: React.FC<
                 value={inputValue}
                 min={min}
                 max={max}
-                style={{ ...style, '--input-val': `${getInputPercentageVal(inputValue, min, max)}%` } as any}
+                style={
+                    {
+                        ...style,
+                        '--input-val': `${getInputPercentageVal(inputValue, min, max)}%`,
+                        '--range-input-primary-bg': primaryBg || 'black',
+                        '--range-input-secondary-bg': secondaryBg || 'white',
+                    } as any
+                }
                 onInput={handleInputting}
                 {...restProps}
             />

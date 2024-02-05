@@ -1,4 +1,6 @@
 import { useDispatch } from 'react-redux';
+import { twJoin } from 'tailwind-merge';
+
 import { storeRoomsSliceActions } from '../../../../store/slices/rooms/rooms-slice';
 import { TMeshGeometryType } from '../../../../models/room';
 
@@ -19,16 +21,20 @@ const MeshItem: React.FC<IMeshItemProps> = (props) => {
     };
 
     return (
-        <div
-            className={'rounded-lg bg-gradient-to-r from-[#8c43e6] to-[#8b6bb2] p-0.5 cursor-grabbing'}
+        <li
+            className={twJoin(
+                'bg-gradient-to-r from-simulation-room-gradient-from to-simulation-room-gradient-to',
+                'text-simulation-room-gradient-color',
+                'rounded-lg p-1 cursor-grabbing'
+            )}
             onClick={handleMeshItemClicked}
         >
             <img className={'rounded-lg w-full aspect-square'} src={props.imgURL} />
 
             <div className={'p-2'}>
-                <h4 className={'text-white font-bold'}>{props.type}</h4>
+                <h4 className={'font-bold capitalize text-sm'}>{props.type}</h4>
             </div>
-        </div>
+        </li>
     );
 };
 
