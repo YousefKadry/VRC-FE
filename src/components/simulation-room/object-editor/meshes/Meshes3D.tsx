@@ -1,5 +1,6 @@
-import { TMeshGeometryType } from '../../../../models/room';
 import MeshItem from './MeshItem';
+
+import { TMeshGeometryType } from '../../../../models/room';
 
 const geometryTypes: Record<TMeshGeometryType, { imgURL: string }> = {
     box: { imgURL: 'https://i.postimg.cc/pX1q2Xky/box.jpg' },
@@ -22,16 +23,16 @@ const geometryTypes: Record<TMeshGeometryType, { imgURL: string }> = {
     tube: { imgURL: 'https://i.postimg.cc/SRPCpjqh/tube.jpg' },
 };
 
-const Meshses3D = () => {
+const Meshes3D = () => {
     return (
-        <div className={'overflow-y-auto max-h-[86vh]'}>
-            <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 '}>
+        <div className={'overflow-auto h-full'}>
+            <ul className={'grid grid-cols-2 gap-4 select-none'}>
                 {Object.entries(geometryTypes).map(([type, info]) => {
                     return <MeshItem key={type} type={type as TMeshGeometryType} imgURL={info.imgURL} />;
                 })}
-            </div>
+            </ul>
         </div>
     );
 };
 
-export default Meshses3D;
+export default Meshes3D;

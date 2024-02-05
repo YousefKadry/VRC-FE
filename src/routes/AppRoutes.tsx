@@ -22,6 +22,7 @@ const SimulationRoom = React.lazy(() => import('../components/simulation-room/Si
 
 const AppRoutes = () => {
     const hasAutoLoginFinished = !!useSelector((store: IAppStore) => store.auth.hasAutoLoginFinished);
+    const isAuth = !!useSelector((store: IAppStore) => store.auth.userInfo?.email);
 
     if (!hasAutoLoginFinished) {
         return null;
@@ -29,6 +30,8 @@ const AppRoutes = () => {
 
     return (
         <Routes>
+            <Route index element={<Navigate to={isAuth ? '/dashboard' : '/home'} replace />} />
+
             <Route element={<ProtectedRoutes redirectWhen="AUTH" redirectTo="/dashboard" />}>
                 <Route path="/login" element={<Login />} />
                 <Route path="/sign-up" element={<SignUp />} />
@@ -36,15 +39,15 @@ const AppRoutes = () => {
                 <Route path="/reset-password/:token" element={<RestPassword />} />
             </Route>
 
-            <Route element={<ProtectedRoutes redirectWhen="NOT_AUTH" redirectTo="/" />}>
+            <Route element={<ProtectedRoutes redirectWhen="NOT_AUTH" redirectTo="/login" />}>
                 <Route path="/" element={<MainLayout />}>
-                    <Route index element={<Navigate to="/dashboard" replace />} />
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="rooms" element={<Rooms />} />
                 </Route>
                 <Route path="/simulation-room/:roomId" element={<SimulationRoom editable={true} />} />
                 <Route path="/simulation-room/:roomId/view" element={<SimulationRoom editable={false} />} />
             </Route>
+
             <Route path="/home" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />

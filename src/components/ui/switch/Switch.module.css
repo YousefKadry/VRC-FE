@@ -1,0 +1,12 @@
+.switch-btn [class*='react-switch-bg'] {
+    background: var(--switch-bg) !important;
+}
+
+.switch-btn [class*='react-switch-handle'] {
+    background: var(--switch-handle-bg) !important;
+    box-shadow: none !important;
+}
+
+.switch-btn [class*='react-switch-bg'] svg path {
+    fill: var(--switch-color) !important;
+}

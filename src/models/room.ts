@@ -9,17 +9,24 @@ export interface IRoom<StateType> {
 
 export type TUpdatableRoomInfo = Partial<Omit<IRoom<any>, 'id' | 'state' | 'isUpdated'>>;
 
-export type TRoomObjectsType = 'meshes' | 'clouds' | 'models' | 'texts';
+export type TRoomObjectsType = 'meshes' | 'clouds' | 'models' | 'texts' | 'lights';
+
+export type TCoord = 'x' | 'y' | 'z';
+
+export type TRoomEffects = 'stars' | 'sky' | 'basePlane' | 'ambientLight' | 'hideLightIcons';
 
 export interface IRoomState {
     meshes: Record<string, IMesh>;
     clouds: Record<string, ICloud>;
     models: Record<string, IModel>;
+    lights: Record<string, ILight>;
     background: string;
     texts: Record<string, IText>;
     stars: boolean;
     sky: boolean;
     basePlane: boolean;
+    ambientLight: boolean;
+    hideLightIcons: boolean;
     selectedObjectInfo: {
         type: TRoomObjectsType;
         id: IRoomObject['id'];
@@ -27,7 +34,7 @@ export interface IRoomState {
 }
 
 export type TUpdatableRoomStateInfo = Partial<
-    Omit<IRoomState, 'meshes' | 'clouds' | 'models' | 'texts' | 'selectedObjectInfo'>
+    Omit<IRoomState, 'meshes' | 'clouds' | 'models' | 'texts' | 'lights' | 'selectedObjectInfo'>
 >;
 
 export type TVec3 = [number, number, number];
@@ -44,8 +51,11 @@ export type TRoomObjectKeys = 'id' | 'position' | 'rotation' | 'scale';
 export interface IColorfulObject extends IRoomObject {
     color: string;
 }
+export interface IObjectWithIntensity extends IColorfulObject {
+    intensity: number;
+}
 
-export type TUpdatableRoomObjectInfo = Partial<Omit<IColorfulObject, 'id'>>;
+export type TUpdatableRoomObjectInfo = Partial<Omit<IObjectWithIntensity, 'id'>>;
 
 export interface ICloud extends IColorfulObject {}
 
@@ -79,4 +89,8 @@ export type TMeshGeometryType =
 
 export interface IMesh extends IColorfulObject {
     geometryType: TMeshGeometryType;
+}
+
+export interface ILight extends IObjectWithIntensity {
+    type: 'point' | 'spot';
 }

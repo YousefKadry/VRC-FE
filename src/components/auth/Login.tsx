@@ -1,16 +1,17 @@
+import { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 
-import bg from '../../assets/BackgroundImage.png';
-import EmailIcon from '../../assets/Email.svg';
-import PasswordIcon from '../../assets/Password.svg';
-import CustomInput from '../shared/Input';
+import Input from '../shared/Input';
 import CustomButton from '../shared/Button';
+
 import handleRequriedInput from './hooks/handelRequiredInput';
 import handelButtonClick from './hooks/handelButtonClick';
-import { ChangeEvent } from 'react';
-
 import { loginThunk } from '../../store/slices/auth/auth-actions';
 import { TAppDispatch } from '../../store/app-store';
+
+import PasswordIcon from '../../assets/Password.svg';
+import EmailIcon from '../../assets/Email.svg';
+import bg from '../../assets/BackgroundImage.png';
 
 function Login() {
     const emailHandeler = handleRequriedInput('Email');
@@ -35,6 +36,7 @@ function Login() {
     return (
         <>
             <title>Login</title>
+
             <div className="flex h-screen">
                 <div
                     className="flex-1 hidden sm:block sm:basis-1/8 md:basis-1/2 lg:basis-2/3  w-full bg-primary"
@@ -43,44 +45,42 @@ function Login() {
                 <div className="flex-1 basis-1/3 h-screen bg-primary text-[#FFF] p-6 flex items-center">
                     <div className="w-full px-5">
                         <h1 className="font-bold text-5xl min-[320px]:text-6xl text-center my-10">SIGN IN</h1>
+
                         <form onSubmit={handleFormSubmitting} className="mt-6 w-full">
                             {/* Email Input */}
-                            <div className="relative w-full py">
-                                <CustomInput
-                                    type="text"
-                                    placeholder="Enter your email"
-                                    IconSrc={EmailIcon}
-                                    IconAlt="Email Icon"
-                                    className=" bg-secondary"
-                                    value={emailHandeler.value}
-                                    handleChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                        emailHandeler.handlevalueChange(e.target.value)
-                                    }
-                                />
-                            </div>
-                            {emailHandeler.error && (
-                                <p className="text-red-500 -mb-4 ml-2">{emailHandeler.error}</p>
-                            )}
+                            <Input
+                                type="text"
+                                id="email"
+                                placeholder="Enter your email"
+                                IconSrc={EmailIcon}
+                                IconAlt="Email Icon"
+                                className=" bg-secondary"
+                                value={emailHandeler.value}
+                                inputError={emailHandeler.error}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                    emailHandeler.handlevalueChange(e.target.value)
+                                }
+                            />
+
                             {/* Password Input */}
-                            <div className="relative my-5">
-                                <CustomInput
-                                    type="password"
-                                    placeholder="Password"
-                                    IconSrc={PasswordIcon}
-                                    IconAlt="Password Icon"
-                                    className=" bg-secondary"
-                                    value={passwordHandeler.value}
-                                    handleChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                        passwordHandeler.handlevalueChange(e.target.value)
-                                    }
-                                />
-                            </div>
-                            {passwordHandeler.error && (
-                                <p className="text-red-500 -mt-5 ml-2">{passwordHandeler.error}</p>
-                            )}
+                            <Input
+                                type="password"
+                                id="password"
+                                placeholder="Password"
+                                IconSrc={PasswordIcon}
+                                IconAlt="Password Icon"
+                                className=" bg-secondary"
+                                value={passwordHandeler.value}
+                                inputError={passwordHandeler.error}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                    passwordHandeler.handlevalueChange(e.target.value)
+                                }
+                            />
+
                             {/* Sign-in Button */}
                             <CustomButton type="submit">Sign in</CustomButton>
                         </form>
+
                         {/* Recovery */}
                         <div className="flex flex-col 2xl:flex-row 2xl:items-center my-4 justify-between">
                             <p className="text-[#B6B6B6]">
