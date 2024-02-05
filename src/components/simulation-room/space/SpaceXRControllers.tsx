@@ -15,7 +15,7 @@ const XRButtonStyle: React.CSSProperties = {
 const SpaceXRControllers = () => {
     return (
         <div className="flex gap-3 fixed bottom-3 right-3 z-[5]">
-            <VRButton style={{ position: 'static', ...XRButtonStyle }} />
+            <VRButton enterOnly style={{ position: 'static', ...XRButtonStyle }} />
             <ARButton style={{ position: 'static', ...XRButtonStyle }} />
         </div>
     );

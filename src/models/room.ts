@@ -23,6 +23,7 @@ export interface IRoomState {
     basePlane: boolean;
     ambientLight: boolean;
     hideLightIcons: boolean;
+    castShadows: boolean;
     selectedObjectInfo: {
         type: TRoomObjectsType;
         id: IRoomObject['id'];

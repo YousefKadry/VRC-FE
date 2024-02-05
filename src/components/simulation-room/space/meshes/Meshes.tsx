@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { DoubleSide } from 'three';
 
 import MeshGeometry from './MeshGeometry';
 
@@ -31,7 +30,7 @@ const Meshes = () => {
                 receiveShadow
             >
                 <MeshGeometry geometryType={geometryType} />
-                <meshStandardMaterial color={color} side={DoubleSide} />
+                <meshStandardMaterial color={color} />
             </mesh>
         );
     });

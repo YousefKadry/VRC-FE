@@ -6,6 +6,7 @@ export enum ESimulationRoomButtonId {
     GLTFs_ASSETS_BTN,
     SPECIAL_EFFECT_BTN,
     MESHES_BTN,
+    LIGHT_BTN,
     SHARING_BTN,
     MENU_CLOSING_BTN,
 }

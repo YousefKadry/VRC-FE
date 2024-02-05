@@ -14,6 +14,7 @@ import { ESimulationRoomButtonId } from '../../../models/simulation-room-sidebar
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
 import { useDispatch } from 'react-redux';
 import HDRIsAssets from '../room-assets/HDRIsAssets.tsx';
+import LightEditor from '../light-management/LightEditor.tsx';
 
 const Sidebar = () => {
     const [activeButtonId, setActiveButtonId] = useState<ESimulationRoomButtonId | null>(null);
@@ -32,6 +33,8 @@ const Sidebar = () => {
                 return <GLTFsAssets />;
             case ESimulationRoomButtonId.MESHES_BTN:
                 return <AddMesh />;
+            case ESimulationRoomButtonId.LIGHT_BTN:
+                return <LightEditor />;
             case ESimulationRoomButtonId.SHARING_BTN:
                 return <ShareRoom />;
             case ESimulationRoomButtonId.SPECIAL_EFFECT_BTN:

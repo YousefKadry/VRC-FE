@@ -13,36 +13,13 @@ const SpecialEffects: React.FC = () => {
     const basePlaneVisibility = useSelector(
         (store: IAppStore) => store.rooms.selectedRoom?.state.basePlane ?? true
     );
-    const ambientLightVisibility = useSelector(
-        (store: IAppStore) => store.rooms.selectedRoom?.state.ambientLight ?? true
-    );
-    const hideLightIcons = useSelector(
-        (store: IAppStore) => store.rooms.selectedRoom?.state.hideLightIcons ?? false
-    );
 
-    const handleEffectsChanging = (
-        checked: boolean,
-        id: 'stars' | 'sky' | 'basePlane' | 'ambientLight' | 'hideLightIcons'
-    ) => {
+    const handleEffectsChanging = (checked: boolean, id: 'stars' | 'sky' | 'basePlane') => {
         dispatch(storeRoomsSliceActions.updateSelectedRoomState({ [id]: checked }));
     };
 
     const handleAddClouds = () => {
         dispatch(storeRoomsSliceActions.addObjects({ clouds: [{ color: '#ffffff' }] }));
-    };
-
-    const handleAddLight = (type: 'spot' | 'point') => {
-        dispatch(
-            storeRoomsSliceActions.addObjects({
-                lights: [
-                    {
-                        type,
-                        color: '#ffffff',
-                        intensity: 1000,
-                    },
-                ],
-            })
-        );
     };
 
     return (
@@ -68,18 +45,6 @@ const SpecialEffects: React.FC = () => {
                     title="Base Plane"
                     toggleHandler={(checked) => handleEffectsChanging(checked, 'basePlane')}
                 />
-                <Switch
-                    id="ambientLight"
-                    checked={ambientLightVisibility}
-                    title="Ambient Light"
-                    toggleHandler={(checked) => handleEffectsChanging(checked, 'ambientLight')}
-                />
-                <Switch
-                    id="hideLightIcons"
-                    checked={hideLightIcons}
-                    title="Hide Light Icons"
-                    toggleHandler={(checked) => handleEffectsChanging(checked, 'hideLightIcons')}
-                />
             </div>
 
             <button
@@ -88,26 +53,6 @@ const SpecialEffects: React.FC = () => {
                 onClick={handleAddClouds}
             >
                 Add Cloud
-            </button>
-
-            <button
-                className="w-full bg-[#9167C2] text-white p-2 rounded-lg hover:bg-[#7d5aa6]"
-                id="add-Spot-Light"
-                onClick={() => {
-                    handleAddLight('spot');
-                }}
-            >
-                Add Spot Light
-            </button>
-
-            <button
-                className="w-full bg-[#9167C2] text-white p-2 rounded-lg hover:bg-[#7d5aa6]"
-                id="add-Point-Light"
-                onClick={() => {
-                    handleAddLight('point');
-                }}
-            >
-                Add Point Light
             </button>
         </div>
     );
