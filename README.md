@@ -25,7 +25,6 @@
 | [React Router](https://reactrouter.com/en/main)                                                                   | Declarative routing for React.js applications.                                                     |
 | [React Lazy Loading](https://react.dev/reference/react/lazy)                                                      | A technique to load components only when needed, improving performance.                            |
 | [React Three Fiber](https://docs.pmnd.rs/react-three-fiber)                                                       | A React renderer for the Javascript Library "three.js"                                             |
-| [React Three Fiber](https://docs.pmnd.rs/react-three-fiber)                                                       | A React renderer for the Javascript Library "three.js"                                             |
 | [React-Three/drei](https://github.com/pmndrs/drei)                                                                | A growing collection of useful helpers and ready-made abstractions for React Three Fiber           |
 | [leva](https://github.com/pmndrs/leva)                                                                            | A React Three Fiber GUI component which allows user interaction with the scene                     |
 
