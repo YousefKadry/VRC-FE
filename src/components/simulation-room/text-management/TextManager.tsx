@@ -1,8 +1,11 @@
-import CustomButton from '../../shared/Button';
-import CustomInput from '../../shared/Input';
 import { ChangeEvent, useRef } from 'react';
-import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
 import { useDispatch } from 'react-redux';
+import { twJoin } from 'tailwind-merge';
+
+import CustomButton from '../../shared/Button';
+import Input from '../../shared/Input';
+
+import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
 import { TAppDispatch } from '../../../store/app-store.ts';
 
 const TextManager = () => {
@@ -27,18 +30,27 @@ const TextManager = () => {
     };
 
     return (
-        <div className="w-full px-8">
-            <CustomInput
-                handleChange={handleTextChange}
+        <div className="w-full">
+            <Input
                 type="text"
+                id="text"
+                className={twJoin(
+                    'bg-simulation-room-sidebar-bg placeholder:text-simulation-room-sidebar-color text-simulation-room-sidebar-color',
+                    'border border-simulation-room-bg',
+                    'text-center outline-none'
+                )}
+                inputContainerProps={{ className: 'mt-0' }}
                 placeholder="Enter your text here"
-                className="bg-[#442a68] mt-[95px] pl-[18px] h-[60px] border-[1px] border-[#855EB5] text-center"
+                onChange={handleTextChange}
             />
 
-            <div className=" flex items-center justify-end">
+            <div className="flex items-center justify-end">
                 <CustomButton
+                    className={twJoin(
+                        'text-simulation-room-gradient-color from-simulation-room-gradient-from to-simulation-room-gradient-to',
+                        'w-fit max-w-full px-12 py-2.5 text-base rounded-lg'
+                    )}
                     onClick={handleInsertText}
-                    className="w-[120px] h-[40px] flex items-center justify-center bg-gradient-to-r from-[#9167C2] to-[#533b78]"
                 >
                     Insert
                 </CustomButton>

@@ -7,7 +7,7 @@ import { IAppStore } from '../../../../models/app-store';
 import { IRoomObject } from '../../../../models/room';
 import { TAppDispatch } from '../../../../store/app-store';
 import { storeRoomsSliceActions } from '../../../../store/slices/rooms/rooms-slice';
-import RoomObjectUtil from "../../../../utilities/room-object.ts";
+import RoomObjectUtil from '../../../../utilities/room-object.ts';
 
 const Lights = () => {
     const lights = useSelector((store: IAppStore) => store.rooms.selectedRoom?.state.lights);
@@ -23,9 +23,7 @@ const Lights = () => {
         return (
             <group
                 key={id}
-                onClick={() => {
-                    handleObjectSelection(id);
-                }}
+                onClick={handleObjectSelection.bind(null, id)}
                 scale={[8, 8, 8]}
                 position={restProps.position}
                 rotation={RoomObjectUtil.convertRotationFromDegreeToEuler(rotation)}

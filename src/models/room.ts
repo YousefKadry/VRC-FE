@@ -11,6 +11,10 @@ export type TUpdatableRoomInfo = Partial<Omit<IRoom<any>, 'id' | 'state' | 'isUp
 
 export type TRoomObjectsType = 'meshes' | 'clouds' | 'models' | 'texts' | 'lights';
 
+export type TCoord = 'x' | 'y' | 'z';
+
+export type TRoomEffects = 'stars' | 'sky' | 'basePlane' | 'ambientLight' | 'hideLightIcons' | 'castShadows';
+
 export interface IRoomState {
     meshes: Record<string, IMesh>;
     clouds: Record<string, ICloud>;

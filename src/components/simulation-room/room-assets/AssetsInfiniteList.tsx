@@ -4,7 +4,7 @@ import { debounce } from 'lodash';
 import { twJoin } from 'tailwind-merge';
 import { BeatLoader } from 'react-spinners';
 
-import CustomInput from '../../shared/Input';
+import Input from '../../shared/Input';
 
 import RoomAssetsItem from './RoomAssetsItem';
 import { IRoomAssetsInfo, IRoomAssetsItem } from '../../../models/room-assets';
@@ -66,16 +66,19 @@ function AssetsInfiniteList<AssetType extends IRoomAssetsItem>(
     );
 
     return (
-        <div className={'flex flex-col space-y-10 w-full h-full'}>
-            <CustomInput
+        <div className={'flex flex-col space-y-8 w-full h-full'}>
+            <Input
                 type="text"
+                id="assets-search-input"
                 className={twJoin(
-                    'w-full text-center outline-none',
-                    'bg-gradient-to-r from-[#7542b0] to-[#7d5cae] text-white placeholder:text-white/80'
+                    'bg-simulation-room-sidebar-bg placeholder:text-simulation-room-sidebar-color text-simulation-room-sidebar-color',
+                    'border border-simulation-room-bg',
+                    'text-center outline-none'
                 )}
-                defaultValue={q}
+                inputContainerProps={{ className: 'mt-0' }}
                 placeholder={searchInputPlaceholder}
-                handleChange={handleSearchQuery}
+                defaultValue={q}
+                onChange={handleSearchQuery}
             />
 
             <div id={infiniteListContainerId} className="overflow-auto h-full">
@@ -91,7 +94,12 @@ function AssetsInfiniteList<AssetType extends IRoomAssetsItem>(
                         );
                     })}
                 </ul>
-                {isLoading && <BeatLoader className="p-6 text-center" color="white" />}
+                {isLoading && (
+                    <BeatLoader
+                        className="p-5 text-center"
+                        color="rgb(var(--simulation-room-sidebar-menu-color))"
+                    />
+                )}
             </div>
         </div>
     );

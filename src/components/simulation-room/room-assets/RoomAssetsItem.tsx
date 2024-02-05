@@ -1,4 +1,5 @@
 import React from 'react';
+import { twJoin } from 'tailwind-merge';
 
 import { IRoomAssetsItem } from '../../../models/room-assets';
 
@@ -6,9 +7,15 @@ const RoomAssetsItem = React.forwardRef<HTMLLIElement, { item: IRoomAssetsItem }
     const { thumbnailUrl } = props.item;
 
     return (
-        <li ref={ref} className="rounded-lg bg-gradient-to-r from-[#8c43e6] to-[#8b6bb2] p-1 cursor-pointer">
-            <div className="bg-[#e2d6f3] p-2 rounded-md w-full aspect-square">
-                <img className="w-full h-full" src={thumbnailUrl} />
+        <li
+            ref={ref}
+            className={twJoin(
+                'bg-gradient-to-r from-simulation-room-gradient-from to-simulation-room-gradient-to',
+                'rounded-lg p-1.5 cursor-pointer'
+            )}
+        >
+            <div className="bg-simulation-room-gradient-color p-1 rounded-md w-full aspect-square">
+                <img className="w-full h-full rounded-md" src={thumbnailUrl} />
             </div>
         </li>
     );

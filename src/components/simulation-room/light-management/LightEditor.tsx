@@ -1,8 +1,13 @@
 import React from 'react';
-import Switch from '../../ui/switch/Switch';
 import { useDispatch, useSelector } from 'react-redux';
+import { twJoin } from 'tailwind-merge';
+
+import Switch from '../../ui/switch/Switch';
+import CustomButton from '../../shared/Button';
+
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice';
 import { IAppStore } from '../../../models/app-store';
+import { TRoomEffects } from '../../../models/room';
 
 const LightEditor: React.FC = () => {
     const dispatch = useDispatch();
@@ -19,10 +24,7 @@ const LightEditor: React.FC = () => {
         (store: IAppStore) => store.rooms.selectedRoom?.state.castShadows ?? true
     );
 
-    const handleEffectsChanging = (
-        checked: boolean,
-        id: 'ambientLight' | 'hideLightIcons' | 'castShadows'
-    ) => {
+    const handleEffectsChanging = (checked: boolean, id: TRoomEffects) => {
         dispatch(storeRoomsSliceActions.updateSelectedRoomState({ [id]: checked }));
     };
 
@@ -39,47 +41,56 @@ const LightEditor: React.FC = () => {
             })
         );
     };
+
+    const effects: Array<{ id: TRoomEffects; title: string; checked: boolean }> = [
+        { id: 'ambientLight', title: 'Ambient Light', checked: ambientLightVisibility },
+        { id: 'castShadows', title: 'Cast Shadows', checked: CastShadowsEnable },
+        { id: 'hideLightIcons', title: 'Hide Light Icons', checked: hideLightIcons },
+    ];
+
     return (
         <div className="w-full flex flex-col gap-6">
-            <div className="flex flex-col gap-y-4 flex-wrap overflow-auto">
-                <Switch
-                    id="ambientLight"
-                    checked={ambientLightVisibility}
-                    title="Ambient Light"
-                    toggleHandler={(checked) => handleEffectsChanging(checked, 'ambientLight')}
-                />
-                <Switch
-                    id="castShadows"
-                    checked={CastShadowsEnable}
-                    title="Cast Shadows"
-                    toggleHandler={(checked) => handleEffectsChanging(checked, 'castShadows')}
-                />
-                <Switch
-                    id="hideLightIcons"
-                    checked={hideLightIcons}
-                    title="Hide Light Icons"
-                    toggleHandler={(checked) => handleEffectsChanging(checked, 'hideLightIcons')}
-                />
+            <div className="flex flex-col gap-y-3">
+                {effects.map((effect) => {
+                    return (
+                        <Switch
+                            key={effect.id}
+                            id={effect.id}
+                            checked={effect.checked}
+                            title={effect.title}
+                            onSwitchBg="rgb(var(--simulation-room-sidebar-bg))"
+                            onSwitchHandleBg="rgb(var(--simulation-room-sidebar-color))"
+                            onSwitchColor="rgb(var(--simulation-room-sidebar-color))"
+                            offSwitchBg="rgb(var(--simulation-room-sidebar-menu-color))"
+                            offSwitchHandleBg="rgb(var(--simulation-room-sidebar-menu-bg))"
+                            offSwitchColor="rgb(var(--simulation-room-sidebar-menu-bg))"
+                            toggleHandler={(checked) => handleEffectsChanging(checked, effect.id)}
+                        />
+                    );
+                })}
             </div>
-            <button
-                className="w-full bg-[#9167C2] text-white p-2 rounded-lg hover:bg-[#7d5aa6]"
-                id="add-Spot-Light"
-                onClick={() => {
-                    handleAddLight('spot');
-                }}
-            >
-                Add Spot Light
-            </button>
 
-            <button
-                className="w-full bg-[#9167C2] text-white p-2 rounded-lg hover:bg-[#7d5aa6]"
-                id="add-Point-Light"
-                onClick={() => {
-                    handleAddLight('point');
-                }}
-            >
-                Add Point Light
-            </button>
+            <div className="flex flex-col gap-y-3">
+                <CustomButton
+                    className={twJoin(
+                        'text-simulation-room-gradient-color from-simulation-room-gradient-from to-simulation-room-gradient-to',
+                        'w-full px-4 py-3 mt-0 text-base rounded-lg'
+                    )}
+                    onClick={handleAddLight.bind(null, 'spot')}
+                >
+                    Add Spot Light
+                </CustomButton>
+
+                <CustomButton
+                    className={twJoin(
+                        'text-simulation-room-gradient-color from-simulation-room-gradient-from to-simulation-room-gradient-to',
+                        'w-full px-4 py-3 mt-0 text-base rounded-lg'
+                    )}
+                    onClick={handleAddLight.bind(null, 'point')}
+                >
+                    Add Point Light
+                </CustomButton>
+            </div>
         </div>
     );
 };

@@ -1,7 +1,8 @@
 import React from 'react';
-import URLSharingComponent from './URLSharing/URLSharingComponent';
 import { QRCodeSVG } from 'qrcode.react';
 import { twJoin } from 'tailwind-merge';
+
+import URLSharingComponent from './URLSharing/URLSharingComponent';
 
 interface SharingComponentProps {
     sharingURL: string;
@@ -10,20 +11,20 @@ interface SharingComponentProps {
 
 const SharingComponent: React.FC<SharingComponentProps> = ({ sharingURL, RenderQR }) => {
     return (
-        <div className="flex-col w-full max-w-[460px] p-8 space-y-10">
+        <div className="flex-col w-full space-y-7 mb-7">
             {RenderQR ? (
                 <div
                     className={twJoin(
-                        'flex justify-center items-center w-90 aspect-[1/0.80] rounded-xl ',
-                        'bg-gradient-to-tr from-gradientSimulationBox1 to-gradientSimulationBox2 bg-opacity-40 '
+                        'bg-gradient-to-r from-simulation-room-gradient-from to-simulation-room-gradient-to',
+                        'flex justify-center items-center w-full aspect-[1/1] rounded-lg'
                     )}
                 >
                     <QRCodeSVG
                         value={sharingURL}
-                        fgColor="#FFFFFF"
+                        fgColor="rgb(var(--simulation-room-gradient-color))"
                         bgColor="transparent"
-                        width="100%"
-                        height="75%"
+                        width="70%"
+                        height="70%"
                     />
                 </div>
             ) : null}
