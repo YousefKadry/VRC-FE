@@ -14,9 +14,12 @@ export interface ILightProps {
 }
 
 const LightItem: React.FC<React.PropsWithChildren<ILightProps>> = ({ type, intensity, color }) => {
+    const enableShadows = useSelector(
+        (store: IAppStore) => store.rooms.selectedRoom?.state.castShadows ?? true
+    );
     const light = {
-        point: <pointLight intensity={intensity} color={color} castShadow />,
-        spot: <spotLight intensity={intensity} color={color} castShadow />,
+        point: <pointLight intensity={intensity} color={color} castShadow={enableShadows} />,
+        spot: <spotLight intensity={intensity} color={color} castShadow={enableShadows} />,
     };
     const selectedRoom = useSelector((store: IAppStore) => store.rooms.selectedRoom);
 

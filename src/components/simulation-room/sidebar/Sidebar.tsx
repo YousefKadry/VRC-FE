@@ -11,6 +11,7 @@ import SpecialEffects from '../special-effects/SpecialEffects.tsx';
 import TextManager from '../text-management/TextManager.tsx';
 import AddMesh from '../object-editor/AddMesh.tsx';
 import HDRIsAssets from '../room-assets/HDRIsAssets.tsx';
+import LightEditor from '../light-management/LightEditor.tsx';
 
 import { ESimulationRoomButtonId } from '../../../models/simulation-room-sidebar.ts';
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
@@ -32,6 +33,8 @@ const Sidebar = () => {
                 return <GLTFsAssets />;
             case ESimulationRoomButtonId.MESHES_BTN:
                 return <AddMesh />;
+            case ESimulationRoomButtonId.LIGHT_BTN:
+                return <LightEditor />;
             case ESimulationRoomButtonId.SHARING_BTN:
                 return <ShareRoom />;
             case ESimulationRoomButtonId.SPECIAL_EFFECT_BTN:

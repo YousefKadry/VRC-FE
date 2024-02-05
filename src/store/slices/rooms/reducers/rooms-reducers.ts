@@ -15,6 +15,7 @@ const initialRoomState: IRoomState = {
     basePlane: true,
     ambientLight: true,
     hideLightIcons: false,
+    castShadows: true,
     selectedObjectInfo: null,
 };
 
