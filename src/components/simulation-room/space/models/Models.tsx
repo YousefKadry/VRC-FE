@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ThreeEvent } from '@react-three/fiber';
 
 import GLTFModel from './GLTFModel';
 
@@ -13,7 +14,8 @@ const Models = () => {
     const models = useSelector((store: IAppStore) => store.rooms.selectedRoom?.state.models);
     const dispatch = useDispatch<TAppDispatch>();
 
-    const handleModelSelection = (modelId: IRoomObject['id']) => {
+    const handleModelSelection = (e: ThreeEvent<MouseEvent>, modelId: IRoomObject['id']) => {
+        e.stopPropagation();
         dispatch(storeRoomsSliceActions.selectObject({ type: 'models', id: modelId }));
     };
 
@@ -21,14 +23,14 @@ const Models = () => {
         const { id, URL, rotation, ...restProps } = model;
 
         return (
-            <scene
+            <group
                 key={id}
                 {...restProps}
                 rotation={RoomObjectUtil.convertRotationFromDegreeToEuler(rotation)}
-                onClick={handleModelSelection.bind(null, id)}
+                onDoubleClick={(e) => handleModelSelection(e, id)}
             >
-                <GLTFModel gltfURL={URL} />
-            </scene>
+                <GLTFModel gltfModel={model} />
+            </group>
         );
     });
 };

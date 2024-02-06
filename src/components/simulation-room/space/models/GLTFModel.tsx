@@ -1,14 +1,16 @@
-import { useGLTF } from '@react-three/drei';
+import { Clone, useGLTF } from '@react-three/drei';
+import { IModel } from '../../../../models/room';
 
-const GLTFModel: React.FC<{ gltfURL: string }> = (props) => {
-    const { gltfURL } = props;
-    const gltf = useGLTF(`https://corsproxy.io/?${gltfURL}`);
-    gltf.scene.traverse((child) => {
-        child.castShadow = true;
-        child.receiveShadow = true;
-    });
+export interface IGLTFModelProps {
+    gltfModel: IModel;
+}
 
-    return <primitive object={gltf.scene} />;
+const GLTFModel: React.FC<IGLTFModelProps> = (props) => {
+    const { URL } = props.gltfModel;
+
+    const gltf = useGLTF(`https://corsproxy.io/?${URL}`);
+
+    return <Clone object={gltf.scene} castShadow receiveShadow />;
 };
 
 export default GLTFModel;
