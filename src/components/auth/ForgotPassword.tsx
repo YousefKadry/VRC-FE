@@ -1,15 +1,12 @@
-import { ChangeEvent } from 'react';
-import { useDispatch } from 'react-redux';
-
-import Input from '../shared/Input';
+import EmailIcon from '../../assets/Email.svg';
+import CustomInput from '../shared/Input';
 import CustomButton from '../shared/Button';
-
 import handelEmailInput from './hooks/handleEmailInput';
 import handelButtonClick from './hooks/handelButtonClick';
+import { ChangeEvent } from 'react';
+import { useDispatch } from 'react-redux';
 import { TAppDispatch } from '../../store/app-store';
 import { ForgetPasswordThunk } from '../../store/slices/auth/auth-actions';
-
-import EmailIcon from '../../assets/Email.svg';
 
 const ForgotPassword = () => {
     const emailHandeler = handelEmailInput();
@@ -31,30 +28,36 @@ const ForgotPassword = () => {
     return (
         <>
             <title>Forgot Password</title>
-
             <div className="parent-container flex items-center justify-center w-4/5 md:2/3 xl:w-1/2 m-auto h-screen bg-primary">
-                <div className="child-element flex items-center flex-col  sm:w-[60%] h-[55%] bg-secondary rounded-[10px] px-12 py-8 justify-center">
-                    <h1 className="text-white font-bold text-2xl md:text-3xl self-start mb-4 text-center">
+                <div className="child-element flex items-center flex-col bg-secondary rounded-[10px] px-12 py-8 justify-center">
+                    <h1 className="text-white font-bold text-2xl md:text-3xl selft-start mb-4 text-center">
                         Forgot Password?
                     </h1>
 
-                    <form className="w-full flex flex-col self-start px-1" onSubmit={handleFormSubmitting}>
+                    <form
+                        className="mt-6 w-full flex flex-col self-start px-1"
+                        onSubmit={handleFormSubmitting}
+                    >
                         {/* Email Input */}
-                        <Input
-                            type="text"
-                            id="email"
-                            placeholder="yourname@gmail.com"
-                            IconSrc={EmailIcon}
-                            IconAlt="Email Icon"
-                            className="bg-[#3B2063] text-white "
-                            value={emailHandeler.email}
-                            inputLabel="Enter your email address"
-                            inputError={emailHandeler.emailError}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                emailHandeler.handleEmailChange(e.target.value)
-                            }
-                        />
-
+                        <div className="text-white text-[15px] font-bold px-2 mt-3">
+                            Enter your email address
+                        </div>
+                        <div className="relative my-2">
+                            <CustomInput
+                                type="text"
+                                placeholder="yourname@gmail.com"
+                                IconSrc={EmailIcon}
+                                IconAlt="Email Icon"
+                                className="bg-[#3B2063] text-white "
+                                value={emailHandeler.email}
+                                handleChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                    emailHandeler.handleEmailChange(e.target.value)
+                                }
+                            />
+                        </div>
+                        {emailHandeler.emailError && (
+                            <p className="text-red-500 -mb-4 -mt-2 ml-2">{emailHandeler.emailError}</p>
+                        )}
                         {/* Reset Password button */}
                         <div className="mt-2">
                             <CustomButton type="submit">

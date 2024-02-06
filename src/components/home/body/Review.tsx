@@ -1,17 +1,15 @@
+// App.tsx
 import React, { useState, FormEvent } from 'react';
-import { twJoin } from 'tailwind-merge';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import { Rating } from 'react-simple-star-rating';
-
-import Input from '../../shared/Input';
-
 import Phone from '../../../assets/Phone.svg';
 import Name from '../../../assets/Name.svg';
 import Email from '../../../assets/Email.svg';
+import CustomInput from '../../shared/Input';
+import { Rating } from 'react-simple-star-rating';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 const App: React.FC = () => {
-    const [_, setRating] = useState(0);
+    const [rating, setRating] = useState(0);
 
     const handleRating = (rate: number) => {
         setRating(rate);
@@ -21,20 +19,12 @@ const App: React.FC = () => {
         event.preventDefault();
     };
 
-    const formInputClassName = twJoin(
-        'py-2 w-[320px] lg:w-[250px] text-sm',
-        'box-border rounded-3xl border shadow-inner focus:shadow-outline focus:outline-none',
-        '!text-black border-gray-300 bg-white',
-        'transition duration-300'
-    );
-
     return (
         <div className="w-screen max-w-5xl flex flex-col lg:flex-row mx-auto mt-[10px]">
             <div className="py-5 px-8 flex flex-col font-footer text-footer justify-center">
                 <h3 className="text-footer font-bold tracking-wide">RATE OUR SERVICE</h3>
                 <p>Share Your Thoughts - Fill The Form to Submit Your Feedback.</p>
             </div>
-
             <div className="p-5 box-border rounded-[20px] m-2.5 shadow text-footer flex flex-col gap-5 bg-gray-50">
                 <form className="flex" onSubmit={handleSubmit}>
                     <div className="flex-1 py-0 px-2.5 flex flex-wrap">
@@ -42,60 +32,50 @@ const App: React.FC = () => {
                             <label htmlFor="name" className="block mb-1.5 font-bold">
                                 Name
                             </label>
-
                             <div className="relative w-full py">
-                                <Input
+                                <CustomInput
                                     type="text"
-                                    id="name"
                                     placeholder="Name"
                                     IconSrc={Name}
                                     IconAlt="Name Icon"
-                                    className={formInputClassName}
+                                    className="p-2 w-[320px] lg:w-[250px] !text-black text-sm box-border rounded-3xl border border-gray-300 bg-white shadow-inner transition duration-300 focus:shadow-outline focus:outline-none"
                                 />
                             </div>
                         </div>
-
                         <div className="mb-3.5 relative mr-5">
-                            <label htmlFor="phoneNumber" className="block mb-1.5 font-bold">
+                            <label htmlFor="phone" className="block mb-1.5 font-bold">
                                 Phone Number
                             </label>
-
                             <div className="relative w-full py">
-                                <Input
+                                <CustomInput
                                     type="text"
-                                    id="phoneNumber"
                                     placeholder="Phone Number"
                                     IconSrc={Phone}
                                     IconAlt="Email Icon"
-                                    className={formInputClassName}
+                                    className="p-2 w-[320px] lg:w-[250px] !text-black text-sm box-border rounded-3xl border border-gray-300 bg-white shadow-inner transition duration-300 focus:shadow-outline focus:outline-none"
                                 />
                             </div>
                         </div>
-
                         <div className="mb-3.5 relative">
                             <label htmlFor="email" className="block mb-1.5 font-bold">
                                 Email
                             </label>
-
                             <div className="relative w-full py">
-                                <Input
+                                <CustomInput
                                     type="text"
-                                    id="email"
                                     placeholder="Enter your email"
                                     IconSrc={Email}
                                     IconAlt="Email Icon"
-                                    className={formInputClassName}
+                                    className="p-2 w-[320px] lg:w-[250px] !text-black text-sm box-border rounded-3xl border border-gray-300 bg-white shadow-inner transition duration-300 focus:shadow-outline focus:outline-none"
                                 />
                             </div>
                         </div>
                     </div>
                 </form>
-
                 <div className="ml-5 flex">
                     <p className="m-0 mr-3">Your service rating</p>
                     <Rating size={25} allowFraction SVGstyle={{ display: 'inline' }} onClick={handleRating} />
                 </div>
-
                 <div className="ml-5 font-bold">
                     <p>Additional feedback</p>
                     <div className="max-w-full">
@@ -107,8 +87,7 @@ const App: React.FC = () => {
                         />
                     </div>
                 </div>
-
-                <div className="flex ml-5 mt-2.5 items-center">
+                <div className="flex ml-[20] ml-5 mt-2.5 items-center">
                     <FormControlLabel
                         control={<Checkbox color="default" />}
                         label="I have read and accept the privacy policy."

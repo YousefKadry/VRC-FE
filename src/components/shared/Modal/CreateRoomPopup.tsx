@@ -1,58 +1,39 @@
-import React, { Fragment, useEffect, useRef } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeUISliceActions } from '../../../store/slices/ui/ui-slice';
 import { useNavigate } from 'react-router-dom';
-import { IAppStore } from '../../../models/app-store.ts';
-import { TAppDispatch } from '../../../store/app-store.ts';
-import { createNewRoomThunk } from '../../../store/slices/rooms/rooms-actions.ts';
 
 const CreateRoomPopup = () => {
-    const { isCreateRoomPopupShown } = useSelector((store: IAppStore) => store.ui);
-    const { selectedRoom } = useSelector((store: IAppStore) => store.rooms);
-    const dispatch = useDispatch<TAppDispatch>();
+    const { isCreateRoomPopupShown } = useSelector((state: any) => state.ui);
+
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const formRef = useRef<HTMLFormElement>(null);
 
-    useEffect(() => {
-        if (!selectedRoom) {
-            return;
-        }
+    const formRef = useRef(null);
 
-        handleClosePopup(false);
-        navigate(`/simulation-room/${selectedRoom.id}`);
-    }, [selectedRoom]);
-
-    const handleClosePopup = (isPopupOpen: boolean) => {
-        dispatch(storeUISliceActions.setIsCreateRoomModalShown(isPopupOpen));
+    const closePopupHandler = (e: any) => {
+        dispatch(storeUISliceActions.setIsCreateRoomModalShown(e));
     };
 
-    const handleCreateRoom = (e: React.FormEvent) => {
+    const onSubmit = (e: any) => {
         e.preventDefault();
 
-        if (!formRef?.current) {
-            return;
-        }
-
-        const roomTitle = formRef.current['roomTitle'].value;
+        const roomName = formRef.current['roomName'].value;
         const roomDescription = formRef.current['roomDescription'].value;
 
-        if (roomTitle === '' || roomDescription === '') {
-            dispatch(
-                storeUISliceActions.setNotification({
-                    type: 'error',
-                    content: 'Please fill in all the fields',
-                })
-            );
+        if (roomName === '' || roomDescription === '') {
             return;
         }
 
-        dispatch(createNewRoomThunk(roomTitle, roomDescription));
+        // @TODO: dispatch actions to store
+        closePopupHandler(false);
+        navigate(`/simulation-room`);
     };
 
     return (
         <Transition.Root show={isCreateRoomPopupShown} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={handleClosePopup}>
+            <Dialog as="div" className="relative z-10" onClose={closePopupHandler}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -87,19 +68,15 @@ const CreateRoomPopup = () => {
                                 </div>
 
                                 <div>
-                                    <form
-                                        className="space-y-6 text-white"
-                                        ref={formRef}
-                                        onSubmit={handleCreateRoom}
-                                    >
+                                    <form className="space-y-6 text-white" ref={formRef}>
                                         <div>
                                             <div className="mt-2">
                                                 <input
-                                                    id="roomTitle"
-                                                    name="roomTitle"
+                                                    id="roomName"
+                                                    name="roomName"
                                                     type="text"
-                                                    placeholder={'Room Title'}
-                                                    autoComplete="room-title"
+                                                    placeholder={'Room Name'}
+                                                    autoComplete="roomName"
                                                     required
                                                     className="block bg-[#3b2063] focus:outline-none w-full p-2 rounded-md border-0 py-1.5 text-white placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                                 />
@@ -121,6 +98,7 @@ const CreateRoomPopup = () => {
 
                                         <div>
                                             <button
+                                                onClick={onSubmit}
                                                 type="submit"
                                                 className="flex w-full justify-center rounded-md bg-gradient-to-r from-gradient1 to-gradient2 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                             >

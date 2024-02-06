@@ -2,18 +2,14 @@
     position: relative;
     top: 0;
     left: 50%;
-    width: 25%;
+    width: 22%;
     height: max-content;
-    translate: -59% -20%;
+    translate: -50% -20%;
     transition: transform 0.2s linear;
     border-radius: 50%;
-    /* background: radial-gradient(ellipse at center, #53426b, #53426ba7, #53426b4b, transparent); */
+    box-shadow: 0 0 2.5rem 0 #53426b, 0 0 4rem -1rem #53426b inset;
+    background: radial-gradient(ellipse at center, #53426b, #53426ba7, #53426b4b, transparent);
     z-index: 3;
-    user-select: none;
-    background-image: radial-gradient(closest-side, rgba(255, 255, 255, 0.34), #1604304b);
-}
-.dashboard-text-container:hover {
-    background-image: radial-gradient(closest-side, rgba(255, 255, 255, 0.444), #1b063783);
 }
 
 .dashboard-text-container[data-rotation='0'] {

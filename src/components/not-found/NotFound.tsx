@@ -8,7 +8,7 @@ const NotFound = () => {
                 <p className="mb-5 text-gray-600">Oops! The page you are looking for could not be found.</p>
                 <div className="mx-12">
                     <CustomButton className="py-2 px-1">
-                        <a href="/">Go back to Home</a>
+                        <a href="/home">Go back to Home</a>
                     </CustomButton>
                 </div>
             </div>

@@ -8,7 +8,6 @@ const useRoomObjController = (args: {
     changeColorHandler: (color: string) => void;
     deleteObjectHandler: () => void;
     unselectObjectHandler: () => void;
-    changeIntensityHandler: (intensity: number) => void;
 }) => {
     const {
         selectedObj,
@@ -16,7 +15,6 @@ const useRoomObjController = (args: {
         changeColorHandler,
         deleteObjectHandler,
         unselectObjectHandler,
-        changeIntensityHandler,
     } = args;
 
     const position = !selectedObj ? [0, 0, 0] : (selectedObj.position as any);
@@ -71,25 +69,6 @@ const useRoomObjController = (args: {
                 return {} as any;
             }
 
-            if (selectedObj && 'intensity' in selectedObj) {
-                return {
-                    color: {
-                        value: selectedObj.color,
-                        onChange: (color) => {
-                            changeColorHandler(color);
-                        },
-                    },
-                    intensity: {
-                        value: selectedObj.intensity,
-                        step: 1,
-                        min: 0,
-                        max: 40000,
-                        onChange: (intensity) => {
-                            changeIntensityHandler(intensity);
-                        },
-                    },
-                };
-            }
             return {
                 color: {
                     value: selectedObj.color,
@@ -101,7 +80,7 @@ const useRoomObjController = (args: {
         },
         { collapsed: true, order: 3 },
         undefined,
-        [selectedObj]
+        []
     );
 
     useControls(
@@ -119,14 +98,8 @@ const useRoomObjController = (args: {
 
     useEffect(() => {
         updateTransformations({ Translate: position, Rotate: rotation, Scale: scale });
-
-        if (selectedObj && 'color' in selectedObj) {
-            updateColor({ color: (selectedObj as IColorfulObject).color });
-        }
-        if (selectedObj && 'intensity' in selectedObj) {
-            updateColor({ intensity: selectedObj.intensity });
-        }
-    }, [position, rotation, scale, selectedObj]);
+        updateColor({ color: (selectedObj as IColorfulObject).color });
+    }, [position, rotation, scale, (selectedObj as IColorfulObject).color]);
 
     return [mouseController.Mode, mouseController['hide controller']];
 };

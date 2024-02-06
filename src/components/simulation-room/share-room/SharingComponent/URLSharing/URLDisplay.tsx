@@ -9,12 +9,11 @@ const URLDisplay: React.FC<SharingButtonProps> = ({ sharingURL }) => {
     return (
         <div
             className={twJoin(
-                'overflow-hidden w-80 border border-solid rounded-lg px-4 py-3',
-                'bg-simulation-room-sidebar-bg text-simulation-room-sidebar-color',
-                'border border-simulation-room-bg'
+                'w-80 border border-solid border-purple-700 rounded-lg p-4',
+                'bg-gradient-to-r from-gradientSimulationBox1 to-gradientSimulationBox2alt p-[1.2rem] mr-5'
             )}
         >
-            <h5 className="overflow-hidden whitespace-nowrap text-ellipsis">{sharingURL}</h5>
+            <h5>{sharingURL}</h5>
         </div>
     );
 };

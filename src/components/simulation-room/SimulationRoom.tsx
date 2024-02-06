@@ -12,8 +12,6 @@ import { TAppDispatch } from '../../store/app-store';
 import { IAppStore } from '../../models/app-store';
 import { IRoom, IRoomState } from '../../models/room';
 
-import classes from './SimulationRoom.module.css';
-
 const SimulationRoom: React.FC<{ editable: boolean }> = ({ editable }) => {
     const { roomId } = useParams();
 
@@ -47,13 +45,21 @@ const SimulationRoom: React.FC<{ editable: boolean }> = ({ editable }) => {
 
     return (
         <>
-            <div className={classes['space-leva-container']}>
+            <div
+                style={{
+                    width: 320,
+                    position: 'absolute',
+                    right: 0,
+                    top: 0,
+                    zIndex: 10,
+                    opacity: 0.8,
+                }}
+            >
                 <Leva fill hidden={!selectedObjectInfo || !editable} />
             </div>
-
-            <div className="flex overflow-hidden">
+            <div className="flex">
                 {editable && <Sidebar />}
-                <Space isInViewMode={!editable} showModeButton={true} />
+                <Space editable={editable} />
             </div>
         </>
     );

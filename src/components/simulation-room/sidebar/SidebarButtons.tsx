@@ -1,28 +1,30 @@
 import React from 'react';
 import { twJoin } from 'tailwind-merge';
 import {
+    faArrowLeft,
     faCamera,
     faCircleNodes,
+    faDownload,
     faFont,
     faHome,
     faImage,
     faShareFromSquare,
     faStarHalfStroke,
-    faCubes,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { ESimulationRoomButtonId } from '../../../models/simulation-room-sidebar';
 
 const simulationRoomSidebarButtons = [
-    { id: ESimulationRoomButtonId.BACK_HOME_BTN, icon: faHome, title: 'Back Home' },
-    { id: ESimulationRoomButtonId.CAMERA_BTN, icon: faCamera, title: 'Camera Control' },
-    { id: ESimulationRoomButtonId.TEXT_BTN, icon: faFont, title: 'Add Text' },
-    { id: ESimulationRoomButtonId.HDRIs_ASSETS_BTN, icon: faImage, title: 'Room Background' },
-    { id: ESimulationRoomButtonId.GLTFs_ASSETS_BTN, icon: faCircleNodes, title: 'Models' },
-    { id: ESimulationRoomButtonId.MESHES_BTN, icon: faCubes, title: 'Meshes' },
-    { id: ESimulationRoomButtonId.SPECIAL_EFFECT_BTN, icon: faStarHalfStroke, title: 'Special Effects' },
-    { id: ESimulationRoomButtonId.SHARING_BTN, icon: faShareFromSquare, title: 'Share' },
+    { id: ESimulationRoomButtonId.BACK_HOME_BTN, icon: faHome },
+    { id: ESimulationRoomButtonId.CAMERA_BTN, icon: faCamera },
+    { id: ESimulationRoomButtonId.TEXT_BTN, icon: faFont },
+    { id: ESimulationRoomButtonId.HDRIs_ASSETS_BTN, icon: faImage },
+    { id: ESimulationRoomButtonId.GLTFs_ASSETS_BTN, icon: faDownload },
+    { id: ESimulationRoomButtonId.SPECIAL_EFFECT_BTN, icon: faStarHalfStroke },
+    { id: ESimulationRoomButtonId.MESHES_BTN, icon: faCircleNodes },
+    { id: ESimulationRoomButtonId.SHARING_BTN, icon: faShareFromSquare },
+    { id: ESimulationRoomButtonId.MENU_CLOSING_BTN, icon: faArrowLeft },
 ];
 
 export interface ISimulationRoomSidebarButtonsProps {
@@ -36,23 +38,25 @@ const SidebarButtons: React.FC<ISimulationRoomSidebarButtonsProps> = (props) => 
     return (
         <ul className="w-full flex flex-col items-center">
             {simulationRoomSidebarButtons.map((btn) => {
+                if (btn.id === ESimulationRoomButtonId.MENU_CLOSING_BTN && !activeButtonId) {
+                    return null;
+                }
+
                 return (
                     <button
                         key={btn.id}
+                        onClick={buttonClickHandler.bind(null, btn.id)}
                         className={twJoin(
-                            'text-simulation-room-sidebar-color',
-                            'py-4 w-full outline-none',
+                            'py-6 w-full outline-none',
                             btn.id === ESimulationRoomButtonId.BACK_HOME_BTN || btn.id === activeButtonId
-                                ? 'bg-simulation-room-sidebar-menu-bg'
+                                ? 'bg-[#311B52]'
                                 : '',
                             btn.id === ESimulationRoomButtonId.BACK_HOME_BTN
-                                ? 'opacity-85 hover:opacity-100 border-b-2 border-simulation-room-sidebar-color'
+                                ? 'opacity-85 hover:opacity-100 border-b-2'
                                 : ''
                         )}
-                        title={btn.title}
-                        onClick={buttonClickHandler.bind(null, btn.id)}
                     >
-                        <FontAwesomeIcon className="text-2xl" icon={btn.icon} />
+                        <FontAwesomeIcon className="text-white text-4xl" icon={btn.icon} />
                     </button>
                 );
             })}

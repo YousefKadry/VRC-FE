@@ -1,13 +1,13 @@
 import React from 'react';
+import { shareThunk } from '../../../../../store/share/shareThunk';
+import { TAppDispatch } from '../../../../../store/app-store';
 import { useDispatch } from 'react-redux';
-import { twJoin } from 'tailwind-merge';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShare } from '@fortawesome/free-solid-svg-icons';
 
 import CustomButton from '../../../../shared/Button';
 
-import { shareThunk } from '../../../../../store/share/shareThunk';
-import { TAppDispatch } from '../../../../../store/app-store';
+import { twJoin } from 'tailwind-merge';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShare } from '@fortawesome/free-solid-svg-icons';
 
 interface SharingButtonProps {
     sharingURL: string;
@@ -23,12 +23,9 @@ const SharingButton: React.FC<SharingButtonProps> = ({ sharingURL }) => {
     return (
         <CustomButton
             onClick={onShare}
-            className={twJoin(
-                'from-simulation-room-gradient-from to-simulation-room-gradient-to',
-                'w-fit m-0 rounded-lg'
-            )}
+            className={twJoin('from-RoomButtonGradient1 to-RoomButtonGradient2', 'w-fit p-[1rem] m-0')}
         >
-            <FontAwesomeIcon className="text-simulation-room-gradient-color text-xl" icon={faShare} />
+            <FontAwesomeIcon className="text-white text-3xl" icon={faShare} />
         </CustomButton>
     );
 };

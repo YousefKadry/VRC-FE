@@ -1,16 +1,13 @@
 import React, { ChangeEvent } from 'react';
+import PasswordIcon from '../../assets/Password.svg';
+import CustomButton from '../shared/Button';
+import CustomInput from '../shared/Input';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-
-import CustomButton from '../shared/Button';
-import Input from '../shared/Input';
-
 import { TAppDispatch } from '../../store/app-store';
 import { ResetPasswordThunk } from '../../store/slices/auth/auth-actions';
-import handlePasswordInput from './hooks/handelPasswordInput';
-import { storeUISliceActions } from '../../store/slices/ui/ui-slice.ts';
 
-import PasswordIcon from '../../assets/Password.svg';
+import handlePasswordInput from './hooks/handelPasswordInput';
 
 const RestPassword = () => {
     const dispatch = useDispatch<TAppDispatch>();
@@ -21,23 +18,8 @@ const RestPassword = () => {
     const { token } = useParams<{ token: string }>();
 
     const handleResetPassword = () => {
-        if (passwordHandler.password === '' || repeatPasswordHandler.password === '') {
-            dispatch(
-                storeUISliceActions.setNotification({
-                    type: 'error',
-                    content: 'Please fill in all the fields',
-                })
-            );
-            return;
-        }
-
         if (passwordHandler.password !== repeatPasswordHandler.password) {
-            dispatch(
-                storeUISliceActions.setNotification({
-                    type: 'error',
-                    content: 'Passwords do not match',
-                })
-            );
+            alert('Passwords do not match!');
             return;
         }
 
@@ -58,50 +40,58 @@ const RestPassword = () => {
     return (
         <>
             <title>Reset Password</title>
-
             <div className="parent-container flex items-center justify-center w-screen h-screen bg-primary ">
                 <div className="child-element flex items-start flex-col w-[80%] sm:w-[60%] lg:w-[36%] bg-secondary rounded-[10px] px-12 py-[45px] justify-center">
-                    <h1 className="text-white font-bold text-3xl sm:text-4xl self-start mt-5">
+                    <h1 className="text-white font-bold text-3xl sm:text-4xl selft-start mt-5">
                         Reset Password
                     </h1>
 
                     <form
-                        className="w-full flex gap-3 flex-col self-start px-1"
+                        className="mt-6 w-full flex gap-3 flex-col self-start px-1"
                         onSubmit={handleFormSubmitting}
                     >
-                        <div>
-                            {/* New Password Input */}
-                            <Input
+                        {/* New Password Input */}
+                        <div className="text-white text-[15px] font-bold px-2 mt-3">
+                            Enter your new password
+                        </div>
+                        <div className="relative my-2 -mt-1">
+                            <CustomInput
                                 type="password"
-                                id="password"
                                 placeholder="Password"
                                 IconSrc={PasswordIcon}
                                 IconAlt="Password Icon"
                                 className="bg-[#3B2063]"
                                 value={passwordHandler.password}
-                                inputLabel="Enter your new password"
-                                inputError={passwordHandler.passwordError}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                handleChange={(e: ChangeEvent<HTMLInputElement>) =>
                                     passwordHandler.handlePasswordChange(e.target.value)
                                 }
                             />
-
-                            {/* Repeat Password Input */}
-                            <Input
+                        </div>
+                        {passwordHandler.passwordError && (
+                            <p className="text-red-500 -mb-4 -mt-5 ml-2">{passwordHandler.passwordError}</p>
+                        )}
+                        {/* Repeat Password Input */}
+                        <div className="text-white text-[15px] font-bold px-2 mt-3">
+                            Repeat your new password
+                        </div>
+                        <div className="relative my-2 -mt-1">
+                            <CustomInput
                                 type="password"
-                                id="password-confirmation"
                                 placeholder="Repeat Password"
                                 IconSrc={PasswordIcon}
                                 IconAlt="Repeat Password Icon"
                                 className="bg-[#3B2063]"
                                 value={repeatPasswordHandler.password}
-                                inputLabel="Repeat your new password"
-                                inputError={repeatPasswordHandler.passwordError}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                handleChange={(e: ChangeEvent<HTMLInputElement>) =>
                                     repeatPasswordHandler.handlePasswordChange(e.target.value)
                                 }
                             />
                         </div>
+                        {repeatPasswordHandler.passwordError && (
+                            <p className="text-red-500 -mb-4 -mt-5 ml-2">
+                                {repeatPasswordHandler.passwordError}
+                            </p>
+                        )}
 
                         {/* Reset Button */}
                         <div className="-mt-1 mb-5">

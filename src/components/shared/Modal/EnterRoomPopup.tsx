@@ -1,61 +1,41 @@
-import {Fragment, useEffect, useRef } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { ArrowRightCircleIcon } from '@heroicons/react/20/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeUISliceActions } from '../../../store/slices/ui/ui-slice.ts';
 import { useNavigate } from 'react-router-dom';
-import {TAppDispatch} from "../../../store/app-store.ts";
-import {IAppStore} from "../../../models/app-store.ts";
-import {fetchRoomByIdThunk} from "../../../store/slices/rooms/rooms-actions.ts";
 
 const EnterRoomPopup = () => {
-    const { isEnterRoomPopupShown } = useSelector((store: IAppStore) => store.ui);
-    const { selectedRoom} = useSelector((store: IAppStore) => store.rooms);
+    const { isEnterRoomPopupShown } = useSelector((state: any) => state.ui);
 
-    const dispatch = useDispatch<TAppDispatch>();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const formRef = useRef<HTMLFormElement>(null);
 
+    const formRef = useRef(null);
 
-    const handleClosePopup = (isPopupOpen: boolean) => {
-        dispatch(storeUISliceActions.setIsEnterRoomPopupShown(isPopupOpen));
+    const closePopupHandler = (e: any) => {
+        dispatch(storeUISliceActions.setIsEnterRoomPopupShown(e));
     };
 
-    useEffect(() => {
-        if (!selectedRoom) {
-            return;
-        }
-
-        handleClosePopup(false);
-        navigate(`/simulation-room/${selectedRoom.id}`);
-    }, [selectedRoom]);
-
-    const handleEnterRoom = (e: any) => {
+    const onSubmit = (e: any) => {
         e.preventDefault();
-
-        if (!formRef?.current) {
-            return;
-        }
 
         const roomId = formRef.current['roomId'].value;
 
         if (roomId === '') {
-            dispatch(
-                storeUISliceActions.setNotification({
-                    type: 'error',
-                    content: 'Please enter a room ID',
-                })
-            );
-
             return;
         }
 
-        dispatch(fetchRoomByIdThunk(roomId));
+        // @TODO: validate the room id from backend & dispatch actions to store
+
+        // redirect to the room
+        closePopupHandler(false);
+        navigate(`/simulation-room/${roomId}`);
     };
 
     return (
         <Transition.Root show={isEnterRoomPopupShown} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={handleClosePopup}>
+            <Dialog as="div" className="relative z-10" onClose={closePopupHandler}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -90,7 +70,7 @@ const EnterRoomPopup = () => {
                                 </div>
 
                                 <div>
-                                    <form className="space-y-6 text-white" ref={formRef} onSubmit={handleEnterRoom}>
+                                    <form className="space-y-6 text-white" ref={formRef}>
                                         <div className="mt-2 flex rounded-md shadow-sm">
                                             <input
                                                 type="text"
@@ -100,7 +80,8 @@ const EnterRoomPopup = () => {
                                                 placeholder="Room ID"
                                             />
                                             <button
-                                                type="submit"
+                                                type="button"
+                                                onClick={onSubmit}
                                                 className="relative bg-[#3b2063] -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gradient2"
                                             >
                                                 <ArrowRightCircleIcon
