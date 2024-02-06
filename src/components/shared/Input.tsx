@@ -7,22 +7,11 @@ export interface InputProps
     inputContainerProps?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
     inputLabel?: string;
     inputError?: string;
-    IconSrc?: string;
-    IconAlt?: string;
+    Icon?: React.ReactNode;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-    const {
-        id,
-        type,
-        className,
-        inputContainerProps,
-        inputLabel,
-        inputError,
-        IconSrc,
-        IconAlt,
-        ...restProps
-    } = props;
+    const { id, type, className, inputContainerProps, inputLabel, inputError, Icon, ...restProps } = props;
 
     const { className: inputContainerClassName, ...inputPropsRestProps } = inputContainerProps || {};
 
@@ -44,16 +33,16 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
                     type={type}
                     id={id}
                     className={twMerge(
-                        IconSrc ? 'pl-14' : '',
-                        'pr-4 py-3 rounded-lg w-full text-white outline-none',
+                        Icon ? 'pl-14' : '',
+                        'pr-4 py-3 rounded-lg w-full text-white outline-none placeholder:text-[#9ca3af]',
                         className
                     )}
                     {...restProps}
                 />
 
-                {IconSrc && (
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <img src={IconSrc} alt={IconAlt} />
+                {Icon && (
+                    <div className="absolute inset-y-0 left-0 text-xl pl-5 flex items-center pointer-events-none text-[#9ca3af]">
+                        {Icon}
                     </div>
                 )}
             </div>

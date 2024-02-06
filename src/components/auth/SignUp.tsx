@@ -1,18 +1,20 @@
 import { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faUnlockKeyhole } from '@fortawesome/free-solid-svg-icons';
 
-import bg from '../../assets/BgSignup.png';
-import EmailIcon from '../../assets/Email.svg';
-import PasswordIcon from '../../assets/Password.svg';
 import Input from '../shared/Input';
 import CustomButton from '../shared/Button';
+
 import handelEmailInput from './hooks/handleEmailInput';
 import handlePasswordInput from './hooks/handelPasswordInput';
 import handelButtonClick from './hooks/handelButtonClick';
 import handleRequriedInput from './hooks/handelRequiredInput';
-
 import { signUpThunk } from '../../store/slices/auth/auth-actions';
 import { TAppDispatch } from '../../store/app-store';
+
+import bg from '../../assets/BgSignup.png';
 
 function Signup() {
     const firstNameHandeler = handleRequriedInput('First name');
@@ -46,9 +48,9 @@ function Signup() {
             <title>Sign Up</title>
 
             <div className="flex h-screen">
-                <div className="flex-1 basis-1/3 h-screen bg-primary text-[#FFF] p-6 flex items-center">
+                <div className="flex-1 basis-2/3 lg:basis-1/3 h-screen bg-primary text-[#FFF] p-6 flex items-center">
                     <div className="w-full px-5">
-                        <h1 className="font-bold text-6xl text-center my-10">SIGN UP</h1>
+                        <h1 className="font-bold text-5xl sm:text-6xl text-center my-10">SIGN UP</h1>
 
                         <form className="mt-6 w-full" onSubmit={handleFormSubmitting}>
                             {/* Name Input */}
@@ -83,11 +85,10 @@ function Signup() {
                                 type="text"
                                 id="email"
                                 placeholder="Enter your email"
-                                IconSrc={EmailIcon}
-                                IconAlt="Email Icon"
                                 className=" bg-secondary"
                                 value={emailHandeler.email}
                                 inputError={emailHandeler.emailError}
+                                Icon={<FontAwesomeIcon icon={faEnvelope} />}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                     emailHandeler.handleEmailChange(e.target.value)
                                 }
@@ -98,11 +99,10 @@ function Signup() {
                                 type="password"
                                 id="password"
                                 placeholder="Password"
-                                IconSrc={PasswordIcon}
-                                IconAlt="Password Icon"
                                 className=" bg-secondary"
                                 value={passwordHundeler.password}
                                 inputError={passwordHundeler.passwordError}
+                                Icon={<FontAwesomeIcon icon={faUnlockKeyhole} />}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                     passwordHundeler.handlePasswordChange(e.target.value)
                                 }

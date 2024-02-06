@@ -1,11 +1,11 @@
 import React from 'react';
 
-const DashboardSliderImg: React.FC<{ imgSrc: string }> = ({ imgSrc }) => {
+const DashboardSliderImg: React.FC<{ imgSrc: string; imgAlt: string }> = ({ imgSrc, imgAlt }) => {
     return (
         <img
             className="block w-full aspect-square object-contain hover:opacity-70"
             src={imgSrc}
-            alt="dashboard-enter-room"
+            alt={imgAlt}
         />
     );
 };
