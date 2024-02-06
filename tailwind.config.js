@@ -1,9 +1,11 @@
-/** @type {import('tailwindcss').Config} */
 export default {
     darkMode: 'class',
     content: ['./src/**/*.{js,jsx,ts,tsx}', './node_modules/react-tailwindcss-select/dist/index.esm.js'],
     theme: {
         extend: {
+            fontFamily: {
+                montserrat: ['Montserrat'],
+            },
             colors: {
                 primary: '#160430',
                 secondary: '#261046',
@@ -17,6 +19,10 @@ export default {
                 gradientSimulationBox2alt: 'rgba(143, 104, 206, 0.2)',
                 RoomButtonGradient1: '#501794',
                 RoomButtonGradient2: '#7E5DAF',
+
+                homeBg: '#F5F7FA',
+                footer: '#331A57',
+                stats: '#7B6C93',
 
                 // simulation-room
                 'simulation-room-bg': 'rgb(var(--simulation-room-bg))',

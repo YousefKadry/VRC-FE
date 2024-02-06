@@ -45,6 +45,7 @@ const DashBoardText: React.FC<{ activeSlider: number }> = ({ activeSlider }) => 
                     >
                         Enter A Room
                     </textPath>
+
                     <textPath
                         xlinkHref="#curve"
                         startOffset="31%"
@@ -54,6 +55,7 @@ const DashBoardText: React.FC<{ activeSlider: number }> = ({ activeSlider }) => 
                     >
                         Build A Room
                     </textPath>
+
                     <textPath
                         className="hover:text-blue"
                         xlinkHref="#curve"

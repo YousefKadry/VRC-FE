@@ -1,16 +1,17 @@
+import { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 
-import bg from '../../assets/BackgroundImage.png';
-import EmailIcon from '../../assets/Email.svg';
-import PasswordIcon from '../../assets/Password.svg';
 import Input from '../shared/Input';
 import CustomButton from '../shared/Button';
+
 import handleRequriedInput from './hooks/handelRequiredInput';
 import handelButtonClick from './hooks/handelButtonClick';
-import { ChangeEvent } from 'react';
-
 import { loginThunk } from '../../store/slices/auth/auth-actions';
 import { TAppDispatch } from '../../store/app-store';
+
+import PasswordIcon from '../../assets/Password.svg';
+import EmailIcon from '../../assets/Email.svg';
+import bg from '../../assets/BackgroundImage.png';
 
 function Login() {
     const emailHandeler = handleRequriedInput('Email');
@@ -35,6 +36,7 @@ function Login() {
     return (
         <>
             <title>Login</title>
+
             <div className="flex h-screen">
                 <div
                     className="flex-1 hidden sm:block sm:basis-1/8 md:basis-1/2 lg:basis-2/3  w-full bg-primary"
@@ -42,7 +44,7 @@ function Login() {
                 />
                 <div className="flex-1 basis-1/3 h-screen bg-primary text-[#FFF] p-6 flex items-center">
                     <div className="w-full px-5">
-                        <h1 className="font-bold text-6xl text-center my-10">SIGN IN</h1>
+                        <h1 className="font-bold text-5xl min-[320px]:text-6xl text-center my-10">SIGN IN</h1>
 
                         <form onSubmit={handleFormSubmitting} className="mt-6 w-full">
                             {/* Email Input */}
@@ -80,7 +82,7 @@ function Login() {
                         </form>
 
                         {/* Recovery */}
-                        <div className="flex my-4 items-center justify-between">
+                        <div className="flex flex-col 2xl:flex-row 2xl:items-center my-4 justify-between">
                             <p className="text-[#B6B6B6]">
                                 Don't have an account?{' '}
                                 <a href="/sign-up" className="text-tertiary">
