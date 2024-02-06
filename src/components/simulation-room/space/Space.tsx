@@ -40,9 +40,7 @@ const Space: React.FC<ISpaceProps> = (props) => {
                     <XR>
                         <OrbitControls ref={orbitRef} />
 
-                        {selectedRoom.state.ambientLight && (
-                            <ambientLight intensity={Math.PI / 3} castShadow />
-                        )}
+                        {selectedRoom.state.ambientLight && <ambientLight intensity={Math.PI / 3} />}
 
                         <SpaceObjects />
 

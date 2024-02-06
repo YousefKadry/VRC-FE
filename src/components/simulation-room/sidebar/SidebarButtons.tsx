@@ -8,6 +8,7 @@ import {
     faImage,
     faShareFromSquare,
     faStarHalfStroke,
+    faLightbulb,
     faCubes,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,6 +22,7 @@ const simulationRoomSidebarButtons = [
     { id: ESimulationRoomButtonId.HDRIs_ASSETS_BTN, icon: faImage, title: 'Room Background' },
     { id: ESimulationRoomButtonId.GLTFs_ASSETS_BTN, icon: faCircleNodes, title: 'Models' },
     { id: ESimulationRoomButtonId.MESHES_BTN, icon: faCubes, title: 'Meshes' },
+    { id: ESimulationRoomButtonId.LIGHT_BTN, icon: faLightbulb },
     { id: ESimulationRoomButtonId.SPECIAL_EFFECT_BTN, icon: faStarHalfStroke, title: 'Special Effects' },
     { id: ESimulationRoomButtonId.SHARING_BTN, icon: faShareFromSquare, title: 'Share' },
 ];

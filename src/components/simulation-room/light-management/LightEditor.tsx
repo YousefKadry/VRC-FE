@@ -1,38 +1,55 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { twJoin } from 'tailwind-merge';
 
-import CustomButton from '../../shared/Button';
 import Switch from '../../ui/switch/Switch';
+import CustomButton from '../../shared/Button';
 
-import { IAppStore } from '../../../models/app-store';
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice';
+import { IAppStore } from '../../../models/app-store';
 import { TRoomEffects } from '../../../models/room';
 
-const SpecialEffects: React.FC = () => {
+const LightEditor: React.FC = () => {
     const dispatch = useDispatch();
-    const starsVisibility = useSelector((store: IAppStore) => store.rooms.selectedRoom?.state.stars ?? false);
-    const skyVisibility = useSelector((store: IAppStore) => store.rooms.selectedRoom?.state.sky ?? true);
-    const basePlaneVisibility = useSelector(
-        (store: IAppStore) => store.rooms.selectedRoom?.state.basePlane ?? true
+
+    const ambientLightVisibility = useSelector(
+        (store: IAppStore) => store.rooms.selectedRoom?.state.ambientLight ?? true
+    );
+
+    const hideLightIcons = useSelector(
+        (store: IAppStore) => store.rooms.selectedRoom?.state.hideLightIcons ?? false
+    );
+
+    const CastShadowsEnable = useSelector(
+        (store: IAppStore) => store.rooms.selectedRoom?.state.castShadows ?? true
     );
 
     const handleEffectsChanging = (checked: boolean, id: TRoomEffects) => {
         dispatch(storeRoomsSliceActions.updateSelectedRoomState({ [id]: checked }));
     };
 
-    const handleAddClouds = () => {
-        dispatch(storeRoomsSliceActions.addObjects({ clouds: [{ color: '#ffffff' }] }));
+    const handleAddLight = (type: 'spot' | 'point') => {
+        dispatch(
+            storeRoomsSliceActions.addObjects({
+                lights: [
+                    {
+                        type,
+                        color: '#ffffff',
+                        intensity: 1000,
+                    },
+                ],
+            })
+        );
     };
 
     const effects: Array<{ id: TRoomEffects; title: string; checked: boolean }> = [
-        { id: 'stars', title: 'Stars', checked: starsVisibility },
-        { id: 'sky', title: 'Sky', checked: skyVisibility },
-        { id: 'basePlane', title: 'Base Plane', checked: basePlaneVisibility },
+        { id: 'ambientLight', title: 'Ambient Light', checked: ambientLightVisibility },
+        { id: 'castShadows', title: 'Cast Shadows', checked: CastShadowsEnable },
+        { id: 'hideLightIcons', title: 'Hide Light Icons', checked: hideLightIcons },
     ];
 
     return (
-        <div className="w-full flex flex-col gap-8 overflow-auto">
+        <div className="w-full flex flex-col gap-6">
             <div className="flex flex-col gap-y-3">
                 {effects.map((effect) => {
                     return (
@@ -59,13 +76,23 @@ const SpecialEffects: React.FC = () => {
                         'text-simulation-room-gradient-color from-simulation-room-gradient-from to-simulation-room-gradient-to',
                         'w-full px-4 py-3 mt-0 text-base rounded-lg'
                     )}
-                    onClick={handleAddClouds}
+                    onClick={handleAddLight.bind(null, 'spot')}
                 >
-                    Add Cloud
+                    Add Spot Light
+                </CustomButton>
+
+                <CustomButton
+                    className={twJoin(
+                        'text-simulation-room-gradient-color from-simulation-room-gradient-from to-simulation-room-gradient-to',
+                        'w-full px-4 py-3 mt-0 text-base rounded-lg'
+                    )}
+                    onClick={handleAddLight.bind(null, 'point')}
+                >
+                    Add Point Light
                 </CustomButton>
             </div>
         </div>
     );
 };
 
-export default SpecialEffects;
+export default LightEditor;

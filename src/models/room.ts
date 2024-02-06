@@ -13,7 +13,7 @@ export type TRoomObjectsType = 'meshes' | 'clouds' | 'models' | 'texts' | 'light
 
 export type TCoord = 'x' | 'y' | 'z';
 
-export type TRoomEffects = 'stars' | 'sky' | 'basePlane' | 'ambientLight' | 'hideLightIcons';
+export type TRoomEffects = 'stars' | 'sky' | 'basePlane' | 'ambientLight' | 'hideLightIcons' | 'castShadows';
 
 export interface IRoomState {
     meshes: Record<string, IMesh>;
@@ -27,6 +27,7 @@ export interface IRoomState {
     basePlane: boolean;
     ambientLight: boolean;
     hideLightIcons: boolean;
+    castShadows: boolean;
     selectedObjectInfo: {
         type: TRoomObjectsType;
         id: IRoomObject['id'];

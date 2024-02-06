@@ -11,7 +11,6 @@ import { IRoomObject } from '../../../../models/room';
 import { TAppDispatch } from '../../../../store/app-store';
 import { storeRoomsSliceActions } from '../../../../store/slices/rooms/rooms-slice';
 import RoomObjectUtil from '../../../../utilities/room-object';
-import { DoubleSide } from 'three';
 
 extend({ TextGeometry });
 
@@ -38,7 +37,7 @@ const Texts = () => {
                 receiveShadow
             >
                 <textGeometry args={[text, { font, size: 1, height: 0.3 }]} />
-                <meshStandardMaterial color={color} side={DoubleSide} />
+                <meshStandardMaterial color={color} />
             </mesh>
         );
     });

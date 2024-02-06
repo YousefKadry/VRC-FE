@@ -83,7 +83,6 @@ const useRoomObjController = (args: {
                         value: selectedObj.intensity,
                         step: 1,
                         min: 0,
-                        max: 40000,
                         onChange: (intensity) => {
                             changeIntensityHandler(intensity);
                         },
