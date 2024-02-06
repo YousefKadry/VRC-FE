@@ -1,5 +1,5 @@
 import background from '../../assets/images/contact-background.svg';
-import Form from './Contact-form';
+import Form from './ContactForm';
 const ContactUs = () => {
     return (
         <main className="w-full h-full bg-homeBg flex flex-col overflow-y-auto">

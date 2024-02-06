@@ -1,4 +1,4 @@
-import Form from './FeedBack-Form';
+import Form from './FeedbackForm';
 
 const ReviewSection = () => {
     return (
