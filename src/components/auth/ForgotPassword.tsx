@@ -1,5 +1,7 @@
 import { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 import Input from '../shared/Input';
 import CustomButton from '../shared/Button';
@@ -8,8 +10,6 @@ import handelEmailInput from './hooks/handleEmailInput';
 import handelButtonClick from './hooks/handelButtonClick';
 import { TAppDispatch } from '../../store/app-store';
 import { ForgetPasswordThunk } from '../../store/slices/auth/auth-actions';
-
-import EmailIcon from '../../assets/Email.svg';
 
 const ForgotPassword = () => {
     const emailHandeler = handelEmailInput();
@@ -44,12 +44,11 @@ const ForgotPassword = () => {
                             type="text"
                             id="email"
                             placeholder="yourname@gmail.com"
-                            IconSrc={EmailIcon}
-                            IconAlt="Email Icon"
                             className="bg-[#3B2063] text-white "
                             value={emailHandeler.email}
                             inputLabel="Enter your email address"
                             inputError={emailHandeler.emailError}
+                            Icon={<FontAwesomeIcon icon={faEnvelope} />}
                             onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 emailHandeler.handleEmailChange(e.target.value)
                             }

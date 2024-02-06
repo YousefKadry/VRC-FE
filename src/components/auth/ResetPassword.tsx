@@ -1,6 +1,8 @@
 import React, { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUnlockKeyhole } from '@fortawesome/free-solid-svg-icons';
 
 import CustomButton from '../shared/Button';
 import Input from '../shared/Input';
@@ -9,8 +11,6 @@ import { TAppDispatch } from '../../store/app-store';
 import { ResetPasswordThunk } from '../../store/slices/auth/auth-actions';
 import handlePasswordInput from './hooks/handelPasswordInput';
 import { storeUISliceActions } from '../../store/slices/ui/ui-slice.ts';
-
-import PasswordIcon from '../../assets/Password.svg';
 
 const RestPassword = () => {
     const dispatch = useDispatch<TAppDispatch>();
@@ -75,12 +75,11 @@ const RestPassword = () => {
                                 type="password"
                                 id="password"
                                 placeholder="Password"
-                                IconSrc={PasswordIcon}
-                                IconAlt="Password Icon"
                                 className="bg-[#3B2063]"
                                 value={passwordHandler.password}
                                 inputLabel="Enter your new password"
                                 inputError={passwordHandler.passwordError}
+                                Icon={<FontAwesomeIcon icon={faUnlockKeyhole} />}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                     passwordHandler.handlePasswordChange(e.target.value)
                                 }
@@ -91,12 +90,11 @@ const RestPassword = () => {
                                 type="password"
                                 id="password-confirmation"
                                 placeholder="Repeat Password"
-                                IconSrc={PasswordIcon}
-                                IconAlt="Repeat Password Icon"
                                 className="bg-[#3B2063]"
                                 value={repeatPasswordHandler.password}
                                 inputLabel="Repeat your new password"
                                 inputError={repeatPasswordHandler.passwordError}
+                                Icon={<FontAwesomeIcon icon={faUnlockKeyhole} />}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                     repeatPasswordHandler.handlePasswordChange(e.target.value)
                                 }

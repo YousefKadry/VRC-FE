@@ -3,12 +3,11 @@ import { twJoin } from 'tailwind-merge';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Rating } from 'react-simple-star-rating';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 import Input from '../../../shared/Input';
-
-import Phone from '../../../../assets/Phone.svg';
-import Name from '../../../../assets/Name.svg';
-import Email from '../../../../assets/Email.svg';
 
 const FeedbackForm = () => {
     const [_, setRating] = useState(0);
@@ -42,9 +41,8 @@ const FeedbackForm = () => {
                                 type="text"
                                 id="name"
                                 placeholder="Name"
-                                IconSrc={Name}
-                                IconAlt="Name Icon"
                                 className={formInputClassName}
+                                Icon={<FontAwesomeIcon icon={faUser} />}
                             />
                         </div>
                     </div>
@@ -59,9 +57,8 @@ const FeedbackForm = () => {
                                 type="text"
                                 id="phoneNumber"
                                 placeholder="Phone Number"
-                                IconSrc={Phone}
-                                IconAlt="Email Icon"
                                 className={formInputClassName}
+                                Icon={<FontAwesomeIcon icon={faPhone} />}
                             />
                         </div>
                     </div>
@@ -76,9 +73,8 @@ const FeedbackForm = () => {
                                 type="text"
                                 id="email"
                                 placeholder="Enter your email"
-                                IconSrc={Email}
-                                IconAlt="Email Icon"
                                 className={formInputClassName}
+                                Icon={<FontAwesomeIcon icon={faEnvelope} />}
                             />
                         </div>
                     </div>
