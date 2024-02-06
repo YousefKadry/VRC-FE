@@ -1,5 +1,8 @@
 import { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faUnlockKeyhole } from '@fortawesome/free-solid-svg-icons';
 
 import Input from '../shared/Input';
 import CustomButton from '../shared/Button';
@@ -12,8 +15,6 @@ import { signUpThunk } from '../../store/slices/auth/auth-actions';
 import { TAppDispatch } from '../../store/app-store';
 
 import bg from '../../assets/BgSignup.png';
-import PasswordIcon from '../../assets/Password.svg';
-import EmailIcon from '../../assets/Email.svg';
 
 function Signup() {
     const firstNameHandeler = handleRequriedInput('First name');
@@ -84,11 +85,10 @@ function Signup() {
                                 type="text"
                                 id="email"
                                 placeholder="Enter your email"
-                                IconSrc={EmailIcon}
-                                IconAlt="Email Icon"
                                 className=" bg-secondary"
                                 value={emailHandeler.email}
                                 inputError={emailHandeler.emailError}
+                                Icon={<FontAwesomeIcon icon={faEnvelope} />}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                     emailHandeler.handleEmailChange(e.target.value)
                                 }
@@ -99,11 +99,10 @@ function Signup() {
                                 type="password"
                                 id="password"
                                 placeholder="Password"
-                                IconSrc={PasswordIcon}
-                                IconAlt="Password Icon"
                                 className=" bg-secondary"
                                 value={passwordHundeler.password}
                                 inputError={passwordHundeler.passwordError}
+                                Icon={<FontAwesomeIcon icon={faUnlockKeyhole} />}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                     passwordHundeler.handlePasswordChange(e.target.value)
                                 }
