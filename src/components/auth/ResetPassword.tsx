@@ -59,8 +59,8 @@ const RestPassword = () => {
         <>
             <title>Reset Password</title>
 
-            <div className="parent-container flex items-center justify-center w-screen h-screen bg-primary ">
-                <div className="child-element flex items-start flex-col w-[80%] sm:w-[60%] lg:w-[36%] bg-secondary rounded-[10px] px-12 py-[45px] justify-center">
+            <div className="parent-container flex items-center justify-center w-screen h-screen bg-primary  px-[50px]">
+                <div className="child-element flex items-start flex-col bg-secondary rounded-[10px] px-[60px] py-[45px] justify-center">
                     <h1 className="text-white font-bold text-3xl sm:text-4xl self-start mt-5">
                         Reset Password
                     </h1>
