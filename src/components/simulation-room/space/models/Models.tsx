@@ -23,14 +23,14 @@ const Models = () => {
         const { id, URL, rotation, ...restProps } = model;
 
         return (
-            <scene
+            <group
                 key={id}
                 {...restProps}
                 rotation={RoomObjectUtil.convertRotationFromDegreeToEuler(rotation)}
                 onDoubleClick={(e) => handleModelSelection(e, id)}
             >
-                <GLTFModel gltfURL={URL} />
-            </scene>
+                <GLTFModel gltfModel={model} />
+            </group>
         );
     });
 };
