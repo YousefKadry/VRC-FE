@@ -1,4 +1,5 @@
 import React from 'react';
+
 import SharingButton from './SharingButton';
 import URLDisplay from './URLDisplay';
 
@@ -8,7 +9,7 @@ interface URLSharingComponentProps {
 
 const URLSharingComponent: React.FC<URLSharingComponentProps> = ({ sharingURL }) => {
     return (
-        <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
             <URLDisplay sharingURL={sharingURL} />
             <SharingButton sharingURL={sharingURL} />
         </div>

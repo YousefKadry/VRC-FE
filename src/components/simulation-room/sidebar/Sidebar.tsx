@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { twJoin } from 'tailwind-merge';
 
@@ -9,11 +10,10 @@ import GLTFsAssets from '../room-assets/GLTFsAssets.tsx';
 import SpecialEffects from '../special-effects/SpecialEffects.tsx';
 import TextManager from '../text-management/TextManager.tsx';
 import AddMesh from '../object-editor/AddMesh.tsx';
+import HDRIsAssets from '../room-assets/HDRIsAssets.tsx';
 
 import { ESimulationRoomButtonId } from '../../../models/simulation-room-sidebar.ts';
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
-import { useDispatch } from 'react-redux';
-import HDRIsAssets from '../room-assets/HDRIsAssets.tsx';
 
 const Sidebar = () => {
     const [activeButtonId, setActiveButtonId] = useState<ESimulationRoomButtonId | null>(null);
@@ -27,7 +27,7 @@ const Sidebar = () => {
             case ESimulationRoomButtonId.TEXT_BTN:
                 return <TextManager />;
             case ESimulationRoomButtonId.HDRIs_ASSETS_BTN:
-                return <HDRIsAssets />
+                return <HDRIsAssets />;
             case ESimulationRoomButtonId.GLTFs_ASSETS_BTN:
                 return <GLTFsAssets />;
             case ESimulationRoomButtonId.MESHES_BTN:
@@ -45,26 +45,27 @@ const Sidebar = () => {
         if (id === ESimulationRoomButtonId.BACK_HOME_BTN) {
             dispatch(storeRoomsSliceActions.selectedRoom(null));
             navigate('/dashboard');
-        } else if (id === ESimulationRoomButtonId.MENU_CLOSING_BTN) {
-            setActiveButtonId(null);
         } else {
-            setActiveButtonId(id);
+            setActiveButtonId((activeId) => {
+                return id !== activeId ? id : null;
+            });
         }
     };
 
     return (
         <div
-            className={`relative z-10 shrink-0 w-24 h-screen overflow-hidden transition-all duration-200 p-0`}
+            className={`relative z-10 shrink-0 w-16 h-screen overflow-hidden transition-all duration-200 p-0`}
         >
-            <div className="h-full w-full overflow-x-hidden overflow-y-auto bg-[#1E083C]">
+            <div className="h-full w-full overflow-x-hidden overflow-y-auto bg-simulation-room-sidebar-bg">
                 <SidebarButtons activeButtonId={activeButtonId} buttonClickHandler={handleButtonClicking} />
             </div>
 
             <div
                 className={twJoin(
-                    'fixed top-0 bottom-0 left-24 right-0 z-10',
-                    'flex flex-col px-5 py-10 items-center transition-all duration-200 bg-[#311B52]',
-                    !activeButtonId ? 'w-0 opacity-0' : 'max-w-[450px] opacity-100'
+                    'fixed top-0 bottom-0 left-16 right-0 z-10',
+                    'flex flex-col px-5 py-10 items-center transition-all duration-200',
+                    'bg-simulation-room-sidebar-menu-bg text-simulation-room-sidebar-menu-color',
+                    !activeButtonId ? 'w-0 opacity-0' : 'max-w-[350px] opacity-100'
                 )}
             >
                 {renderFocus()}

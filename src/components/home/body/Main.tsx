@@ -1,8 +1,7 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Image from '../../../assets/images/dashboard-build-room.png';
 
-const Component: React.FC = () => {
+const HeaderSection = () => {
     const navigate = useNavigate();
 
     const handleRegisterClick = () => {
@@ -36,4 +35,4 @@ const Component: React.FC = () => {
     );
 };
 
-export default Component;
+export default HeaderSection;

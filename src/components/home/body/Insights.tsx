@@ -1,8 +1,7 @@
-import { FunctionComponent } from "react";
 import membersIcon from '../../../assets/icons/home-members.svg';
 import roomsIcon from '../../../assets/icons/home-rooms.svg';
 
-const FeaturesSection: FunctionComponent = () => {
+const InsightsSection = () => {
   return (
     <section className="bg-homeBg p-8">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center">
@@ -32,4 +31,4 @@ const FeaturesSection: FunctionComponent = () => {
   );
 };
 
-export default FeaturesSection;
+export default InsightsSection;

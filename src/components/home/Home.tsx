@@ -1,15 +1,13 @@
-import { FunctionComponent } from 'react';
-import FrameHeader from '../shared/Navbar';
 import Main from './body/Main';
-import Features from './body/Features';
+import Features from './body/Features/Features';
 import Footer from './Footer';
 import Insights from './body/Insights';
-import Usage from './body/Usage';
-import Review from './body/Review';
-const Thumbnail: FunctionComponent = () => {
+import Usage from './body/Usage-Steps/Usage';
+import Review from './body/Review/Review';
+
+const Home = () => {
     return (
         <main className="w-full h-full bg-homeBg flex flex-col overflow-y-auto">
-            <FrameHeader />
             <Main />
             <Features />
             <Insights />
@@ -20,4 +18,4 @@ const Thumbnail: FunctionComponent = () => {
     );
 };
 
-export default Thumbnail;
+export default Home;
