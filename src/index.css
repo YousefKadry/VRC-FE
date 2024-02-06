@@ -7,14 +7,14 @@
     --main-bg: #160430;
 
     /* simulation-room */
-    --simulation-room-bg: 0, 0, 0;
-    --simulation-room-sidebar-bg: 16, 18, 19;
-    --simulation-room-sidebar-color: 255, 255, 255;
-    --simulation-room-sidebar-menu-bg: 28, 30, 38;
-    --simulation-room-sidebar-menu-color: 255, 255, 255;
-    --simulation-room-gradient-from: 0, 0, 0, 1;
-    --simulation-room-gradient-to: 24, 25, 26;
-    --simulation-room-gradient-color: 255, 255, 255;
+    --simulation-room-bg: 0 0 0;
+    --simulation-room-sidebar-bg: 16 18 19;
+    --simulation-room-sidebar-color: 255 255 255;
+    --simulation-room-sidebar-menu-bg: 28 30 38;
+    --simulation-room-sidebar-menu-color: 255 255 255;
+    --simulation-room-gradient-from: 0 0 0;
+    --simulation-room-gradient-to: 24 25 26;
+    --simulation-room-gradient-color: 255 255 255;
 }
 
 body {

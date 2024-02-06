@@ -3,6 +3,8 @@ import { useInView } from 'react-intersection-observer';
 import { debounce } from 'lodash';
 import { twJoin } from 'tailwind-merge';
 import { BeatLoader } from 'react-spinners';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import Input from '../../shared/Input';
 
@@ -72,12 +74,17 @@ function AssetsInfiniteList<AssetType extends IRoomAssetsItem>(
                 id="assets-search-input"
                 className={twJoin(
                     'bg-simulation-room-sidebar-bg placeholder:text-simulation-room-sidebar-color text-simulation-room-sidebar-color',
-                    'border border-simulation-room-bg',
-                    'text-center outline-none'
+                    'border border-simulation-room-bg'
                 )}
                 inputContainerProps={{ className: 'mt-0' }}
                 placeholder={searchInputPlaceholder}
                 defaultValue={q}
+                Icon={
+                    <FontAwesomeIcon
+                        icon={faMagnifyingGlass}
+                        className="text-simulation-room-sidebar-color"
+                    />
+                }
                 onChange={handleSearchQuery}
             />
 

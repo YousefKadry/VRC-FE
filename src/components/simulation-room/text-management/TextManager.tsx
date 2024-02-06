@@ -1,6 +1,8 @@
 import { ChangeEvent, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { twJoin } from 'tailwind-merge';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFont } from '@fortawesome/free-solid-svg-icons';
 
 import CustomButton from '../../shared/Button';
 import Input from '../../shared/Input';
@@ -36,11 +38,11 @@ const TextManager = () => {
                 id="text"
                 className={twJoin(
                     'bg-simulation-room-sidebar-bg placeholder:text-simulation-room-sidebar-color text-simulation-room-sidebar-color',
-                    'border border-simulation-room-bg',
-                    'text-center outline-none'
+                    'border border-simulation-room-bg'
                 )}
                 inputContainerProps={{ className: 'mt-0' }}
                 placeholder="Enter your text here"
+                Icon={<FontAwesomeIcon icon={faFont} className="text-simulation-room-sidebar-color" />}
                 onChange={handleTextChange}
             />
 
@@ -48,7 +50,7 @@ const TextManager = () => {
                 <CustomButton
                     className={twJoin(
                         'text-simulation-room-gradient-color from-simulation-room-gradient-from to-simulation-room-gradient-to',
-                        'w-fit max-w-full px-12 py-2.5 text-base rounded-lg'
+                        'px-4 py-2.5 text-base rounded-lg'
                     )}
                     onClick={handleInsertText}
                 >
