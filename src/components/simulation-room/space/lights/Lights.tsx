@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ThreeEvent } from '@react-three/fiber';
 
 import LightItem from './Light';
 
@@ -13,7 +14,8 @@ const Lights = () => {
     const lights = useSelector((store: IAppStore) => store.rooms.selectedRoom?.state.lights);
     const dispatch = useDispatch<TAppDispatch>();
 
-    const handleObjectSelection = (objectId: IRoomObject['id']) => {
+    const handleObjectSelection = (e: ThreeEvent<MouseEvent>, objectId: IRoomObject['id']) => {
+        e.stopPropagation();
         dispatch(storeRoomsSliceActions.selectObject({ type: 'lights', id: objectId }));
     };
 
@@ -23,7 +25,7 @@ const Lights = () => {
         return (
             <group
                 key={id}
-                onClick={handleObjectSelection.bind(null, id)}
+                onDoubleClick={(e) => handleObjectSelection(e, id)}
                 scale={[8, 8, 8]}
                 position={restProps.position}
                 rotation={RoomObjectUtil.convertRotationFromDegreeToEuler(rotation)}

@@ -12,6 +12,9 @@ const roomObjectsReducers = {
             return;
         }
 
+        let lastObjectId;
+        let lastObjectType;
+
         for (const [objectType, objects] of Object.entries(action.payload)) {
             const storeObjects = storeRoomsSlice.selectedRoom.state[objectType as keyof IAddObjectsAction];
 
@@ -25,7 +28,17 @@ const roomObjectsReducers = {
                     scale: [1, 1, 1],
                     ...object,
                 };
+
+                lastObjectId = objectId;
+                lastObjectType = objectType;
             }
+        }
+
+        if (lastObjectId && lastObjectType) {
+            storeRoomsSlice.selectedRoom.state.selectedObjectInfo = {
+                id: lastObjectId,
+                type: lastObjectType as keyof IAddObjectsAction,
+            };
         }
 
         storeRoomsSlice.selectedRoom.isUpdated = true;
