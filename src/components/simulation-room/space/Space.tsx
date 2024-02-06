@@ -34,13 +34,13 @@ const Space: React.FC<ISpaceProps> = (props) => {
 
                 <Canvas
                     style={{ height: '100vh', width: '100%' }}
-                    camera={{ position: [-70, 85, -40] }}
+                    camera={{ position: [-35, 40, -20] }}
                     shadows
                 >
                     <XR>
                         <OrbitControls ref={orbitRef} />
 
-                        {selectedRoom.state.ambientLight && <ambientLight intensity={Math.PI / 3} />}
+                        {selectedRoom.state.ambientLight && <ambientLight intensity={Math.PI / 2} />}
 
                         <SpaceObjects />
 

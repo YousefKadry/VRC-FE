@@ -10,7 +10,7 @@ export interface InputProps
     Icon?: React.ReactNode;
 }
 
-const Input: React.FC<InputProps> = (props) => {
+const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     const { id, type, className, inputContainerProps, inputLabel, inputError, Icon, ...restProps } = props;
 
     const { className: inputContainerClassName, ...inputPropsRestProps } = inputContainerProps || {};
@@ -29,6 +29,7 @@ const Input: React.FC<InputProps> = (props) => {
 
             <div className="relative w-full">
                 <input
+                    ref={ref}
                     type={type}
                     id={id}
                     className={twMerge(
@@ -53,6 +54,6 @@ const Input: React.FC<InputProps> = (props) => {
             )}
         </div>
     );
-};
+});
 
 export default Input;

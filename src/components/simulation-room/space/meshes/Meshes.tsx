@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ThreeEvent } from '@react-three/fiber';
 
 import MeshGeometry from './MeshGeometry';
 
@@ -13,7 +14,8 @@ const Meshes = () => {
     const meshes = useSelector((store: IAppStore) => store.rooms.selectedRoom?.state.meshes);
     const dispatch = useDispatch<TAppDispatch>();
 
-    const handleObjectSelection = (objectId: IRoomObject['id']) => {
+    const handleObjectSelection = (e: ThreeEvent<MouseEvent>, objectId: IRoomObject['id']) => {
+        e.stopPropagation();
         dispatch(storeRoomsSliceActions.selectObject({ type: 'meshes', id: objectId }));
     };
 
@@ -23,7 +25,7 @@ const Meshes = () => {
         return (
             <mesh
                 key={id}
-                onClick={() => handleObjectSelection(id)}
+                onDoubleClick={(e) => handleObjectSelection(e, id)}
                 rotation={RoomObjectUtil.convertRotationFromDegreeToEuler(rotation)}
                 {...restProps}
                 castShadow

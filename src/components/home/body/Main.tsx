@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import { IAppStore } from '../../../models/app-store';
+
 import Image from '../../../assets/images/dashboard-build-room.png';
 
 const HeaderSection = () => {

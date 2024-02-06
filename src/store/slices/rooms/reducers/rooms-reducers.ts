@@ -28,6 +28,9 @@ const roomsReducers = {
     addRoom(storeRoomsSlice: IStoreRoomsSlice, action: PayloadAction<IRoom<string>>) {
         storeRoomsSlice.rooms[action.payload.id] = action.payload;
     },
+    removeRoom(storeRoomsSlice: IStoreRoomsSlice, action: PayloadAction<IRoom<string>['id']>) {
+        delete storeRoomsSlice.rooms[action.payload];
+    },
     clearRooms(storeRoomsSlice: IStoreRoomsSlice) {
         storeRoomsSlice.rooms = {};
     },
@@ -57,6 +60,7 @@ const roomsReducers = {
                 ...stateAsJSON,
             },
             isUpdated: false,
+            collaborators: {},
         };
     },
 };

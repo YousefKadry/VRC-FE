@@ -7,5 +7,6 @@ export enum ESimulationRoomButtonId {
     SPECIAL_EFFECT_BTN,
     MESHES_BTN,
     LIGHT_BTN,
+    COLLABORATORS,
     SHARING_BTN,
 }
