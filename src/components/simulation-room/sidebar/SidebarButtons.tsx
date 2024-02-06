@@ -29,8 +29,6 @@ const SidebarButtons: React.FC<ISimulationRoomSidebarButtonsProps> = (props) => 
     const userId = useSelector((store: IAppStore) => store.auth.userInfo?.id);
     const ownerId = useSelector((store: IAppStore) => store.rooms.selectedRoom?.ownerId);
 
-    console.log(userId, ownerId);
-
     const simulationRoomSidebarButtons = [
         { id: ESimulationRoomButtonId.BACK_HOME_BTN, icon: faHome, title: 'Back Home' },
         { id: ESimulationRoomButtonId.CAMERA_BTN, icon: faCamera, title: 'Camera Control' },

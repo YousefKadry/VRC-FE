@@ -1,13 +1,19 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { twJoin } from 'tailwind-merge';
+import { Client } from '@stomp/stompjs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 
 import RoomsSection from './RoomsSection.tsx';
 import CreateRoomPopup from '../dashboard/Modal/CreateRoomPopup.tsx';
 
-import { fetchRoomsThunk, fetchSharedRoomsThunk } from '../../store/slices/rooms/rooms-actions.ts';
+import {
+    addCollaboratorSubscriptionThunk,
+    fetchRoomsThunk,
+    fetchSharedRoomsThunk,
+    removeCollaboratorSubscriptionThunk,
+} from '../../store/slices/rooms/rooms-actions.ts';
 import { IAppStore } from '../../models/app-store.ts';
 import { TAppDispatch } from '../../store/app-store.ts';
 import { IRoom } from '../../models/room.ts';
@@ -21,6 +27,16 @@ const Rooms = () => {
     useEffect(() => {
         dispatch(fetchRoomsThunk());
         dispatch(fetchSharedRoomsThunk());
+
+        const addCollaboratorWSClientRef: [Client | null] = [null];
+        dispatch(addCollaboratorSubscriptionThunk(addCollaboratorWSClientRef));
+        const removeCollaboratorWSClientRef: [Client | null] = [null];
+        dispatch(removeCollaboratorSubscriptionThunk(removeCollaboratorWSClientRef));
+
+        return () => {
+            addCollaboratorWSClientRef[0]?.deactivate();
+            removeCollaboratorWSClientRef[0]?.deactivate();
+        };
     }, []);
 
     const handleAddingNewRoom = () => {

@@ -249,3 +249,37 @@ export const selectedRoomUpdateSubscriptionThunk = (wsClientRef: [Client | null]
         wsClientRef[0].activate();
     };
 };
+
+export const addCollaboratorSubscriptionThunk = (wsClientRef: [Client | null]) => {
+    return async (dispatch: Dispatch) => {
+        const userToken = appStore.getState().auth.token;
+
+        wsClientRef[0] = new Client({
+            brokerURL: `${SERVER_WS_URL}/ws-rooms?token=${userToken}`,
+            onConnect() {
+                wsClientRef[0]?.subscribe(`/user/topic/added`, (data) => {
+                    dispatch(storeRoomsSliceActions.addRoom(JSON.parse(data.body)));
+                });
+            },
+        });
+
+        wsClientRef[0].activate();
+    };
+};
+
+export const removeCollaboratorSubscriptionThunk = (wsClientRef: [Client | null]) => {
+    return async (dispatch: Dispatch) => {
+        const userToken = appStore.getState().auth.token;
+
+        wsClientRef[0] = new Client({
+            brokerURL: `${SERVER_WS_URL}/ws-rooms?token=${userToken}`,
+            onConnect() {
+                wsClientRef[0]?.subscribe(`/user/topic/removed`, (data) => {
+                    dispatch(storeRoomsSliceActions.removeRoom(JSON.parse(data.body).id));
+                });
+            },
+        });
+
+        wsClientRef[0].activate();
+    };
+};
