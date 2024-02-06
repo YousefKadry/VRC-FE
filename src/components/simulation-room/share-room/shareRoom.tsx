@@ -30,7 +30,7 @@ const ShareRoom = () => {
                 <CustomButton
                     className={twJoin(
                         'text-simulation-room-gradient-color from-simulation-room-gradient-from to-simulation-room-gradient-to',
-                        'w-full px-4 py-3 mt-0 text-base rounded-lg'
+                        'px-4 py-2.5 mt-0 text-base rounded-lg'
                     )}
                     onClick={handleShareToggle}
                 >

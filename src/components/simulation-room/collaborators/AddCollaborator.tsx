@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { twJoin } from 'tailwind-merge';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 import Input from '../../shared/Input';
 import Button from '../../shared/Button';
@@ -38,17 +40,17 @@ const AddCollaborator = () => {
                 id="email"
                 className={twJoin(
                     'bg-simulation-room-sidebar-bg placeholder:text-simulation-room-sidebar-color text-simulation-room-sidebar-color',
-                    'border border-simulation-room-bg',
-                    'text-center outline-none'
+                    'border border-simulation-room-bg'
                 )}
                 inputContainerProps={{ className: 'mt-0' }}
                 placeholder="Enter an Email"
+                Icon={<FontAwesomeIcon icon={faEnvelope} className="text-simulation-room-sidebar-color" />}
             />
 
             <Button
                 className={twJoin(
                     'text-simulation-room-gradient-color from-simulation-room-gradient-from to-simulation-room-gradient-to',
-                    'w-full max-w-full px-12 py-2.5 text-base rounded-lg'
+                    'px-4 py-2.5 text-base rounded-lg'
                 )}
             >
                 Add Collaborator
