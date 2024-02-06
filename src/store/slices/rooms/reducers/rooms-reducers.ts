@@ -57,6 +57,7 @@ const roomsReducers = {
                 ...stateAsJSON,
             },
             isUpdated: false,
+            collaborators: {},
         };
     },
 };

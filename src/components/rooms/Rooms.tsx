@@ -1,42 +1,70 @@
-import RoomCard from './RoomCard.tsx';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchRoomsThunk } from '../../store/slices/rooms/rooms-actions.ts';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { twJoin } from 'tailwind-merge';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAdd } from '@fortawesome/free-solid-svg-icons';
+
+import RoomsSection from './RoomsSection.tsx';
+import CreateRoomPopup from '../dashboard/Modal/CreateRoomPopup.tsx';
+
+import { fetchRoomsThunk, fetchSharedRoomsThunk } from '../../store/slices/rooms/rooms-actions.ts';
+import { IAppStore } from '../../models/app-store.ts';
 import { TAppDispatch } from '../../store/app-store.ts';
+import { IRoom } from '../../models/room.ts';
+import { storeUISliceActions } from '../../store/slices/ui/ui-slice.ts';
 
 const Rooms = () => {
+    const userId = useSelector((state: IAppStore) => state.auth.userInfo?.id);
+    const rooms = useSelector((state: IAppStore) => state.rooms.rooms);
     const dispatch = useDispatch<TAppDispatch>();
 
     useEffect(() => {
         dispatch(fetchRoomsThunk());
+        dispatch(fetchSharedRoomsThunk());
     }, []);
 
-    const { rooms } = useSelector((state: any) => state.rooms);
+    const handleAddingNewRoom = () => {
+        dispatch(storeUISliceActions.setIsCreateRoomModalShown(true));
+    };
 
-    // get key of rooms object
-    const roomKeys: string[] = Object.keys(rooms);
-    const roomValues: any[] = Object.values(rooms);
+    const ownedRooms: Record<string, IRoom<string>> = {};
+    const sharedRooms: Record<string, IRoom<string>> = {};
+
+    for (const roomId in rooms) {
+        if (rooms[roomId].ownerId === userId) {
+            ownedRooms[roomId] = rooms[roomId];
+        } else {
+            sharedRooms[roomId] = rooms[roomId];
+        }
+    }
 
     return (
-        <div className={'py-10 px-5 md:px-20 space-y-10'}>
-            <div>
-                <h1 className={'text-3xl font-bold'}>My Rooms</h1>
-                <p className={'xl:text-xl sm:text-lg font-semibold'}>You can find your rooms here.</p>
-            </div>
+        <div>
+            <CreateRoomPopup />
+            <RoomsSection
+                title="My Rooms"
+                subTitle="You can find your rooms here."
+                noRoomsPlaceholder="You haven't created any rooms yet."
+                headerActions={
+                    <button
+                        className={twJoin(
+                            'flex justify-center items-center bg-white text-primary',
+                            'w-10 md:w-12 aspect-square mt-3 rounded-[50%]'
+                        )}
+                        onClick={handleAddingNewRoom}
+                    >
+                        <FontAwesomeIcon icon={faAdd} className="text-xl md:text-2xl" />
+                    </button>
+                }
+                roomList={ownedRooms}
+            />
 
-            <div>
-                {roomKeys.length > 0 ? (
-                    <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10'}>
-                        {roomKeys.map((_, index) => (
-                            <RoomCard key={roomValues[index].id} room={roomValues[index]} index={index} />
-                        ))}
-                    </div>
-                ) : (
-                    <div className={'flex justify-center items-center'}>
-                        <p className={'text-xl font-medium'}>You have not created any rooms yet</p>
-                    </div>
-                )}
-            </div>
+            <RoomsSection
+                title="Shared Rooms"
+                subTitle="You can find the rooms that you're a collaborator in here."
+                noRoomsPlaceholder="You don't have any shared rooms."
+                roomList={sharedRooms}
+            />
         </div>
     );
 };

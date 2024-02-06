@@ -4,10 +4,14 @@ export interface IRoom<StateType> {
     description: string;
     state: StateType;
     isPublic: boolean;
+    ownerId: number;
     isUpdated: boolean;
+    collaborators: Record<string, string>;
 }
 
-export type TUpdatableRoomInfo = Partial<Omit<IRoom<any>, 'id' | 'state' | 'isUpdated'>>;
+export type TUpdatableRoomInfo = Partial<
+    Omit<IRoom<any>, 'id' | 'state' | 'isUpdated' | 'ownerId' | 'collaborators'>
+>;
 
 export type TRoomObjectsType = 'meshes' | 'clouds' | 'models' | 'texts' | 'lights';
 

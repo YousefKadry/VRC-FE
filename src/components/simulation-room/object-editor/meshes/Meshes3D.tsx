@@ -25,7 +25,7 @@ const geometryTypes: Record<TMeshGeometryType, { imgURL: string }> = {
 
 const Meshes3D = () => {
     return (
-        <div className={'overflow-auto h-full'}>
+        <div className={'overflow-auto w-full h-full'}>
             <ul className={'grid grid-cols-2 gap-4 select-none'}>
                 {Object.entries(geometryTypes).map(([type, info]) => {
                     return <MeshItem key={type} type={type as TMeshGeometryType} imgURL={info.imgURL} />;

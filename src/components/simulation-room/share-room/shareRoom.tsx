@@ -14,7 +14,7 @@ const ShareRoom = () => {
     const dispatch = useDispatch();
 
     const handleShareToggle = () => {
-        dispatch(storeRoomsSliceActions.updateSelectedRoom({ isPublic: !isPublicLocal }));
+        dispatch(storeRoomsSliceActions.updateSelectedRoomInfo({ isPublic: !isPublicLocal }));
     };
 
     return (

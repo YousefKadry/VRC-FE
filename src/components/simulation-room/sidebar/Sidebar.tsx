@@ -12,6 +12,7 @@ import TextManager from '../text-management/TextManager.tsx';
 import AddMesh from '../object-editor/AddMesh.tsx';
 import HDRIsAssets from '../room-assets/HDRIsAssets.tsx';
 import LightEditor from '../light-management/LightEditor.tsx';
+import Collaborators from '../collaborators/Collaborators.tsx';
 
 import { ESimulationRoomButtonId } from '../../../models/simulation-room-sidebar.ts';
 import { storeRoomsSliceActions } from '../../../store/slices/rooms/rooms-slice.ts';
@@ -39,6 +40,8 @@ const Sidebar = () => {
                 return <ShareRoom />;
             case ESimulationRoomButtonId.SPECIAL_EFFECT_BTN:
                 return <SpecialEffects />;
+            case ESimulationRoomButtonId.COLLABORATORS:
+                return <Collaborators />;
             default:
                 return null;
         }
