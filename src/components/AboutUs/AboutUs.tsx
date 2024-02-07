@@ -3,7 +3,8 @@ import image from '../../assets/images/aboutus-image.png';
 import Footer from '../home/Footer';
 import MemberCard from './MemberCard';
 const membersData = [
-    { id: 1, name: 'Fady Emad', position: 'Frontend Developer', background: image },
+    { id: 1, name: 'Fady Emad', position: 'Fullstack Developer', background: image },
+    { id: 10, name: 'Islam Ashraf', position: 'Fullstack Developer', background: image },
     { id: 2, name: 'Youssef Kadry', position: 'Frontend Developer', background: image },
     { id: 3, name: 'Sarah Yasser', position: 'Frontend Developer', background: image },
     { id: 4, name: 'Ibrahim Mohamed', position: 'Frontend Developer', background: image },
@@ -12,7 +13,6 @@ const membersData = [
     { id: 7, name: 'Menna Naem', position: 'Frontend Developer', background: image },
     { id: 8, name: 'Rana Wahid', position: 'Backend Developer', background: image },
     { id: 9, name: 'Marwan Mostafa', position: 'Backend Developer', background: image },
-    { id: 10, name: 'Islam Ashraf', position: 'Backend Developer', background: image },
     { id: 11, name: 'Emil Mourad', position: 'Backend Developer', background: image },
 ];
 

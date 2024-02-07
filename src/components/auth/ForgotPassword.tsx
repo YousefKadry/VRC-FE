@@ -38,8 +38,7 @@ const ForgotPassword = () => {
                         Forgot Password?
                     </h1>
 
-                    <form
-                        className="w-full flex gap-3 flex-col self-start">
+                    <form className="w-full flex gap-3 flex-col self-start" onSubmit={handleFormSubmitting}>
                         {/* Email Input */}
                         <Input
                             type="text"
@@ -56,9 +55,9 @@ const ForgotPassword = () => {
                         />
 
                         {/* Reset Password button */}
-                            <CustomButton type="submit">
-                                <span className="text-white">Reset Password</span>
-                            </CustomButton>
+                        <CustomButton type="submit">
+                            <span className="text-white">Reset Password</span>
+                        </CustomButton>
                     </form>
                 </div>
             </div>
