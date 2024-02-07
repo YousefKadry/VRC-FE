@@ -5,7 +5,6 @@ import { twJoin } from 'tailwind-merge';
 
 import SidebarButtons from './SidebarButtons.tsx';
 import ShareRoom from '../share-room/shareRoom.tsx';
-import CameraManager from '../camera-management/CameraManager.tsx';
 import GLTFsAssets from '../room-assets/GLTFsAssets.tsx';
 import SpecialEffects from '../special-effects/SpecialEffects.tsx';
 import TextManager from '../text-management/TextManager.tsx';
@@ -24,8 +23,6 @@ const Sidebar = () => {
 
     const renderFocus = () => {
         switch (activeButtonId) {
-            case ESimulationRoomButtonId.CAMERA_BTN:
-                return <CameraManager />;
             case ESimulationRoomButtonId.TEXT_BTN:
                 return <TextManager />;
             case ESimulationRoomButtonId.HDRIs_ASSETS_BTN:

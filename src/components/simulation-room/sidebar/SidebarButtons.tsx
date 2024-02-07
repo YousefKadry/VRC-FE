@@ -2,11 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { twJoin } from 'tailwind-merge';
 import {
-    faCamera,
     faCircleNodes,
     faFont,
     faHome,
-    faImage,
     faShareFromSquare,
     faStarHalfStroke,
     faLightbulb,
@@ -14,6 +12,7 @@ import {
     faPeopleCarryBox,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Tb360View } from 'react-icons/tb';
 
 import { ESimulationRoomButtonId } from '../../../models/simulation-room-sidebar';
 import { IAppStore } from '../../../models/app-store';
@@ -23,34 +22,65 @@ export interface ISimulationRoomSidebarButtonsProps {
     activeButtonId: ESimulationRoomButtonId | null;
 }
 
+export const getSidebarButtons = (ownerId?: number, userId?: number) => {
+    return [
+        {
+            id: ESimulationRoomButtonId.BACK_HOME_BTN,
+            Icon: <FontAwesomeIcon className="text-2xl" icon={faHome} />,
+            title: 'Back Home',
+        },
+        {
+            id: ESimulationRoomButtonId.GLTFs_ASSETS_BTN,
+            Icon: <FontAwesomeIcon className="text-2xl" icon={faCircleNodes} />,
+            title: 'Models',
+        },
+        {
+            id: ESimulationRoomButtonId.HDRIs_ASSETS_BTN,
+            Icon: <Tb360View className="text-3xl" />,
+            title: 'Room Background',
+        },
+        {
+            id: ESimulationRoomButtonId.MESHES_BTN,
+            Icon: <FontAwesomeIcon className="text-2xl" icon={faCubes} />,
+            title: 'Meshes',
+        },
+        {
+            id: ESimulationRoomButtonId.TEXT_BTN,
+            Icon: <FontAwesomeIcon className="text-2xl" icon={faFont} />,
+            title: 'Add Text',
+        },
+        {
+            id: ESimulationRoomButtonId.LIGHT_BTN,
+            Icon: <FontAwesomeIcon className="text-2xl" icon={faLightbulb} />,
+            title: 'Lights',
+        },
+        {
+            id: ESimulationRoomButtonId.SPECIAL_EFFECT_BTN,
+            Icon: <FontAwesomeIcon className="text-2xl" icon={faStarHalfStroke} />,
+            title: 'Special Effects',
+        },
+        {
+            id: ESimulationRoomButtonId.COLLABORATORS,
+            Icon: <FontAwesomeIcon className="text-2xl" icon={faPeopleCarryBox} />,
+            title: 'Collaborators',
+            hidden: ownerId !== userId,
+        },
+        {
+            id: ESimulationRoomButtonId.SHARING_BTN,
+            Icon: <FontAwesomeIcon className="text-2xl" icon={faShareFromSquare} />,
+            title: 'Share',
+            hidden: ownerId !== userId,
+        },
+    ];
+};
+
 const SidebarButtons: React.FC<ISimulationRoomSidebarButtonsProps> = (props) => {
     const { activeButtonId, buttonClickHandler } = props;
 
     const userId = useSelector((store: IAppStore) => store.auth.userInfo?.id);
     const ownerId = useSelector((store: IAppStore) => store.rooms.selectedRoom?.ownerId);
 
-    const simulationRoomSidebarButtons = [
-        { id: ESimulationRoomButtonId.BACK_HOME_BTN, icon: faHome, title: 'Back Home' },
-        { id: ESimulationRoomButtonId.CAMERA_BTN, icon: faCamera, title: 'Camera Control' },
-        { id: ESimulationRoomButtonId.TEXT_BTN, icon: faFont, title: 'Add Text' },
-        { id: ESimulationRoomButtonId.HDRIs_ASSETS_BTN, icon: faImage, title: 'Room Background' },
-        { id: ESimulationRoomButtonId.GLTFs_ASSETS_BTN, icon: faCircleNodes, title: 'Models' },
-        { id: ESimulationRoomButtonId.MESHES_BTN, icon: faCubes, title: 'Meshes' },
-        { id: ESimulationRoomButtonId.LIGHT_BTN, icon: faLightbulb },
-        { id: ESimulationRoomButtonId.SPECIAL_EFFECT_BTN, icon: faStarHalfStroke, title: 'Special Effects' },
-        {
-            id: ESimulationRoomButtonId.COLLABORATORS,
-            icon: faPeopleCarryBox,
-            title: 'Collaborators',
-            hidden: ownerId !== userId,
-        },
-        {
-            id: ESimulationRoomButtonId.SHARING_BTN,
-            icon: faShareFromSquare,
-            title: 'Share',
-            hidden: ownerId !== userId,
-        },
-    ];
+    const simulationRoomSidebarButtons = getSidebarButtons(ownerId, userId);
 
     return (
         <ul className="w-full flex flex-col items-center">
@@ -63,6 +93,7 @@ const SidebarButtons: React.FC<ISimulationRoomSidebarButtonsProps> = (props) => 
                     <button
                         key={btn.id}
                         className={twJoin(
+                            'flex justify-center',
                             'text-simulation-room-sidebar-color',
                             'py-4 w-full outline-none',
                             btn.id === ESimulationRoomButtonId.BACK_HOME_BTN || btn.id === activeButtonId
@@ -75,7 +106,7 @@ const SidebarButtons: React.FC<ISimulationRoomSidebarButtonsProps> = (props) => 
                         title={btn.title}
                         onClick={buttonClickHandler.bind(null, btn.id)}
                     >
-                        <FontAwesomeIcon className="text-2xl" icon={btn.icon} />
+                        {btn.Icon}
                     </button>
                 );
             })}
