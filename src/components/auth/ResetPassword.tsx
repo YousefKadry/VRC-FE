@@ -75,7 +75,7 @@ const RestPassword = () => {
                                 type="password"
                                 id="password"
                                 placeholder="Password"
-                            className="bg-[#3B2063] text-white "
+                                className="bg-[#3B2063] text-white "
                                 value={passwordHandler.password}
                                 inputLabel="Enter your new password"
                                 inputError={passwordHandler.passwordError}
