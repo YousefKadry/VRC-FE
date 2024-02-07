@@ -59,8 +59,8 @@ const RestPassword = () => {
         <>
             <title>Reset Password</title>
 
-            <div className="parent-container flex items-center justify-center w-4/5 md:2/3 xl:w-1/2 m-auto h-screen bg-primary">
-                <div className="child-element flex items-center flex-col bg-secondary rounded-md px-12 py-12 justify-center ">
+            <div className="parent-container flex items-center justify-center m-auto h-screen bg-primary">
+                <div className="child-element flex items-center flex-col bg-secondary rounded-md px-12 py-12 justify-center lg:w-[390px]  ">
                     <h1 className="text-white font-bold text-3xl sm:text-4xl self-start mt-5">
                         Reset Password
                     </h1>
@@ -75,7 +75,7 @@ const RestPassword = () => {
                                 type="password"
                                 id="password"
                                 placeholder="Password"
-                                className="bg-[#3B2063] text-white "
+                            className="bg-[#3B2063] text-white "
                                 value={passwordHandler.password}
                                 inputLabel="Enter your new password"
                                 inputError={passwordHandler.passwordError}
