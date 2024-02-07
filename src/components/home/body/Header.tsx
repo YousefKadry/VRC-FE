@@ -1,12 +1,18 @@
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import { IAppStore } from '../../../models/app-store';
+
 import Image from '../../../assets/images/dashboard-build-room.png';
 
-const HeaderSection = () => {
+const Header = () => {
     const navigate = useNavigate();
 
     const handleRegisterClick = () => {
         navigate('/sign-up');
     };
+
+    const isAuth = !!useSelector((store: IAppStore) => store.auth.userInfo);
 
     return (
         <div className="flex justify-between items-center py-[5%] px-[15%] bg-homeBg flex-col md:flex-row">
@@ -24,15 +30,17 @@ const HeaderSection = () => {
                     Dive into boundless creativity, design, and collaborate in real-time with our cutting-edge
                     Virtual Room Creator.
                 </div>
-                <button
-                    className="bg-footer text-white py-2 px-4 rounded-md cursor-pointer"
-                    onClick={handleRegisterClick}
-                >
-                    Register
-                </button>
+                {!isAuth && (
+                    <button
+                        className="bg-footer text-white py-2 px-4 rounded-md cursor-pointer"
+                        onClick={handleRegisterClick}
+                    >
+                        Register
+                    </button>
+                )}
             </div>
         </div>
     );
 };
 
-export default HeaderSection;
+export default Header;

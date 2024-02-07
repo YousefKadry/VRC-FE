@@ -9,7 +9,7 @@ import NotFound from '../components/not-found/NotFound.tsx';
 
 const Home = React.lazy(() => import('../components/home/Home.tsx'));
 const Contact = React.lazy(() => import('../components/Contact-Us/Contact.tsx'));
-
+const About = React.lazy(()=>import('../components/AboutUs/AboutUs.tsx'));
 const Login = React.lazy(() => import('../components/auth/Login'));
 const SignUp = React.lazy(() => import('../components/auth/SignUp'));
 const ForgotPassword = React.lazy(() => import('../components/auth/ForgotPassword'));
@@ -54,6 +54,8 @@ const AppRoutes = () => {
             <Route path="/" element={<MainLayout />}>
                 <Route path="/home" element={<Home />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/about" element={<About />} />
+
             </Route>
 
             <Route path="*" element={<NotFound />} />

@@ -33,12 +33,12 @@ const ForgotPassword = () => {
             <title>Forgot Password</title>
 
             <div className="parent-container flex items-center justify-center w-4/5 md:2/3 xl:w-1/2 m-auto h-screen bg-primary">
-                <div className="child-element flex items-center flex-col bg-secondary rounded-[10px] px-12 py-[50px] justify-center">
-                    <h1 className="text-white font-bold text-2xl md:text-3xl self-start mb-4 text-center">
+                <div className="child-element flex items-center flex-col bg-secondary rounded-md px-12 py-12 justify-center ">
+                    <h1 className="text-white font-bold text-3xl sm:text-4xl self-start mt-5">
                         Forgot Password?
                     </h1>
 
-                    <form className="w-full flex flex-col self-start px-1" onSubmit={handleFormSubmitting}>
+                    <form className="w-full flex gap-3 flex-col self-start" onSubmit={handleFormSubmitting}>
                         {/* Email Input */}
                         <Input
                             type="text"
@@ -55,11 +55,9 @@ const ForgotPassword = () => {
                         />
 
                         {/* Reset Password button */}
-                        <div className="mt-2">
-                            <CustomButton type="submit">
-                                <span className="text-white">Reset Password</span>
-                            </CustomButton>
-                        </div>
+                        <CustomButton type="submit">
+                            <span className="text-white">Reset Password</span>
+                        </CustomButton>
                     </form>
                 </div>
             </div>
