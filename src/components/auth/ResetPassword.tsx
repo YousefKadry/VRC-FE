@@ -59,14 +59,14 @@ const RestPassword = () => {
         <>
             <title>Reset Password</title>
 
-            <div className="parent-container flex items-center justify-center w-screen h-screen bg-primary  px-[50px]">
-                <div className="child-element flex items-start flex-col bg-secondary rounded-[10px] px-[60px] py-[45px] justify-center">
+            <div className="parent-container flex items-center justify-center w-4/5 md:2/3 xl:w-1/2 m-auto h-screen bg-primary">
+                <div className="child-element flex items-center flex-col bg-secondary rounded-md px-12 py-12 justify-center ">
                     <h1 className="text-white font-bold text-3xl sm:text-4xl self-start mt-5">
                         Reset Password
                     </h1>
 
                     <form
-                        className="w-full flex gap-3 flex-col self-start px-1"
+                        className="w-full flex gap-3 flex-col self-start"
                         onSubmit={handleFormSubmitting}
                     >
                         <div>
@@ -75,7 +75,7 @@ const RestPassword = () => {
                                 type="password"
                                 id="password"
                                 placeholder="Password"
-                                className="bg-[#3B2063]"
+                                className="bg-[#3B2063] text-white "
                                 value={passwordHandler.password}
                                 inputLabel="Enter your new password"
                                 inputError={passwordHandler.passwordError}
@@ -90,7 +90,7 @@ const RestPassword = () => {
                                 type="password"
                                 id="password-confirmation"
                                 placeholder="Repeat Password"
-                                className="bg-[#3B2063]"
+                                className="bg-[#3B2063] text-white "
                                 value={repeatPasswordHandler.password}
                                 inputLabel="Repeat your new password"
                                 inputError={repeatPasswordHandler.passwordError}
@@ -102,11 +102,9 @@ const RestPassword = () => {
                         </div>
 
                         {/* Reset Button */}
-                        <div className="-mt-1 mb-5">
                             <CustomButton>
                                 <span className="text-white">Reset</span>
                             </CustomButton>
-                        </div>
                     </form>
                 </div>
             </div>

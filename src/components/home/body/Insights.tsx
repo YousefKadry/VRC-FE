@@ -16,14 +16,14 @@ const InsightsSection = () => {
                         <img src={membersIcon} className="w-10 h-10 text-footer" alt="Members Icon" />
                         <div className="ml-2">
                             <b className="text-xl md:text-2xl font-bold text-footer">1,800</b>
-                            <div className="text-lg md:text-base text-gray-600 text-footer">Members</div>
+                            <div className="text-lg md:text-base text-gray-600">Members</div>
                         </div>
                     </div>
                     <div className="flex items-center">
                         <img src={roomsIcon} className="w-10 h-10 text-footer" alt="Rooms Icon" />
                         <div className="ml-2">
                             <b className="text-xl md:text-2xl font-bold text-footer">2,300</b>
-                            <div className="text-lg md:text-base text-gray-600 text-footer">Rooms</div>
+                            <div className="text-lg md:text-base text-gray-600">Rooms</div>
                         </div>
                     </div>
                 </div>

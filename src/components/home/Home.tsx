@@ -1,4 +1,4 @@
-import Main from './body/Main';
+import Main from './body/Header';
 import Features from './body/Features/Features';
 import Footer from './Footer';
 import Insights from './body/Insights';
