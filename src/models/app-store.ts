@@ -1,3 +1,5 @@
+import { Draft } from '@reduxjs/toolkit';
+import { Client } from '@stomp/stompjs';
 import { PersistPartial } from 'redux-persist/lib/persistReducer';
 
 import { IUserInfo } from './auth';
@@ -8,6 +10,7 @@ import { IRoomAssetsInfo, IRoomGLTF, IRoomHDRI } from './room-assets';
 export interface IStoreRoomsSlice {
     rooms: Record<string, IRoom<string>>;
     selectedRoom: IRoom<IRoomState> | null;
+    wsSubscriptions: Record<string, Draft<Client>>;
 }
 
 export interface IStoreUISlice {

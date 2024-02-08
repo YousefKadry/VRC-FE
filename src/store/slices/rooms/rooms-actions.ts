@@ -1,5 +1,5 @@
 import { Dispatch } from '@reduxjs/toolkit';
-import { Client } from '@stomp/stompjs';
+import { Client, IMessage } from '@stomp/stompjs';
 
 import AxiosUtil from '../../../utilities/axios';
 import { storeRoomsSliceActions } from './rooms-slice';
@@ -228,58 +228,23 @@ export const deleteSelectedRoomCollaboratorThunk = (collaboratorEmail: string) =
     };
 };
 
-export const selectedRoomUpdateSubscriptionThunk = (wsClientRef: [Client | null]) => {
+export const roomsSubscriptionThunk = (topic: string, callback: (data: IMessage) => void) => {
     return async (dispatch: Dispatch) => {
         const userToken = appStore.getState().auth.token;
-        const selectedRoom = appStore.getState().rooms.selectedRoom;
 
-        if (!selectedRoom) {
+        if (!userToken) {
             return;
         }
 
-        wsClientRef[0] = new Client({
+        const wsClient = new Client({
             brokerURL: `${SERVER_WS_URL}/ws-rooms?token=${userToken}`,
             onConnect() {
-                wsClientRef[0]?.subscribe(`/topic/rooms/${selectedRoom?.id}`, (data) => {
-                    dispatch(storeRoomsSliceActions.updateSelectRoom(JSON.parse(data.body)));
-                });
+                wsClient.subscribe(topic, callback);
             },
         });
 
-        wsClientRef[0].activate();
-    };
-};
+        wsClient.activate();
 
-export const addCollaboratorSubscriptionThunk = (wsClientRef: [Client | null]) => {
-    return async (dispatch: Dispatch) => {
-        const userToken = appStore.getState().auth.token;
-
-        wsClientRef[0] = new Client({
-            brokerURL: `${SERVER_WS_URL}/ws-rooms?token=${userToken}`,
-            onConnect() {
-                wsClientRef[0]?.subscribe(`/user/topic/added`, (data) => {
-                    dispatch(storeRoomsSliceActions.addRoom(JSON.parse(data.body)));
-                });
-            },
-        });
-
-        wsClientRef[0].activate();
-    };
-};
-
-export const removeCollaboratorSubscriptionThunk = (wsClientRef: [Client | null]) => {
-    return async (dispatch: Dispatch) => {
-        const userToken = appStore.getState().auth.token;
-
-        wsClientRef[0] = new Client({
-            brokerURL: `${SERVER_WS_URL}/ws-rooms?token=${userToken}`,
-            onConnect() {
-                wsClientRef[0]?.subscribe(`/user/topic/removed`, (data) => {
-                    dispatch(storeRoomsSliceActions.removeRoom(JSON.parse(data.body).id));
-                });
-            },
-        });
-
-        wsClientRef[0].activate();
+        dispatch(storeRoomsSliceActions.subscribeToRoomTopic({ topic, wsClient }));
     };
 };

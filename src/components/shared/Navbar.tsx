@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faArrowRightToBracket, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import { storeAuthSliceActions } from '../../store/slices/auth/auth-slice';
+import { storeRoomsSliceActions } from '../../store/slices/rooms/rooms-slice';
 import { IAppStore } from '../../models/app-store';
 
 import Logo from '../../assets/icons/home-logo-light.svg';
@@ -15,13 +16,17 @@ const Navbar = () => {
 
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const isAuth = !!useSelector((store: IAppStore) => store.auth.userInfo);
+
     const handleSignInClick = () => {
         navigate('/login');
     };
+
     const handleSignOutClick = () => {
         dispatch(storeAuthSliceActions.resetAuthInfo());
+        dispatch(storeRoomsSliceActions.resetRoomsInfo());
         navigate('/home');
     };
+
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
     };
@@ -125,7 +130,7 @@ const Navbar = () => {
                 </div>
 
                 <button
-                    className="ml-4 bg-homeBg rounded-md px-4 py-2 flex items-center font-bold hidden md:flex"
+                    className="ml-4 bg-homeBg rounded-md px-4 py-2 items-center font-bold hidden md:flex"
                     onClick={isAuth ? handleSignOutClick : handleSignInClick}
                 >
                     {isAuth ? (

@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { twJoin } from 'tailwind-merge';
-import { Client } from '@stomp/stompjs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,15 +8,15 @@ import RoomsSection from './RoomsSection.tsx';
 import CreateRoomPopup from '../dashboard/Modal/CreateRoomPopup.tsx';
 
 import {
-    addCollaboratorSubscriptionThunk,
     fetchRoomsThunk,
     fetchSharedRoomsThunk,
-    removeCollaboratorSubscriptionThunk,
+    roomsSubscriptionThunk,
 } from '../../store/slices/rooms/rooms-actions.ts';
 import { IAppStore } from '../../models/app-store.ts';
 import { TAppDispatch } from '../../store/app-store.ts';
 import { IRoom } from '../../models/room.ts';
 import { storeUISliceActions } from '../../store/slices/ui/ui-slice.ts';
+import { storeRoomsSliceActions } from '../../store/slices/rooms/rooms-slice.ts';
 
 const Rooms = () => {
     const userId = useSelector((state: IAppStore) => state.auth.userInfo?.id);
@@ -28,14 +27,24 @@ const Rooms = () => {
         dispatch(fetchRoomsThunk());
         dispatch(fetchSharedRoomsThunk());
 
-        const addCollaboratorWSClientRef: [Client | null] = [null];
-        dispatch(addCollaboratorSubscriptionThunk(addCollaboratorWSClientRef));
-        const removeCollaboratorWSClientRef: [Client | null] = [null];
-        dispatch(removeCollaboratorSubscriptionThunk(removeCollaboratorWSClientRef));
+        const addCollaboratorTopic = '/user/topic/added';
+        const removeCollaboratorTopic = '/user/topic/removed';
+
+        dispatch(
+            roomsSubscriptionThunk(addCollaboratorTopic, (data) => {
+                dispatch(storeRoomsSliceActions.addRoom(JSON.parse(data.body)));
+            })
+        );
+
+        dispatch(
+            roomsSubscriptionThunk(removeCollaboratorTopic, (data) => {
+                dispatch(storeRoomsSliceActions.removeRoom(JSON.parse(data.body).id));
+            })
+        );
 
         return () => {
-            addCollaboratorWSClientRef[0]?.deactivate();
-            removeCollaboratorWSClientRef[0]?.deactivate();
+            dispatch(storeRoomsSliceActions.unsubscribeFromRoomTopic(addCollaboratorTopic));
+            dispatch(storeRoomsSliceActions.unsubscribeFromRoomTopic(removeCollaboratorTopic));
         };
     }, []);
 

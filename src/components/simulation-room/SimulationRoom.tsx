@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Leva } from 'leva';
 import { debounce } from 'lodash';
-import { Client } from '@stomp/stompjs';
 
 import Sidebar from './sidebar/Sidebar';
 import Space from './space/Space';
@@ -12,13 +11,14 @@ import {
     fetchRoomByIdThunk,
     fetchSelectedRoomCollaboratorsThunk,
     saveSelectedRoomThunk,
-    selectedRoomUpdateSubscriptionThunk,
+    roomsSubscriptionThunk,
 } from '../../store/slices/rooms/rooms-actions';
 import { TAppDispatch } from '../../store/app-store';
 import { IAppStore } from '../../models/app-store';
 import { IRoom, IRoomState } from '../../models/room';
 
 import classes from './SimulationRoom.module.css';
+import { storeRoomsSliceActions } from '../../store/slices/rooms/rooms-slice';
 
 const SimulationRoom: React.FC<{ editable: boolean }> = ({ editable }) => {
     const { roomId } = useParams();
@@ -27,6 +27,7 @@ const SimulationRoom: React.FC<{ editable: boolean }> = ({ editable }) => {
     const selectedRoom = useSelector((store: IAppStore) => store.rooms.selectedRoom);
     const selectedObjectInfo = selectedRoom?.state.selectedObjectInfo;
 
+    const navigate = useNavigate();
     const dispatch = useDispatch<TAppDispatch>();
 
     useEffect(() => {
@@ -46,6 +47,30 @@ const SimulationRoom: React.FC<{ editable: boolean }> = ({ editable }) => {
     }, [userId, selectedRoom?.ownerId]);
 
     useEffect(() => {
+        if (!userId || !selectedRoom?.ownerId || userId === selectedRoom?.ownerId) {
+            return;
+        }
+
+        const removeCollaboratorTopic = '/user/topic/removed';
+
+        dispatch(
+            roomsSubscriptionThunk(removeCollaboratorTopic, (data) => {
+                const roomId = JSON.parse(data.body).id;
+
+                if (roomId === selectedRoom.id) {
+                    dispatch(storeRoomsSliceActions.removeRoom(roomId));
+                    dispatch(storeRoomsSliceActions.selectedRoom(null));
+                    navigate('/rooms', { replace: true });
+                }
+            })
+        );
+
+        return () => {
+            dispatch(storeRoomsSliceActions.unsubscribeFromRoomTopic(removeCollaboratorTopic));
+        };
+    }, [userId, selectedRoom?.ownerId]);
+
+    useEffect(() => {
         saveSelectedRoomDebounce(selectedRoom);
     }, [selectedRoom]);
 
@@ -54,13 +79,16 @@ const SimulationRoom: React.FC<{ editable: boolean }> = ({ editable }) => {
             return;
         }
 
-        const wsClientRef: [Client | null] = [null];
-        dispatch(selectedRoomUpdateSubscriptionThunk(wsClientRef));
+        const selectedRoomUpdateTopic = `/topic/rooms/${selectedRoom?.id}`;
+
+        dispatch(
+            roomsSubscriptionThunk(selectedRoomUpdateTopic, (data) => {
+                dispatch(storeRoomsSliceActions.updateSelectRoom(JSON.parse(data.body)));
+            })
+        );
 
         return () => {
-            wsClientRef[0]?.deactivate({
-                force: true,
-            });
+            dispatch(storeRoomsSliceActions.unsubscribeFromRoomTopic(selectedRoomUpdateTopic));
         };
     }, [selectedRoom?.id]);
 
