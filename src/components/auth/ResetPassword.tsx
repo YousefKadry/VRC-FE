@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
-import { redirect, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUnlockKeyhole } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,7 +15,7 @@ import handleRequriedInput from './hooks/handelRequiredInput.ts';
 
 const RestPassword = () => {
     const dispatch = useDispatch<TAppDispatch>();
-
+    const navigate = useNavigate();
     const passwordHandler = handlePasswordInput();
     const repeatPasswordHandler = handleRequriedInput('Repeat Password');
 
@@ -29,7 +29,7 @@ const RestPassword = () => {
                     content: 'Please fill in all the fields',
                 })
             );
-            redirect('/login');
+            navigate('/login');
             return;
         }
 
