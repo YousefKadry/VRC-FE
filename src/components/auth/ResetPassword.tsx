@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { redirect, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUnlockKeyhole } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,27 +11,29 @@ import { TAppDispatch } from '../../store/app-store';
 import { ResetPasswordThunk } from '../../store/slices/auth/auth-actions';
 import handlePasswordInput from './hooks/handelPasswordInput';
 import { storeUISliceActions } from '../../store/slices/ui/ui-slice.ts';
+import handleRequriedInput from './hooks/handelRequiredInput.ts';
 
 const RestPassword = () => {
     const dispatch = useDispatch<TAppDispatch>();
 
     const passwordHandler = handlePasswordInput();
-    const repeatPasswordHandler = handlePasswordInput();
+    const repeatPasswordHandler = handleRequriedInput('Repeat Password');
 
     const { token } = useParams<{ token: string }>();
 
     const handleResetPassword = () => {
-        if (passwordHandler.password === '' || repeatPasswordHandler.password === '') {
+        if (passwordHandler.password === '' || repeatPasswordHandler.value === '') {
             dispatch(
                 storeUISliceActions.setNotification({
                     type: 'error',
                     content: 'Please fill in all the fields',
                 })
             );
+            redirect('/login');
             return;
         }
 
-        if (passwordHandler.password !== repeatPasswordHandler.password) {
+        if (passwordHandler.password !== repeatPasswordHandler.value) {
             dispatch(
                 storeUISliceActions.setNotification({
                     type: 'error',
@@ -45,7 +47,7 @@ const RestPassword = () => {
             ResetPasswordThunk({
                 password: passwordHandler.password,
                 token: token!,
-                repeatedPassword: repeatPasswordHandler.password,
+                repeatedPassword: repeatPasswordHandler.value,
             })
         );
     };
@@ -65,10 +67,7 @@ const RestPassword = () => {
                         Reset Password
                     </h1>
 
-                    <form
-                        className="w-full flex gap-3 flex-col self-start"
-                        onSubmit={handleFormSubmitting}
-                    >
+                    <form className="w-full flex gap-3 flex-col self-start" onSubmit={handleFormSubmitting}>
                         <div>
                             {/* New Password Input */}
                             <Input
@@ -91,20 +90,20 @@ const RestPassword = () => {
                                 id="password-confirmation"
                                 placeholder="Repeat Password"
                                 className="bg-[#3B2063] text-white "
-                                value={repeatPasswordHandler.password}
+                                value={repeatPasswordHandler.value}
                                 inputLabel="Repeat your new password"
-                                inputError={repeatPasswordHandler.passwordError}
+                                inputError={repeatPasswordHandler.error}
                                 Icon={<FontAwesomeIcon icon={faUnlockKeyhole} />}
                                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                    repeatPasswordHandler.handlePasswordChange(e.target.value)
+                                    repeatPasswordHandler.handlevalueChange(e.target.value)
                                 }
                             />
                         </div>
 
                         {/* Reset Button */}
-                            <CustomButton>
-                                <span className="text-white">Reset</span>
-                            </CustomButton>
+                        <CustomButton>
+                            <span className="text-white">Reset</span>
+                        </CustomButton>
                     </form>
                 </div>
             </div>
