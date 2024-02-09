@@ -105,6 +105,7 @@ const SimulationRoom: React.FC<{ editable: boolean }> = ({ editable }) => {
 
     return (
         <>
+            <title>Simulation Room</title>
             <div className={classes['space-leva-container']}>
                 <Leva fill hidden={!selectedObjectInfo || !editable} />
             </div>
