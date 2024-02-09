@@ -39,6 +39,9 @@ const SelectedObjectTransformControls: React.FC<IObjectTransformControlsProps> =
         changeIntensityHandler: (intensity) => {
             dispatch(storeRoomsSliceActions.updateSelectedObject({ intensity }));
         },
+        duplicateObjectHandle: () => {
+            dispatch(storeRoomsSliceActions.duplicateSelectedObject());
+        },
     });
 
     const handelMouseTransformation = (event: any) => {

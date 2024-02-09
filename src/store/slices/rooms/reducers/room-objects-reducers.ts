@@ -1,6 +1,6 @@
 import { PayloadAction, current } from '@reduxjs/toolkit';
 import { generateUUID } from 'three/src/math/MathUtils.js';
-import { isEqual } from 'lodash';
+import { cloneDeep, isEqual } from 'lodash';
 
 import { IStoreRoomsSlice } from '../../../../models/app-store';
 import { IRoomObject, IRoomState, TUpdatableRoomObjectInfo } from '../../../../models/room';
@@ -95,8 +95,32 @@ const roomObjectsReducers = {
             return;
         }
 
-        delete storeRoomsSlice.selectedRoom!.state[selectedObjectInfo.type][selectedObjectInfo.id as string];
+        delete storeRoomsSlice.selectedRoom!.state[selectedObjectInfo.type][selectedObjectInfo.id];
         storeRoomsSlice.selectedRoom!.state.selectedObjectInfo = null;
+        storeRoomsSlice.selectedRoom!.isUpdated = true;
+    },
+    duplicateSelectedObject(storeRoomsSlice: IStoreRoomsSlice) {
+        const selectedObjectInfo = storeRoomsSlice.selectedRoom?.state.selectedObjectInfo;
+
+        if (!selectedObjectInfo) {
+            return;
+        }
+
+        const selectedObject =
+            storeRoomsSlice.selectedRoom!.state[selectedObjectInfo.type][selectedObjectInfo.id];
+
+        const duplicatedObjectId = generateUUID();
+
+        storeRoomsSlice.selectedRoom!.state[selectedObjectInfo.type][duplicatedObjectId] = {
+            ...cloneDeep(selectedObject),
+            id: duplicatedObjectId,
+        };
+
+        storeRoomsSlice.selectedRoom!.state.selectedObjectInfo = {
+            ...selectedObjectInfo,
+            id: duplicatedObjectId,
+        };
+
         storeRoomsSlice.selectedRoom!.isUpdated = true;
     },
 };
