@@ -2,14 +2,17 @@ import { button, useControls } from 'leva';
 import { IRoomObject, IColorfulObject, TVec3 } from '../../../models/room';
 import { useEffect } from 'react';
 
-const useRoomObjController = (args: {
+export interface IRoomObjControllerHookArgs {
     selectedObj: IRoomObject | null;
     transformationChangeHandler: (type: 'position' | 'rotation' | 'scale', value: TVec3) => void;
     changeColorHandler: (color: string) => void;
     deleteObjectHandler: () => void;
     unselectObjectHandler: () => void;
     changeIntensityHandler: (intensity: number) => void;
-}) => {
+    duplicateObjectHandle: () => void;
+}
+
+const useRoomObjController = (args: IRoomObjControllerHookArgs) => {
     const {
         selectedObj,
         transformationChangeHandler,
@@ -17,6 +20,7 @@ const useRoomObjController = (args: {
         deleteObjectHandler,
         unselectObjectHandler,
         changeIntensityHandler,
+        duplicateObjectHandle,
     } = args;
 
     const position = !selectedObj ? [0, 0, 0] : (selectedObj.position as any);
@@ -109,6 +113,7 @@ const useRoomObjController = (args: {
             return {
                 Delete: button(deleteObjectHandler),
                 Unselect: button(unselectObjectHandler),
+                Duplicate: button(duplicateObjectHandle),
             };
         },
         { collapsed: true, order: 4 },
