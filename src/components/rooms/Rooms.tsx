@@ -64,33 +64,36 @@ const Rooms = () => {
     }
 
     return (
-        <div>
-            <CreateRoomPopup />
-            <RoomsSection
-                title="My Rooms"
-                subTitle="You can find your rooms here."
-                noRoomsPlaceholder="You haven't created any rooms yet."
-                headerActions={
-                    <button
-                        className={twJoin(
-                            'flex justify-center items-center bg-white text-primary',
-                            'w-10 md:w-12 aspect-square mt-3 rounded-[50%]'
-                        )}
-                        onClick={handleAddingNewRoom}
-                    >
-                        <FontAwesomeIcon icon={faAdd} className="text-xl md:text-2xl" />
-                    </button>
-                }
-                roomList={ownedRooms}
-            />
+        <>
+            <title>My Rooms</title>
+            <div>
+                <CreateRoomPopup />
+                <RoomsSection
+                    title="My Rooms"
+                    subTitle="You can find your rooms here."
+                    noRoomsPlaceholder="You haven't created any rooms yet."
+                    headerActions={
+                        <button
+                            className={twJoin(
+                                'flex justify-center items-center bg-white text-primary',
+                                'w-10 md:w-12 aspect-square mt-3 rounded-[50%]'
+                            )}
+                            onClick={handleAddingNewRoom}
+                        >
+                            <FontAwesomeIcon icon={faAdd} className="text-xl md:text-2xl" />
+                        </button>
+                    }
+                    roomList={ownedRooms}
+                />
 
-            <RoomsSection
-                title="Shared Rooms"
-                subTitle="You can find the rooms that you're a collaborator in here."
-                noRoomsPlaceholder="You don't have any shared rooms."
-                roomList={sharedRooms}
-            />
-        </div>
+                <RoomsSection
+                    title="Shared Rooms"
+                    subTitle="You can find the rooms that you're a collaborator in here."
+                    noRoomsPlaceholder="You don't have any shared rooms."
+                    roomList={sharedRooms}
+                />
+            </div>
+        </>
     );
 };
 

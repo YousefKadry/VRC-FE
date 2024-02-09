@@ -7,14 +7,17 @@ import Review from './body/Review/Review';
 
 const Home = () => {
     return (
-        <main className="w-full h-full bg-homeBg flex flex-col overflow-y-auto">
-            <Main />
-            <Features />
-            <Insights />
-            <Usage />
-            <Review />
-            <Footer />
-        </main>
+        <>
+            <title>Home</title>
+            <main className="w-full h-full bg-homeBg flex flex-col overflow-y-auto">
+                <Main />
+                <Features />
+                <Insights />
+                <Usage />
+                <Review />
+                <Footer />
+            </main>
+        </>
     );
 };
 

@@ -32,7 +32,7 @@ const SpaceXRControllers: React.FC<ISpaceXRControllersProps> = (props) => {
 
     return (
         <div className="flex flex-col sm:flex-row gap-3 fixed bottom-3 right-3 z-[5]">
-            <VRButton enterOnly style={{ ...XRButtonStyle }} />
+            <VRButton style={{ ...XRButtonStyle }} />
             <ARButton style={{ ...XRButtonStyle }} />
             {showModeButton && (
                 <button style={{ ...XRButtonStyle }} onClick={handleModeToggling}>
