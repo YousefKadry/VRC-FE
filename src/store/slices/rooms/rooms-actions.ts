@@ -62,7 +62,7 @@ export const fetchRoomByIdThunk = (roomId: IRoom<string>['id']) => {
 export const fetchSharedRoomByIdThunk = (roomId: IRoom<string>['id']) => {
     return async (dispatch: Dispatch) => {
         const data = await AxiosUtil.sendRequest({
-            url: `${SERVER_URL}/api/rooms/publicRoom/${roomId}`,
+            url: `${SERVER_URL}/api/rooms/public-room/${roomId}`,
             method: 'GET',
         });
 
