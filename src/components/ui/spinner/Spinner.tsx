@@ -22,7 +22,7 @@ const Spinner: React.FC<{
 
             {ReactDOM.createPortal(
                 <div className=" fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1001]">
-                    <HashLoader size="100px" color="#9d5ce9" {...props} />
+                    <HashLoader size="100px" color="#2C2C2C" {...props} />
                 </div>,
                 document.getElementById('spinner')!
             )}

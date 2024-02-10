@@ -60,7 +60,7 @@ const RestPassword = () => {
     return (
         <>
             <title>Reset Password</title>
-            <div className="bg-white">
+            <div className="bg-[#2C2C2C]">
                 <div className="parent-container flex items-center justify-center m-auto h-screen">
                     <div className="child-element flex items-center flex-col bg-secondary rounded-md px-12 py-12 justify-center lg:w-[390px]  ">
                         <h1 className="text-white font-bold text-3xl sm:text-4xl self-start mt-5">

@@ -90,7 +90,7 @@ const CreateRoomPopup = () => {
                 <div>
                     <button
                         type="submit"
-                        className="flex w-full justify-center rounded-md bg-gradient-to-r from-gradient1 to-gradient2 px-3 py-1.5 text-sm font-semibold leading-6 text-gray shadow-sm hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="flex w-full justify-center rounded-md bg-gradient-to-r from-[#3E3E3E] to-[#2C2C2C] px-3 py-1.5 text-sm font-semibold leading-6 text-gray shadow-sm hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         Create Room
                     </button>

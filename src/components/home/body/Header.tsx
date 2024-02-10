@@ -32,7 +32,7 @@ const Header = () => {
                 </div>
                 {!isAuth && (
                     <button
-                        className="bg-footer text-white py-2 px-4 rounded-md cursor-pointer"
+                        className="bg-footer text-white py-2 px-4 rounded-md cursor-pointer m-auto"
                         onClick={handleRegisterClick}
                     >
                         Register

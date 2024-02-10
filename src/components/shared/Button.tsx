@@ -7,7 +7,7 @@ const CustomButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = (p
     return (
         <button
             className={twMerge(
-                'block w-full mt-4 bg-blue-600 py-3 px-4 rounded-xl font-medium text-lg focus:outline-none bg-gradient-to-r from-gradient1 to-gradient2',
+                'block w-full mt-4 bg-blue-600 py-3 px-4 rounded-xl font-medium text-lg focus:outline-none bg-gradient-to-r from-[#3E3E3E] to-[#2C2C2C]',
                 'hover:opacity-90',
                 className
             )}
