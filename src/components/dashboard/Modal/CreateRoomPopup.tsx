@@ -59,7 +59,7 @@ const CreateRoomPopup = () => {
             modalTitle="Build A Room"
             modalClosingHandler={handleClosePopup}
         >
-            <form className="space-y-6 text-white" ref={formRef} onSubmit={handleCreateRoom}>
+            <form className="space-y-6 text-gray" ref={formRef} onSubmit={handleCreateRoom}>
                 <div>
                     <div className="mt-2">
                         <input
@@ -69,7 +69,7 @@ const CreateRoomPopup = () => {
                             placeholder={'Room Title'}
                             autoComplete="room-title"
                             required
-                            className="block bg-[#3b2063] focus:outline-none w-full p-2 rounded-md border-0 py-1.5 text-white placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                            className="block --pop-up-bg focus:outline-none w-full p-2 rounded-md border-0 py-1.5 text-gray-900 placeholder:text-gray-500 sm:text-sm sm:leading-6 "
                         />
                     </div>
                 </div>
@@ -81,7 +81,7 @@ const CreateRoomPopup = () => {
                             placeholder={'Room Description'}
                             name="roomDescription"
                             id="roomDescription"
-                            className="block w-full focus:outline-none bg-[#3b2063] p-2 rounded-md border-0 py-1.5 text-white shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                            className="block w-full focus:outline-none --pop-up-bg p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-500 sm:text-sm sm:leading-6"
                             defaultValue={''}
                         />
                     </div>
@@ -90,7 +90,7 @@ const CreateRoomPopup = () => {
                 <div>
                     <button
                         type="submit"
-                        className="flex w-full justify-center rounded-md bg-gradient-to-r from-gradient1 to-gradient2 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="flex w-full justify-center rounded-md bg-gradient-to-r from-[#3E3E3E] to-[#2C2C2C] px-3 py-1.5 text-sm font-semibold leading-6 text-gray shadow-sm hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         Create Room
                     </button>

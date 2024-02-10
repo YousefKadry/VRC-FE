@@ -4,7 +4,7 @@
 
 /* background */
 :root {
-    --main-bg: #160430;
+    --main-bg: #000000;
 
     /* simulation-room */
     --simulation-room-bg: 0 0 0;
@@ -20,7 +20,7 @@
 body {
     height: 100vh;
     background-color: var(--main-bg);
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 /* Hide scrollbar for Firefox */

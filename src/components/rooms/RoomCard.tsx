@@ -44,12 +44,12 @@ const RoomCard = ({ room, index }: { room: any; index: number }) => {
                 </div>
 
                 <div className={'px-4 space-x-2 mb-2 truncate'}>
-                    <button className={'px-3 py-1 hover:bg-[#180a2d] rounded font-medium text-sm'}>
+                    <button className={'px-3 py-1 hover:bg-gray-600 rounded font-medium text-sm'}>
                         <Link to={roomUrl}>OPEN</Link>
                     </button>
                     <button
                         className={
-                            'px-3 py-1 hover:bg-[#180a2d] rounded font-medium text-sm transition duration-500 ease-in-out disabled:bg-[#180a2d] disabled:text-gray-500'
+                            'px-3 py-1 hover:bg-gray-600 rounded font-medium text-sm transition duration-500 ease-in-out disabled:bg-[#180a2d] disabled:text-gray-500'
                         }
                         onClick={onShareButtonClick}
                     >

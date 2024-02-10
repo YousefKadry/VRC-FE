@@ -7,7 +7,7 @@ const ContactUs = () => {
             <main className="w-full h-full bg-homeBg flex flex-col overflow-y-auto">
                 <div className="w-screen max-w-6xl flex flex-col lg:flex-row mx-auto mt-[30px] md:mt-[70px] px-20">
                     <div
-                        className="py-5 px-8 flex flex-col font-footer text-footer justify-center flex-1"
+                        className="py-5 px-8 flex flex-col font-footer text-primary justify-center flex-1"
                         style={{
                             backgroundImage: `url(${background})`,
                             backgroundSize: '50%',
@@ -21,7 +21,7 @@ const ContactUs = () => {
                             us an email on siemens@gmail.com
                         </p>
                     </div>
-                    <div className="p-5 box-border rounded-[20px] m-2.5 shadow text-footer flex flex-col gap-5 bg-gray-50 lg:w-1/2 mb-10 md:mb-0">
+                    <div className="p-5 box-border rounded-[20px] m-2.5 shadow text-primary flex flex-col gap-5 bg-gray-50 lg:w-1/2 mb-10 md:mb-0">
                         <Form />
                     </div>
                 </div>

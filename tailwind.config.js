@@ -7,8 +7,8 @@ export default {
                 montserrat: ['Montserrat'],
             },
             colors: {
-                primary: '#160430',
-                secondary: '#261046',
+                primary: '#000000',
+                secondary: '#141414',
                 tertiary: '#9d5ce9',
                 quaternary: '#e2cdff',
                 gradient1: '#501793',

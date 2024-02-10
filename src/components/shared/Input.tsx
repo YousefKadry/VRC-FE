@@ -34,7 +34,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
                     id={id}
                     className={twMerge(
                         Icon ? 'pl-14' : '',
-                        'pr-4 py-3 rounded-lg w-full text-white outline-none placeholder:text-[#9ca3af]',
+                        'pr-4 py-3 rounded-lg w-full text-secondary outline-none placeholder:text-[#9ca3af]',
                         className
                     )}
                     {...restProps}

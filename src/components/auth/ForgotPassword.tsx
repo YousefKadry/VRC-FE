@@ -31,34 +31,37 @@ const ForgotPassword = () => {
     return (
         <>
             <title>Forgot Password</title>
+            <div className="bg-[#2C2C2C]">
+                <div className="parent-container flex items-center justify-center w-4/5 md:2/3 xl:w-1/2 m-auto h-screen">
+                    <div className="child-element flex items-center flex-col bg-secondary rounded-md px-12 py-12 justify-center ">
+                        <h1 className="text-white font-bold text-3xl sm:text-4xl self-start mt-5 mb-6">
+                            Forgot Password?
+                        </h1>
 
-            <div className="parent-container flex items-center justify-center w-4/5 md:2/3 xl:w-1/2 m-auto h-screen bg-primary">
-                <div className="child-element flex items-center flex-col bg-secondary rounded-md px-12 py-12 justify-center ">
-                    <h1 className="text-white font-bold text-3xl sm:text-4xl self-start mt-5">
-                        Forgot Password?
-                    </h1>
+                        <form
+                            className="w-full flex gap-3 flex-col self-start"
+                            onSubmit={handleFormSubmitting}
+                        >
+                            {/* Email Input */}
+                            <Input
+                                type="text"
+                                id="email"
+                                placeholder="yourname@gmail.com"
+                                value={emailHandeler.email}
+                                inputLabel="Enter your email address"
+                                inputError={emailHandeler.emailError}
+                                Icon={<FontAwesomeIcon icon={faEnvelope} />}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                    emailHandeler.handleEmailChange(e.target.value)
+                                }
+                            />
 
-                    <form className="w-full flex gap-3 flex-col self-start" onSubmit={handleFormSubmitting}>
-                        {/* Email Input */}
-                        <Input
-                            type="text"
-                            id="email"
-                            placeholder="yourname@gmail.com"
-                            className="bg-[#3B2063] text-white "
-                            value={emailHandeler.email}
-                            inputLabel="Enter your email address"
-                            inputError={emailHandeler.emailError}
-                            Icon={<FontAwesomeIcon icon={faEnvelope} />}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                emailHandeler.handleEmailChange(e.target.value)
-                            }
-                        />
-
-                        {/* Reset Password button */}
-                        <CustomButton type="submit">
-                            <span className="text-white">Reset Password</span>
-                        </CustomButton>
-                    </form>
+                            {/* Reset Password button */}
+                            <CustomButton type="submit">
+                                <span className="text-white">Reset Password</span>
+                            </CustomButton>
+                        </form>
+                    </div>
                 </div>
             </div>
         </>

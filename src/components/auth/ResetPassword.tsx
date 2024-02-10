@@ -29,7 +29,6 @@ const RestPassword = () => {
                     content: 'Please fill in all the fields',
                 })
             );
-            navigate('/login');
             return;
         }
 
@@ -50,6 +49,8 @@ const RestPassword = () => {
                 repeatedPassword: repeatPasswordHandler.value,
             })
         );
+
+        navigate('/login');
     };
 
     const handleFormSubmitting = (e: React.FormEvent<HTMLFormElement>) => {
@@ -60,51 +61,53 @@ const RestPassword = () => {
     return (
         <>
             <title>Reset Password</title>
+            <div className="bg-[#2C2C2C]">
+                <div className="parent-container flex items-center justify-center m-auto h-screen">
+                    <div className="child-element flex items-center flex-col bg-secondary rounded-md px-12 py-12 justify-center lg:w-[390px]  ">
+                        <h1 className="text-white font-bold text-3xl sm:text-4xl self-start mt-5">
+                            Reset Password
+                        </h1>
 
-            <div className="parent-container flex items-center justify-center m-auto h-screen bg-primary">
-                <div className="child-element flex items-center flex-col bg-secondary rounded-md px-12 py-12 justify-center lg:w-[390px]  ">
-                    <h1 className="text-white font-bold text-3xl sm:text-4xl self-start mt-5">
-                        Reset Password
-                    </h1>
+                        <form
+                            className="w-full flex gap-3 flex-col self-start"
+                            onSubmit={handleFormSubmitting}
+                        >
+                            <div>
+                                {/* New Password Input */}
+                                <Input
+                                    type="password"
+                                    id="password"
+                                    placeholder="Password"
+                                    value={passwordHandler.password}
+                                    inputLabel="Enter your new password"
+                                    inputError={passwordHandler.passwordError}
+                                    Icon={<FontAwesomeIcon icon={faUnlockKeyhole} />}
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                        passwordHandler.handlePasswordChange(e.target.value)
+                                    }
+                                />
 
-                    <form className="w-full flex gap-3 flex-col self-start" onSubmit={handleFormSubmitting}>
-                        <div>
-                            {/* New Password Input */}
-                            <Input
-                                type="password"
-                                id="password"
-                                placeholder="Password"
-                                className="bg-[#3B2063] text-white "
-                                value={passwordHandler.password}
-                                inputLabel="Enter your new password"
-                                inputError={passwordHandler.passwordError}
-                                Icon={<FontAwesomeIcon icon={faUnlockKeyhole} />}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                    passwordHandler.handlePasswordChange(e.target.value)
-                                }
-                            />
+                                {/* Repeat Password Input */}
+                                <Input
+                                    type="password"
+                                    id="password-confirmation"
+                                    placeholder="Repeat Password"
+                                    value={repeatPasswordHandler.value}
+                                    inputLabel="Repeat your new password"
+                                    inputError={repeatPasswordHandler.error}
+                                    Icon={<FontAwesomeIcon icon={faUnlockKeyhole} />}
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                        repeatPasswordHandler.handlevalueChange(e.target.value)
+                                    }
+                                />
+                            </div>
 
-                            {/* Repeat Password Input */}
-                            <Input
-                                type="password"
-                                id="password-confirmation"
-                                placeholder="Repeat Password"
-                                className="bg-[#3B2063] text-white "
-                                value={repeatPasswordHandler.value}
-                                inputLabel="Repeat your new password"
-                                inputError={repeatPasswordHandler.error}
-                                Icon={<FontAwesomeIcon icon={faUnlockKeyhole} />}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                    repeatPasswordHandler.handlevalueChange(e.target.value)
-                                }
-                            />
-                        </div>
-
-                        {/* Reset Button */}
-                        <CustomButton>
-                            <span className="text-white">Reset</span>
-                        </CustomButton>
-                    </form>
+                            {/* Reset Button */}
+                            <CustomButton>
+                                <span className="text-white">Reset</span>
+                            </CustomButton>
+                        </form>
+                    </div>
                 </div>
             </div>
         </>
