@@ -48,7 +48,7 @@ const Space: React.FC<ISpaceProps> = (props) => {
     }
 
     return (
-        <>
+        <div className="w-full h-full bg-simulation-room-bg">
             <Suspense fallback={<Spinner loading={true} />}>
                 <SpaceXRControllers isInViewMode={isInViewMode} showModeButton={showModeButton} />
 
@@ -70,7 +70,7 @@ const Space: React.FC<ISpaceProps> = (props) => {
                     </XR>
                 </Canvas>
             </Suspense>
-        </>
+        </div>
     );
 };
 
