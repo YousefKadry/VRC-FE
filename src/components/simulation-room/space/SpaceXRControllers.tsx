@@ -1,5 +1,5 @@
 import React from 'react';
-import { ARButton, VRButton } from '@react-three/xr';
+import { VRButton } from '@react-three/xr';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -33,7 +33,7 @@ const SpaceXRControllers: React.FC<ISpaceXRControllersProps> = (props) => {
     return (
         <div className="flex flex-col sm:flex-row gap-3 fixed bottom-3 right-3 z-[5]">
             <VRButton style={{ ...XRButtonStyle }} />
-            <ARButton style={{ ...XRButtonStyle }} />
+
             {showModeButton && (
                 <button style={{ ...XRButtonStyle }} onClick={handleModeToggling}>
                     {isInViewMode ? 'Simulation' : 'View'} Mode
