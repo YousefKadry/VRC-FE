@@ -24,8 +24,6 @@ export default {
                 footer: '#331A57',
                 stats: '#7B6C93',
 
-                'text-bg': 'rgb(var(--text-bg))',
-
                 // simulation-room
                 'simulation-room-bg': 'rgb(var(--simulation-room-bg))',
                 'simulation-room-sidebar-bg': 'rgb(var(--simulation-room-sidebar-bg))',

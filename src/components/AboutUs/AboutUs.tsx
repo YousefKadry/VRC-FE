@@ -24,7 +24,7 @@ const About = () => {
                 <div className="max-w-screen-2xl bg-homeBg m-auto">
                     <div className="w-full h-full items-center justify-center">
                         <div className="max-w-6xl mx-auto px-20 flex flex-col items-center bg-homeBg">
-                            <div className="py-5 px-8 flex flex-col text-center mt-2 bg-homeBg text-footer">
+                            <div className="py-5 px-8 flex flex-col text-center mt-2 bg-homeBg text-primary">
                                 <h2 className="text-4xl md:text-4xl font-bold tracking-wide mb-3 bg-homeBg">
                                     About us
                                 </h2>
@@ -49,7 +49,7 @@ const About = () => {
                         </div>
 
                         <div className="mx-auto px-20 flex flex-col items-center bg-homeBg">
-                            <div className="py-5 px-8 flex flex-col text-center mt-2 bg-homeBg text-footer">
+                            <div className="py-5 px-8 flex flex-col text-center mt-2 bg-homeBg text-primary">
                                 <h2 className="text-4xl md:text-4xl font-bold tracking-wide mt-4 mb-3 bg-homeBg">
                                     Meet our team
                                 </h2>

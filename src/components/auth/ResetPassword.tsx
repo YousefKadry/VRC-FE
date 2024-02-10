@@ -29,7 +29,6 @@ const RestPassword = () => {
                     content: 'Please fill in all the fields',
                 })
             );
-            navigate('/login');
             return;
         }
 
@@ -50,6 +49,8 @@ const RestPassword = () => {
                 repeatedPassword: repeatPasswordHandler.value,
             })
         );
+
+        navigate('/login');
     };
 
     const handleFormSubmitting = (e: React.FormEvent<HTMLFormElement>) => {
@@ -77,7 +78,6 @@ const RestPassword = () => {
                                     type="password"
                                     id="password"
                                     placeholder="Password"
-                                    className="text-bg text-white "
                                     value={passwordHandler.password}
                                     inputLabel="Enter your new password"
                                     inputError={passwordHandler.passwordError}
@@ -92,7 +92,6 @@ const RestPassword = () => {
                                     type="password"
                                     id="password-confirmation"
                                     placeholder="Repeat Password"
-                                    className="text-bg text-white "
                                     value={repeatPasswordHandler.value}
                                     inputLabel="Repeat your new password"
                                     inputError={repeatPasswordHandler.error}

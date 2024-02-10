@@ -47,7 +47,6 @@ const ForgotPassword = () => {
                                 type="text"
                                 id="email"
                                 placeholder="yourname@gmail.com"
-                                className=" text-bg"
                                 value={emailHandeler.email}
                                 inputLabel="Enter your email address"
                                 inputError={emailHandeler.emailError}

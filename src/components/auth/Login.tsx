@@ -53,7 +53,6 @@ function Login() {
                                 type="text"
                                 id="email"
                                 placeholder="Enter your email"
-                                className=" text-bg"
                                 value={emailHandeler.value}
                                 inputError={emailHandeler.error}
                                 Icon={<FontAwesomeIcon icon={faEnvelope} />}
@@ -67,7 +66,6 @@ function Login() {
                                 type="password"
                                 id="password"
                                 placeholder="Password"
-                                className=" bg-secondary"
                                 value={passwordHandeler.value}
                                 inputError={passwordHandeler.error}
                                 Icon={<FontAwesomeIcon icon={faUnlockKeyhole} />}
@@ -84,7 +82,7 @@ function Login() {
                         <div className="flex flex-col 2xl:flex-row 2xl:items-center my-4 justify-between">
                             <p className="text-[#B6B6B6]">
                                 Don't have an account?{' '}
-                                <a href="/sign-up" className="text-tertiary">
+                                <a href="/sign-up" className="text-white">
                                     Sign up
                                 </a>
                             </p>

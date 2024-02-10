@@ -6,8 +6,6 @@
 :root {
     --main-bg: #000000;
 
-    --text-bg: 16 18 1;
-
     /* simulation-room */
     --simulation-room-bg: 0 0 0;
     --simulation-room-sidebar-bg: 16 18 19;

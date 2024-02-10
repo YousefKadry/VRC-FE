@@ -28,7 +28,7 @@ const FeedbackForm = () => {
     );
 
     return (
-        <div className="p-5 box-border rounded-[20px] m-2.5 shadow text-footer flex flex-col gap-5 bg-gray-50">
+        <div className="p-5 box-border rounded-[20px] m-2.5 shadow text-primary flex flex-col gap-5 bg-gray-50">
             <form className="flex" onSubmit={handleSubmit}>
                 <div className="flex-1 py-0 px-2.5 flex flex-wrap">
                     <div className="mb-3.5 relative mr-5">
