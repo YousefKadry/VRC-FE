@@ -14,7 +14,7 @@ import handleRequriedInput from './hooks/handelRequiredInput';
 import { signUpThunk } from '../../store/slices/auth/auth-actions';
 import { TAppDispatch } from '../../store/app-store';
 
-import bg from '../../assets/BgSignup.png';
+import bg from '../../assets/BgSignup.jpg';
 
 function Signup() {
     const firstNameHandeler = handleRequriedInput('First name');
@@ -58,7 +58,7 @@ function Signup() {
                                 <Input
                                     type="text"
                                     id="fname"
-                                    className="pl-8 bg-secondary"
+                                    className="pl-8 text-bg"
                                     placeholder="First Name"
                                     value={firstNameHandeler.value}
                                     inputError={firstNameHandeler.error}
@@ -70,7 +70,7 @@ function Signup() {
                                 <Input
                                     type="text"
                                     id="lname"
-                                    className="pl-8 bg-secondary"
+                                    className="pl-8 text-bg"
                                     placeholder="Last Name"
                                     value={secondNameHandeler.value}
                                     inputError={secondNameHandeler.error}
@@ -85,7 +85,7 @@ function Signup() {
                                 type="text"
                                 id="email"
                                 placeholder="Enter your email"
-                                className=" bg-secondary"
+                                className=" text-bg"
                                 value={emailHandeler.email}
                                 inputError={emailHandeler.emailError}
                                 Icon={<FontAwesomeIcon icon={faEnvelope} />}
@@ -99,7 +99,7 @@ function Signup() {
                                 type="password"
                                 id="password"
                                 placeholder="Password"
-                                className=" bg-secondary"
+                                className=" text-bg"
                                 value={passwordHundeler.password}
                                 inputError={passwordHundeler.passwordError}
                                 Icon={<FontAwesomeIcon icon={faUnlockKeyhole} />}

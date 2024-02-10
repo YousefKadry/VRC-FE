@@ -66,12 +66,12 @@ const EnterRoomPopup = () => {
                         type="text"
                         name="roomId"
                         id="roomId"
-                        className="block w-full focus:outline-none bg-[#3b2063] rounded-l-md border-0 py-1.5 p-2 text-white placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                        className="block w-full focus:outline-none --pop-up-bg rounded-l-md border-0 py-1.5 p-2 text-gray-900 placeholder:text-gray-500 sm:text-sm sm:leading-6"
                         placeholder="Room ID"
                     />
                     <button
                         type="submit"
-                        className="relative bg-[#3b2063] -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gradient2"
+                        className="relative bg-[#2A2A2A] hover:bg-[#343434] -ml-px inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-gradient2"
                     >
                         <ArrowRightCircleIcon className="-ml-0.5 h-5 w-5 text-gray-400" aria-hidden="true" />
                     </button>

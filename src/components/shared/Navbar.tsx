@@ -43,14 +43,14 @@ const Navbar = () => {
                 <div className="hidden md:block">
                     <nav className="md:flex">
                         {isAuth && (
-                            <Link to="/dashboard" className="ml-4 text-white">
+                            <Link to="/dashboard" className="ml-6 text-white hover:text-gray-300">
                                 Dashboard
                             </Link>
                         )}
-                        <Link to="/about" className="ml-4 text-white">
+                        <Link to="/about" className="ml-6 text-white hover:text-gray-300">
                             About Us
                         </Link>
-                        <Link to="/contact" className="ml-4 text-white">
+                        <Link to="/contact" className="ml-6  text-white hover:text-gray-300">
                             Contact Us
                         </Link>
                     </nav>
@@ -78,7 +78,7 @@ const Navbar = () => {
                                     <li>
                                         <Link
                                             to="/dashboard"
-                                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            className="block px-4 py-2 hover:bg-purple-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                         >
                                             Dashboard
                                         </Link>
@@ -107,10 +107,10 @@ const Navbar = () => {
                                     >
                                         {isAuth ? (
                                             <>
-                                                <div className="text-red-700">Sign Out</div>
+                                                <div className="text-gray-700">Sign Out</div>
                                                 <FontAwesomeIcon
                                                     icon={faPowerOff}
-                                                    className="pt-1 pl-2 text-red-700"
+                                                    className="pt-1 pl-2 text-gray-700"
                                                 />
                                             </>
                                         ) : (
@@ -130,13 +130,13 @@ const Navbar = () => {
                 </div>
 
                 <button
-                    className="ml-4 bg-homeBg rounded-md px-4 py-2 items-center font-bold hidden md:flex"
+                    className="ml-6 bg-homeBg rounded-md px-2 py-1 items-center font-bold hidden md:flex hover:bg-purple-100 hover:text-gray-800"
                     onClick={isAuth ? handleSignOutClick : handleSignInClick}
                 >
                     {isAuth ? (
                         <>
-                            <div className="text-red-800">Sign Out</div>
-                            <FontAwesomeIcon icon={faPowerOff} className="pt-1 pl-2 text-red-800" />
+                            <div className="text-gray-800">Sign Out</div>
+                            <FontAwesomeIcon icon={faPowerOff} className="pt-1 pl-2 text-gray-800" />
                         </>
                     ) : (
                         <>

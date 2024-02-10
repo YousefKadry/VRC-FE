@@ -12,7 +12,7 @@ import handelButtonClick from './hooks/handelButtonClick';
 import { loginThunk } from '../../store/slices/auth/auth-actions';
 import { TAppDispatch } from '../../store/app-store';
 
-import bg from '../../assets/BackgroundImage.png';
+import bg from '../../assets/BackgroundImage.jpg';
 
 function Login() {
     const emailHandeler = handleRequriedInput('Email');
@@ -53,7 +53,7 @@ function Login() {
                                 type="text"
                                 id="email"
                                 placeholder="Enter your email"
-                                className=" bg-secondary"
+                                className=" text-bg"
                                 value={emailHandeler.value}
                                 inputError={emailHandeler.error}
                                 Icon={<FontAwesomeIcon icon={faEnvelope} />}

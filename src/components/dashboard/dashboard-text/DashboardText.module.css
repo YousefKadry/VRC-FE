@@ -10,10 +10,10 @@
     /* background: radial-gradient(ellipse at center, #53426b, #53426ba7, #53426b4b, transparent); */
     z-index: 3;
     user-select: none;
-    background-image: radial-gradient(closest-side, rgba(255, 255, 255, 0.34), #1604304b);
+    background-image: radial-gradient(closest-side, rgba(255, 255, 255, 0.34), #0000004b);
 }
 .dashboard-text-container:hover {
-    background-image: radial-gradient(closest-side, rgba(255, 255, 255, 0.444), #1b063783);
+    background-image: radial-gradient(closest-side, rgba(255, 255, 255, 0.444), #00000083);
 }
 
 .dashboard-text-container[data-rotation='0'] {

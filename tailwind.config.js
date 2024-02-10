@@ -7,8 +7,8 @@ export default {
                 montserrat: ['Montserrat'],
             },
             colors: {
-                primary: '#160430',
-                secondary: '#261046',
+                primary: '#000000',
+                secondary: '#141414',
                 tertiary: '#9d5ce9',
                 quaternary: '#e2cdff',
                 gradient1: '#501793',
@@ -23,6 +23,8 @@ export default {
                 homeBg: '#F5F7FA',
                 footer: '#331A57',
                 stats: '#7B6C93',
+
+                'text-bg': 'rgb(var(--text-bg))',
 
                 // simulation-room
                 'simulation-room-bg': 'rgb(var(--simulation-room-bg))',
